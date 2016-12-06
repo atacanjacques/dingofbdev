@@ -4,20 +4,21 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "a03197bbe4bde37dc859bd33054cccf4",
+    "hash": "86a0226a82f322096523622f22058e06",
+    "content-hash": "4b87fe6d97e69cfbe5c9007b261e04ff",
     "packages": [
         {
             "name": "facebook/graph-sdk",
-            "version": "5.4.1",
+            "version": "5.4.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/facebook/php-graph-sdk.git",
-                "reference": "a5a6b6cc493d8dc417f588c7c0bdfc6396198350"
+                "reference": "2839246e971aef150650196acbb46d47e5207370"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/facebook/php-graph-sdk/zipball/a5a6b6cc493d8dc417f588c7c0bdfc6396198350",
-                "reference": "a5a6b6cc493d8dc417f588c7c0bdfc6396198350",
+                "url": "https://api.github.com/repos/facebook/php-graph-sdk/zipball/2839246e971aef150650196acbb46d47e5207370",
+                "reference": "2839246e971aef150650196acbb46d47e5207370",
                 "shasum": ""
             },
             "require": {
@@ -29,7 +30,8 @@
                 "phpunit/phpunit": "~4.0"
             },
             "suggest": {
-                "guzzlehttp/guzzle": "Allows for implementation of the Guzzle HTTP client"
+                "guzzlehttp/guzzle": "Allows for implementation of the Guzzle HTTP client",
+                "paragonie/random_compat": "Provides a better CSPRNG option in PHP 5"
             },
             "type": "library",
             "extra": {
@@ -61,7 +63,7 @@
                 "facebook",
                 "sdk"
             ],
-            "time": "2016-10-18 19:19:03"
+            "time": "2016-11-15 14:34:16"
         }
     ],
     "packages-dev": [],

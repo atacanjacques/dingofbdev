@@ -1,5 +1,6 @@
 {
-  "require" : {
-    "facebook/graph-sdk" : "~5.0"
-  }
+    "name": "jacques/dingofbdev",
+    "require": {
+        "facebook/graph-sdk": "^5.4"
+    }
 }
