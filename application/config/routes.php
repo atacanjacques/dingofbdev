@@ -56,4 +56,7 @@ $route['translate_uri_dashes'] = FALSE;
 /*
 Custom Routes
 */
+$route['Admin'] = 'Admin';
 $route['(:any)'] = 'front/$1';
+$route['profiler'] = "Profiler_controller";
+$route['profiler/disable'] = "Profiler_controller/disable";

@@ -2,22 +2,21 @@
 defined('BASEPATH') OR exit('No direct script access allowed');
 ?>
 
-<h1>Acceuil Appli</h1>
-<br>
+<!-- BLOC 1 -->
+<section id="section-accueil">
+	<div class="container">
+		<h1 style="font-size: 31px; text-align: center; font-weight: 700">JEU CONCOURS !</h1>
+		<div class="row">
 
-<?php
-
-if($is_authenticated){
-	?>
-	<h2>Bienvenue</h2>
-	<a href="https://www.facebook.com/settings?tab=applications">Mes applications</a>
-	<br>
-	<a href="/logout">Logout</a>
-	<?php
-}
-else{
-	?>
-	<a href="<?php echo $login_url; ?>">Login</a>
-	<?php
-}
-?>
+			<div class="col-sm-12 col-xs-12 text-center" id="description" >
+				<p>Du 1er au 15 janvier</p>
+				<p>A l'occassion du Mondial du Tatouage</p>
+				<p>Montre ton plus tatouage en photo</p>
+				<p>Pour tenter de gagner</p>
+				<p>Un tatouage et des pass gratuits pour le Mondial du tatouage</p>
+				<a href="<?php echo $login_url; ?>" class="button">VOTER</a>
+				<a href="<?php echo $login_url; ?>" class="button">PARTICIPER</a>
+			</div>
+		</div>
+	</div>
+</section>
