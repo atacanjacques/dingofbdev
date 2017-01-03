@@ -35,7 +35,12 @@ class MY_Controller extends CI_Controller
 		if($this->facebook->is_authenticated()){
 			$response = $this->facebook->request('get', '/me/permissions');
 			if(!isset($response['error'])){
-				$permissions = $this->config->item('facebook_permissions');
+				if($this->router->fetch_class() == "participate"){
+					$permissions = array('user_photos');
+				}
+				else{
+					$permissions = $this->config->item('facebook_permissions');
+				}
 				$user_permissions = [];
 				foreach ($response['data'] as $key => $item) {
 					if(in_array($item['permission'], $permissions) && $item['status'] == 'granted')
@@ -66,7 +71,12 @@ class MY_Controller extends CI_Controller
 	{
 		if($this->facebook->is_authenticated()){
 			$response = $this->facebook->request('get', '/me/permissions');
-			$permissions = $this->config->item('facebook_permissions');
+			if($this->router->fetch_class() == "participate"){
+				$permissions = array('user_photos');
+			}
+			else{
+				$permissions = $this->config->item('facebook_permissions');
+			}
 			$user_permissions = [];
 			foreach ($response['data'] as $key => $item) {
 				if(in_array($item['permission'], $permissions) && $item['status'] == 'granted')
