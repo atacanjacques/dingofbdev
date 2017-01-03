@@ -1,14 +1,12 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Participate extends CI_Controller {
+class Participate extends MY_Controller {
 
 	public function index()
 	{
-		$this->_is_really_authenticated();
-
-		$this->load->view('index');
-		
+		// $this->load->view('index');
+		echo 'test';
 		$this->output->enable_profiler(TRUE);
 	}
 

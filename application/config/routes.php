@@ -56,4 +56,4 @@ $route['translate_uri_dashes'] = FALSE;
 /*
 Custom Routes
 */
-// $route['(:any)'] = 'home/$1';
+$route['logout'] = 'login/logout';
