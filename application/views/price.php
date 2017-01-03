@@ -23,7 +23,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 ?>
 
 <!-- CONTENT -->
-<!-- BLOC 1 -->
+<!-- BLOC 1 -->     
 <section id="section-accueil">
     <div class="container">
         <h1 style="font-size: 31px; text-align: center; font-weight: 700">PRIX DU CONCOURS !</h1>

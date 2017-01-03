@@ -19,8 +19,6 @@ class Front extends CI_Controller {
 
     public function gallery()
     {
-
-
         $this->load->view('header');
         $this->load->view('menu');
         $this->load->view('gallery');
