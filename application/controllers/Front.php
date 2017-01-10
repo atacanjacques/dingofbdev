@@ -3,8 +3,20 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Front extends CI_Controller {
 
-	public function index()
+    public function __construct()
+    {
+        parent:: __construct();
+        $this->load->model('news_model', 'concours');
+    }
+
+    public function index()
 	{
+        $user = $this->facebook->request('get', '/me?fields=name');
+        if (!isset($user['error']))
+        {
+            echo ($user['name']);
+        }
+
 		$data["login_url"] = $this->facebook->login_url();
 		$data["logout_url"] = $this->facebook->logout_url();
 
@@ -37,10 +49,6 @@ class Front extends CI_Controller {
 
     public function upload()
     {
-        $data["login_url"] = $this->facebook->login_url();
-        $data["logout_url"] = $this->facebook->logout_url();
-
-        $this->facebook->is_authenticated() ? $data["is_authenticated"] = TRUE : $data["is_authenticated"] = FALSE;
 
         $this->load->view('header', $data);
         $this->load->view('menu', $data);

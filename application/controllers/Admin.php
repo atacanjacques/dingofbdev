@@ -3,22 +3,39 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Admin extends CI_Controller {
 
+    function __construct() {
+        parent::__construct();
+    }
+
     public function IndexAdmin()
     {
+
         $this->load->view('Admin/headerAdmin');
         $this->load->view('Admin/menuAdmin');
         $this->load->view('Admin/IndexAdmin');
         $this->load->view('Admin/footerAdmin');
-        $this->load->helper('url');
     }
 
     public function Create()
     {
-        $this->load->view('Admin/headerAdmin');
-        $this->load->view('Admin/menuAdmin');
-        $this->load->view('Admin/CreerConcours');
-        $this->load->view('Admin/footerAdmin');
-        $this->load->helper('url');
+        $this->form_validation->set_rules('name_competition', 'Nom du concours', 'required');
+        $this->form_validation->set_rules('date_START', 'Date de Début', 'required');
+        $this->form_validation->set_rules('date_END', 'Date de Fin', 'required');
+        $this->form_validation->set_rules('create_accueil', 'Page d\'accueil', 'required');
+        $this->form_validation->set_rules('create_prix', 'Page prix', 'required');
+        $this->form_validation->set_rules('create_rules', 'Page régles',
+            'required');
+
+        if ($this->form_validation->run() == FALSE)
+        {
+            $this->load->view('Admin/headerAdmin');
+            $this->load->view('Admin/menuAdmin');
+            $this->load->view('Admin/CreerConcours');
+            $this->load->view('Admin/footerAdmin');
+        } else {
+            $this->news_model->add_concours();
+            $this->load->view('Admin/formsuccess');
+        }
     }
 
     public function edit()
