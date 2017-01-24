@@ -25,3 +25,7 @@ user_guide_src/cilexer/pycilexer.egg-info/*
 *.stTheme.cache
 *.sublime-workspace
 *.sublime-project
+
+# Ignore uploaded photos folder except index file
+tmp/uploaded_photos/*
+!tmp/uploaded_photos/index.html

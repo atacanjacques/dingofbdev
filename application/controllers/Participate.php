@@ -11,11 +11,12 @@ class Participate extends MY_Controller {
 			$this->load->model('Participation_Model');
 
 			$choice = $this->facebook->request('get', $photo_id . '?fields=images,id');
-			$photo_id = $choice['images'][0]['source'];
+			$photo_source = $choice['images'][0]['source'];
 			$user_id = $choice['id'][0];
 
 			echo '<h1>IMAGE AJOUTE</h1>';
-			$this->Participation_Model->insert_participation($photo_id, $user_id);
+			echo '<img src="' . $photo_source . '"/>';
+			$this->Participation_Model->insert_participation($photo_source, $user_id);
 		}
 		else{
 			echo '<a href="/participate/album">mes albums</a>';
@@ -54,12 +55,29 @@ class Participate extends MY_Controller {
 
 		if(!isset($_FILES['photo_file']   ))
 		{
-			echo '
-			<form action="" method="post" enctype="multipart/form-data">
-			<input type="file" name="photo_file"><br>
-			<input type="submit" value="Ajouter à mes photos" name="submit">
-			</form>
-			';
+			if(isset($_POST['addPhoto']) && $_POST['addPhoto'] == "Oui")
+			{
+				echo "<h1>Photo ajouté !</h1>";
+				$photo_upload = $this->facebook->user_upload_request('tmp/uploaded_photos/' . $_POST['fileName'], ['message' => 'Ma participation au concours' . date('d-m-Y H:i:s')]);
+
+				// unlink('tmp/uploaded_photos/' . $_POST['fileName']);
+
+				redirect('participate/index/' . $photo_upload['id']);
+			}
+			else
+			{
+				if(isset($_POST['addPhoto']) && $_POST['addPhoto'] == "Non")
+				{
+					// unlink('tmp/uploaded_photos/' . $_POST['fileName']);
+
+				}
+				echo '
+				<form action="" method="post" enctype="multipart/form-data">
+					<input type="file" name="photo_file"><br>
+					<input type="submit" value="Ajouter à mes photos" name="submit">
+				</form>
+				';
+			}
 		}
 		else
 		{
@@ -77,21 +95,23 @@ class Participate extends MY_Controller {
 			}
 			else
 			{
-				$uploaded_file_path = $this->upload->data('full_path');
-				$this->facebook->user_upload_request($uploaded_file_path, ['message' => 'Ma participation au concours' . date('d-m-Y H:i:s')]);
+				$uploaded_file_name = $this->upload->data('orig_name');
 
-				unlink('tmp/uploaded_photos/' . $upload_config['file_name']);
-
-				echo "Image ajouté !";
-
-				// unlink("tmp/uploaded_photos/07918a7df199af680c553bafa4b223d7dingo.jpg");
-
-				// TODO :
-				// Vérifier qu'un utilisateur ne participe pas 2 fois
-				// Ne pas envoyer photo direct, demander confirmation
-				// Supprimer l'image apres l'upload
+				echo '<img src="/tmp/uploaded_photos/' . $uploaded_file_name . '" />';
+				echo "<h1>Ajouté cette image ?</h1>";
+				echo '
+				<form action="" method="post">
+					<input type="hidden" value="' . $uploaded_file_name . '" name="fileName">
+					<input type="submit" value="Oui" name="addPhoto">
+					<input type="submit" value="Non" name="addPhoto">
+				</form>
+				';
 			}
 		}
-
 	}
 }
+
+// TODO :
+// - Confirmation ajout image depuis facebook
+// - Commentaire + verif champs
+// - Model ajout user en plus de la participation
