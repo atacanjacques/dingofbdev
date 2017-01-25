@@ -3,10 +3,13 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Participate extends MY_Controller {
 
+	function __construct()
+	{
+		parent::__construct();
+		$this->output->enable_profiler(TRUE);
+	}
 	public function index($photo_id = NULL)
 	{
-		$this->output->enable_profiler(TRUE);
-
 		if($photo_id != NULL){
 			$this->load->model('Participation_Model');
 
@@ -27,8 +30,6 @@ class Participate extends MY_Controller {
 
 	public function album($album_id = NULL)
 	{
-		$this->output->enable_profiler(TRUE);
-
 		if($album_id == NULL)
 		{
 			$data['albums'] = $this->facebook->request('get', '/me/albums')['data'];
@@ -51,8 +52,6 @@ class Participate extends MY_Controller {
 
 	public function add_photos()
 	{
-		$this->output->enable_profiler(TRUE);
-
 		if(!isset($_FILES['photo_file']   ))
 		{
 			if(isset($_POST['addPhoto']) && $_POST['addPhoto'] == "Oui")
@@ -73,8 +72,8 @@ class Participate extends MY_Controller {
 				}
 				echo '
 				<form action="" method="post" enctype="multipart/form-data">
-					<input type="file" name="photo_file"><br>
-					<input type="submit" value="Ajouter à mes photos" name="submit">
+				<input type="file" name="photo_file"><br>
+				<input type="submit" value="Ajouter à mes photos" name="submit">
 				</form>
 				';
 			}
@@ -101,9 +100,9 @@ class Participate extends MY_Controller {
 				echo "<h1>Ajouté cette image ?</h1>";
 				echo '
 				<form action="" method="post">
-					<input type="hidden" value="' . $uploaded_file_name . '" name="fileName">
-					<input type="submit" value="Oui" name="addPhoto">
-					<input type="submit" value="Non" name="addPhoto">
+				<input type="hidden" value="' . $uploaded_file_name . '" name="fileName">
+				<input type="submit" value="Oui" name="addPhoto">
+				<input type="submit" value="Non" name="addPhoto">
 				</form>
 				';
 			}
@@ -112,6 +111,7 @@ class Participate extends MY_Controller {
 }
 
 // TODO :
+// - 2 participation
 // - Confirmation ajout image depuis facebook
 // - Commentaire + verif champs
 // - Model ajout user en plus de la participation
