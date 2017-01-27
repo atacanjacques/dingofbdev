@@ -8,18 +8,27 @@ class Participate extends MY_Controller {
 		parent::__construct();
 		$this->output->enable_profiler(TRUE);
 	}
+	
 	public function index($photo_id = NULL)
 	{
-		if($photo_id != NULL){
-			$this->load->model('Participation_Model');
+		$this->load->model('Users_Model');
+		$this->load->model('Participation_Model');
 
-			$choice = $this->facebook->request('get', $photo_id . '?fields=images,id');
-			$photo_source = $choice['images'][0]['source'];
-			$user_id = $choice['id'][0];
+		$user = $this->facebook->request('get', '/me?fields=id,last_name,first_name,email');
+
+		$toto = $this->Users_Model->read_users($user);
+		if($toto->row()){
+			echo "Vous avez deja participer !";
+		}
+		elseif($photo_id != NULL){
+
+			$this->Users_Model->create_users($user, 'token');
+
+			$participation = $this->facebook->request('get', $photo_id . '?fields=images');
+			$this->Participation_Model->create_participation($participation, $user);
 
 			echo '<h1>IMAGE AJOUTE</h1>';
-			echo '<img src="' . $photo_source . '"/>';
-			$this->Participation_Model->insert_participation($photo_source, $user_id);
+			echo '<img src="' . $participation['images']['0']['source'] . '"/>';
 		}
 		else{
 			echo '<a href="/participate/album">mes albums</a>';
@@ -57,7 +66,7 @@ class Participate extends MY_Controller {
 			if(isset($_POST['addPhoto']) && $_POST['addPhoto'] == "Oui")
 			{
 				echo "<h1>Photo ajouté !</h1>";
-				$photo_upload = $this->facebook->user_upload_request('tmp/uploaded_photos/' . $_POST['fileName'], ['message' => 'Ma participation au concours' . date('d-m-Y H:i:s')]);
+				$photo_upload = $this->facebook->user_upload_request('tmp/uploaded_photos/' . $_POST['fileName'], ['message' => $_POST['fileDescription']]);
 
 				// unlink('tmp/uploaded_photos/' . $_POST['fileName']);
 
@@ -72,8 +81,9 @@ class Participate extends MY_Controller {
 				}
 				echo '
 				<form action="" method="post" enctype="multipart/form-data">
-				<input type="file" name="photo_file"><br>
-				<input type="submit" value="Ajouter à mes photos" name="submit">
+					<input type="file" name="photo_file"><br>
+					<textarea name="photo_description">' . 'Ma participation au concours ' . date('d-m-Y H:i:s') . '</textarea>
+					<input type="submit" value="Ajouter à mes photos" name="submit">
 				</form>
 				';
 			}
@@ -95,23 +105,21 @@ class Participate extends MY_Controller {
 			else
 			{
 				$uploaded_file_name = $this->upload->data('orig_name');
+				$uploaded_file_description = $_POST['photo_description'];
 
 				echo '<img src="/tmp/uploaded_photos/' . $uploaded_file_name . '" />';
 				echo "<h1>Ajouté cette image ?</h1>";
 				echo '
 				<form action="" method="post">
-				<input type="hidden" value="' . $uploaded_file_name . '" name="fileName">
-				<input type="submit" value="Oui" name="addPhoto">
-				<input type="submit" value="Non" name="addPhoto">
+					<input type="hidden" value="' . $uploaded_file_name . '" name="fileName">		
+
+					<input type="hidden" value="' . $uploaded_file_description . '" name="fileDescription">
+
+					<input type="submit" value="Oui" name="addPhoto">
+					<input type="submit" value="Non" name="addPhoto">
 				</form>
 				';
 			}
 		}
 	}
 }
-
-// TODO :
-// - 2 participation
-// - Confirmation ajout image depuis facebook
-// - Commentaire + verif champs
-// - Model ajout user en plus de la participation
