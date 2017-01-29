@@ -1,27 +1,15 @@
 <header>
-<!-- Navigation -->
-<nav class="navbar  navbar-fixed-top" role="navigation">
-    <div class="container">
+    <div id="menu_white_background" class="navbar">
+        <div class="structure">
 
-        <!-- Collect the nav links, forms, and other content for toggling -->
-        <div class="collapse navbar-collapse header" id="bs-example-navbar-collapse-1">
-            <ul class="nav navbar-nav">
-                <li>
-                    <a href="<?php echo site_url('home/index') ?>">Accueil</a>
-                </li>
-                <li>
-                    <a href="<?php echo site_url('home/gallery') ?>">Galerie</a>
-                </li>
-                <li>
-                    <a href="<?php echo site_url('home/price') ?>">Prix</a>
-                </li>
-                <li>
-                    <a href="./Partager.php">Partager</a>
-                </li>
-            </ul>
+            <nav>
+                <div id="contener_type">
+                    <a class="button_type" href="<?php echo site_url('front/index') ?>">Accueil</a>
+                    <a class="button_type" href="<?php echo site_url('front/gallery') ?>">Galerie</a>
+                    <a class="button_type" href="<?php echo site_url('front/price') ?>">Prix</a>
+                    <a class="button_type" href="">Participer</a>
+
+            </nav>
         </div>
-        <!-- /.navbar-collapse -->
     </div>
-    <!-- /.container -->
-</nav>
 </header>

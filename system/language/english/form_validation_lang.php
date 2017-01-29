@@ -37,7 +37,7 @@
  */
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-$lang['form_validation_required']		= 'The {field} field is required.';
+$lang['form_validation_required']		= 'Le champ "{field}" est vide ! Merci de le remplir.';
 $lang['form_validation_isset']			= 'The {field} field must have a value.';
 $lang['form_validation_valid_email']		= 'The {field} field must contain a valid email address.';
 $lang['form_validation_valid_emails']		= 'The {field} field must contain all valid email addresses.';
@@ -64,5 +64,5 @@ $lang['form_validation_less_than']		= 'The {field} field must contain a number l
 $lang['form_validation_less_than_equal_to']	= 'The {field} field must contain a number less than or equal to {param}.';
 $lang['form_validation_greater_than']		= 'The {field} field must contain a number greater than {param}.';
 $lang['form_validation_greater_than_equal_to']	= 'The {field} field must contain a number greater than or equal to {param}.';
-$lang['form_validation_error_message_not_set']	= 'Unable to access an error message corresponding to your field name {field}.';
+$lang['form_validation_error_message_not_set']	= 'Une erreur s\'est produite sur le champ "{field}".';
 $lang['form_validation_in_list']		= 'The {field} field must be one of: {param}.';

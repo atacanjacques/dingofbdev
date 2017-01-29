@@ -23,7 +23,9 @@
 
 
                         <li class="col-sm-4 col-xs-6">
-                            <a class="thumbnail slide" id="carousel-selector-3"><img width="380" height="417" src="<?php echo base_url('assets/img/Tattoo.png'); ?>"></a>
+                            <a class="thumbnail slide fancybox" rel="group" href="<?php echo
+                            base_url(); ?>/img/polaroid.png" id="carousel-selector-3"><img src="<?php echo base_url();
+                                ?>/img/Tattoo.png"></a>
                             <p class="title-photo">Bidule</p>
                         </li>
 
@@ -41,7 +43,7 @@
 
 
                         <li class="col-sm-4 col-xs-6">
-                            <a class="thumbnail slide" id="carousel-selector-3"><img width="430" height="385" src="<?php echo base_url('assets/img/Tattoo.png'); ?>"></a>
+                            <a class="thumbnail slide" id="carousel-selector-3"><img width="430" height="385" src="<?php echo base_url(); ?>/img/Tattoo.png"></a>
                             <p class="title-photo">Bidule</p>
                         </li>
 
@@ -59,7 +61,7 @@
 
 
                         <li class="col-sm-4 col-xs-6">
-                            <a class="thumbnail slide" id="carousel-selector-3"><img width="430" height="385" src="<?php echo base_url('assets/img/Tattoo.png'); ?>"></a>
+                            <a class="thumbnail slide" id="carousel-selector-3"><img width="430" height="385" src="<?php echo base_url(); ?>/img/Tattoo.png"></a>
                             <p class="title-photo">Bidule</p>
                         </li>
 

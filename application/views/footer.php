@@ -4,7 +4,7 @@
 
     <div class="row text-left">
         <div class="col-sm-6 col-xs-12 cgu">
-            <a href="./cgu.php">Mentions légales / CGU</a>
+            <a class="various mentionsLink fancybox.ajax" data-fancybox-type="iframe" href="<?php echo site_url('front/mentions')?>">Mentions légales</a> / <a class="various cguLink fancybox.ajax" data-fancybox-type="iframe" href="<?php echo site_url('front/cgu')?>">CGU</a>
         </div>
 
         <div class="col-sm-6 col-xs-12 copyright">

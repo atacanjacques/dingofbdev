@@ -20,7 +20,7 @@
         <?php for($i=1;$i<11;$i++): ?>
             <tr>
                 <td><?php echo $i?></td>
-                <td><img src="<?php echo base_url('assets/img/Tattoo.png'); ?>" width="50" height="50"></td>
+                <td><img src="<?php echo base_url(); ?>/img/Tattoo.png" width="50" height="50"></td>
                 <td>Lorem Ipsum</td>
                 <td>Jotaro Kujo</td>
                 <td><a href="#delete-user">Delete<span class="glyphicon glyphicon-trash"></span></a></td>

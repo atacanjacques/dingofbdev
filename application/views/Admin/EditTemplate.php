@@ -1,3 +1,7 @@
+<?php
+defined('BASEPATH') OR exit('No direct script access allowed');
+?>
+
 <!-- BLOC 1 -->
 <section id="section-edit">
     <div class="container">
@@ -20,12 +24,12 @@
 
                 <div class="form-group">
                     <label for="date_START">Date de début : </label>
-                    <input type="text" class="form-control" id="date_START" placeholder="JJ/MM/YYYY hh:mm"/>
+                    <input type="text" class="form-control datepicker" id="date_START" placeholder="JJ/MM/YYYY hh:mm"/>
                 </div>
 
                 <div class="form-group">
                     <label for="date_END">Date de fin : </label>
-                    <input type="text" class="form-control" id="date_END"placeholder="JJ/MM/YYYY hh:mm"/>
+                    <input type="text" class="form-control datepicker" id="date_END"placeholder="JJ/MM/YYYY hh:mm"/>
                 </div>
 
             </div>

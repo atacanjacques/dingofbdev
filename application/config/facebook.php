@@ -24,6 +24,6 @@ $config['facebook_app_secret']          = '067a4c0d84616df2f643f78293079162';
 $config['facebook_login_type']          = 'web';
 $config['facebook_login_redirect_url']  = '/login/login_redirect';
 $config['facebook_logout_redirect_url'] = '/login/logout';
-$config['facebook_permissions']         = array('email');
+$config['facebook_permissions']         = array('email', 'user_birthday');
 $config['facebook_graph_version']       = 'v2.6';
 $config['facebook_auth_on_load']        = TRUE;
