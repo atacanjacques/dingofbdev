@@ -70,9 +70,9 @@ class Participate extends MY_Controller
 			if(isset($_POST['addPhoto']) && $_POST['addPhoto'] == "Oui")
 			{
 				echo "<h1>Photo ajouté !</h1>";
-				$photo_upload = $this->facebook->user_upload_request('uploads/uploaded_photos/' . $_POST['fileName'], ['message' => $_POST['fileDescription']]);
+				$photo_upload = $this->facebook->user_upload_request('./uploads/uploaded_photos/' . $_POST['fileName'], ['message' => $_POST['fileDescription']]);
 
-				// unlink('uploads/uploaded_photos/' . $_POST['fileName']);
+				unlink('./uploads/uploaded_photos/' . $_POST['fileName']);
 
 				redirect('participate/index/' . $photo_upload['id']);
 			}
@@ -80,7 +80,7 @@ class Participate extends MY_Controller
 			{
 				if(isset($_POST['addPhoto']) && $_POST['addPhoto'] == "Non")
 				{
-					// unlink('uploads/uploaded_photos/' . $_POST['fileName']);
+					unlink('./uploads/uploaded_photos/' . $_POST['fileName']);
 
 				}
 				echo '
@@ -94,7 +94,7 @@ class Participate extends MY_Controller
 		}
 		else
 		{
-			$upload_config['upload_path'] = 'uploads/uploaded_photos/';
+			$upload_config['upload_path'] = './uploads/uploaded_photos/';
 			$upload_config['file_name'] = md5(uniqid()) . $_FILES["photo_file"]["name"];
 			$upload_config['allowed_types'] = 'jpg|png';
 			$upload_config['max_size'] = 8000;

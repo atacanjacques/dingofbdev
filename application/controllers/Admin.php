@@ -52,7 +52,7 @@ class Admin extends CI_Controller {
 
             // Config de l'upload de l'image du lot a gagner
             $config['file_name']     = 'img_concours_';
-            $config['upload_path']   = 'uploads/img_concours';
+            $config['upload_path']   = './uploads/img_concours';
             $config['allowed_types'] = 'gif|jpg|png';
             $config['max_size']      = 8000;
             $config['max_width']     = 1024;
