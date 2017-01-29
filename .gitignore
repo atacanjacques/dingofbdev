@@ -32,4 +32,4 @@ uploads/uploaded_photos/*
 
 # Ignore imc concours folder except index file
 uploads/img_concours/*
-!uplaods/img_concours/index.html
+!uploads/img_concours/index.html
