@@ -23,8 +23,14 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 | a PHP script and you can easily do that on your own.
 |
 */
-$config['base_url'] = 'http://dingo.fbdev.fr';
-
+if(ENVIRONMENT == 'production')
+{
+	$config['base_url'] = 'https://dingo.fbdev.fr';
+}
+else
+{
+	$config['base_url'] = 'http://dingo.fbdev.fr';
+}
 /*
 |--------------------------------------------------------------------------
 | Index File
