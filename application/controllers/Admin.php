@@ -8,8 +8,11 @@ class Admin extends CI_Controller {
     {
         parent::__construct();
         $this->load->helper('form');
-        $this->output->enable_profiler(TRUE);
-
+        
+        if(ENVIRONMENT !== 'production')
+        {
+            $this->output->enable_profiler(TRUE);
+        }
     }
 
 
