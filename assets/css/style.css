@@ -1,0 +1,241 @@
+body{
+    font-family:nickname, sans-serif;
+    font-size:2.8em;
+    background-image:url("../img/background.jpg");
+    color: white;
+}
+
+.logo{
+    margin: 1px;
+}
+
+#texte-logo {
+    position: absolute;
+    top: 72px;
+    left: 101px;
+    color: white;
+    -ms-transform: rotate(-18deg); /* IE 9 */
+    -webkit-transform: rotate(-18deg); /* Chrome, Safari, Opera */
+    transform: rotate(-18deg);
+    font-size: 36px;
+    text-align: center;
+}
+
+.header > ul  {
+    font-size: 30px;
+    position: absolute;
+    background-color: #2b2b2b;
+}
+
+.button {
+    background-color: #af3b3c;
+    border: 3px solid #fff;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+}
+
+/* INDEX */
+/*#section-accueil .container, #section-galerie .container, #section-tatouages .container {
+    background-color: rgba(181, 39, 185, 0.5);
+    margin-top: 25px;
+    margin-bottom: 25px;
+}*/
+
+#gift{
+    width: 500px;
+}
+.gift{
+    width: 500px;
+}
+#description{
+    font-size: 2em;
+    font-weight: 700;
+}
+
+.send_button{
+    margin-bottom:30px;
+    margin-top:20px;
+    opacity: 0.8;
+}
+
+#send_button{
+    margin-bottom:30px;
+    margin-top:30px;
+    opacity: 0.8;
+    -webkit-transform: scale(1);
+    /* Browser Variations: */
+    -&z-transform: scale(1);
+    -o-transform: scale(1);
+    -webkit-transition-duration: 0.2s;
+    -moz-transition-duration: 0.2s;
+    -o-transition-duration: 0.2s;
+}
+#send_button:hover{
+    margin-bottom:30px;
+    margin-top:30px;
+    opacity: 1;
+    -webkit-transform: scale(1.05);
+    -moz-transform: scale(1.05);
+    -o-transform: scale(1.05);
+}
+
+
+#image_list{
+    display: inline-flex;
+    list-style-type: none;
+}
+.popular {
+    height: 150px;
+    width: 100%;
+    border: 7px solid #fff;
+    -webkit-transform: scale(1);
+    /* Browser Variations: */
+    -moz-transform: scale(1);
+    -o-transform: scale(1);
+    -webkit-transition-duration: 0.5s;
+    -moz-transition-duration: 0.5s;
+    -o-transition-duration: 0.5s;
+    margin-bottom: 10px;
+    margin-top: 10px;
+}
+.popular:hover {
+    -webkit-transform: scale(1.05);
+    -moz-transform: scale(1.05);
+    -o-transform: scale(1.05);
+}
+
+/* GALLERIE CSS */
+
+.slide {
+    width: 100%;
+
+}
+
+.hide-bullets {
+    list-style:none;
+    margin-left: -40px;
+    margin-top:20px;
+}
+
+.thumbnail {
+    padding: 0;
+    margin-bottom:10px;
+}
+
+.title-photo{
+    font-size: 16px;
+    text-align: center;
+    color:white;
+}
+
+body {
+    padding-top: 70px; /* Required padding for .navbar-fixed-top. Change if height of navigation changes. */
+}
+
+.navbar-fixed-top .nav {
+    padding: 15px 0;
+}
+
+.navbar-fixed-top .navbar-brand {
+    padding: 0 15px;
+}
+
+@media(min-width:768px) {
+    body {
+        padding-top: 100px; /* Required padding for .navbar-fixed-top. Change if height of navigation changes. */
+    }
+
+    .navbar-fixed-top .navbar-brand {
+        padding: 15px 0;
+    }
+}
+
+.carousel-inner>.item>img, .carousel-inner>.item>a>img {
+    width: 100%;
+}
+
+
+#title-brand{
+    position: absolute;
+    top: 45px;
+    text-align: center;
+    color: white;
+    font-size: 32px;
+    transform: rotate(-8deg);
+    line-height: 30px;
+}
+
+span.navbar-brand {
+    margin-right: 70px;
+    position: relative;
+    bottom: 29px;
+}
+
+
+/* FOOTER CSS */
+.social:hover {
+    -webkit-transform: scale(0.6);
+    -moz-transform: scale(0.6);
+    -o-transform: scale(0.6);
+}
+.social {
+    -webkit-transform: scale(0.5);
+    /* Browser Variations: */
+    -moz-transform: scale(0.5);
+    -o-transform: scale(0.5);
+    -webkit-transition-duration: 0.5s;
+    -moz-transition-duration: 0.5s;
+    -o-transition-duration: 0.5s;
+}
+
+#social-fb:hover {
+    color: #3B5998;
+}
+#social-tw:hover {
+    color: #4099FF;
+}
+#social-gp:hover {
+    color: #d34836;
+}
+#social-em:hover {
+    color: #f39c12;
+}
+.cgu a{
+    color:white;
+    text-decoration: none;
+    font-size: 27px;
+
+}
+
+.copyright{
+    font-size: 18px;
+}
+
+/* END FOOTER CSS */
+
+
+/* ADMIN CSS */
+
+.creation-concours {
+    margin-left: 30px;
+}
+
+.title-settings {
+    background: rgba(64, 53, 53, 0.66);
+    text-align: center;
+    padding-top: 6px;
+    padding-bottom: 5px;
+    margin-top: 0px;
+    margin-bottom: 30px;
+}
+
+.form-horizontal{
+    background: rgba(73, 72, 115, 0.93);
+}
+/* END ADMIN CSS */

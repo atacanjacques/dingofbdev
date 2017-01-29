@@ -75,10 +75,6 @@ $query_builder = TRUE;
 
 $db['default'] = array(
 	'dsn'	=> '',
-	'hostname' => 'localhost',
-	'username' => 'root',
-	'password' => '',
-	'database' => 'dingofbdev',
 	'dbdriver' => 'mysqli',
 	'dbprefix' => '',
 	'pconnect' => FALSE,
@@ -93,4 +89,19 @@ $db['default'] = array(
 	'stricton' => FALSE,
 	'failover' => array(),
 	'save_queries' => TRUE
-);
+	);
+
+if(ENVIRONMENT == 'production')
+{
+	$db['default']['hostname'] = 'localhost';
+	$db['default']['username'] = 'xxxxxxxxx';
+	$db['default']['password'] = 'xxxxxxxxx';
+	$db['default']['database'] = 'xxxxxxxxx';
+}
+else
+{
+	$db['default']['hostname'] = 'localhost';
+	$db['default']['username'] = 'root';
+	$db['default']['password'] = '';
+	$db['default']['database'] = 'dingofbdev';
+}

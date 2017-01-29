@@ -27,5 +27,9 @@ user_guide_src/cilexer/pycilexer.egg-info/*
 *.sublime-project
 
 # Ignore uploaded photos folder except index file
-tmp/uploaded_photos/*
-!tmp/uploaded_photos/index.html
+uploads/uploaded_photos/*
+!uploads/uploaded_photos/index.html
+
+# Ignore imc concours folder except index file
+uploads/img_concours/*
+!uplaods/img_concours/index.html

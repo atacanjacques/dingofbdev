@@ -1,14 +1,18 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Participate extends MY_Controller {
-
+class Participate extends MY_Controller
+{
 	function __construct()
 	{
 		parent::__construct();
-		$this->output->enable_profiler(TRUE);
+
+		if(ENVIRONMENT !== 'production')
+		{
+			$this->output->enable_profiler(TRUE);
+		}
 	}
-	
+
 	public function index($photo_id = NULL)
 	{
 		$this->load->model('Users_Model');
@@ -66,9 +70,9 @@ class Participate extends MY_Controller {
 			if(isset($_POST['addPhoto']) && $_POST['addPhoto'] == "Oui")
 			{
 				echo "<h1>Photo ajouté !</h1>";
-				$photo_upload = $this->facebook->user_upload_request('tmp/uploaded_photos/' . $_POST['fileName'], ['message' => $_POST['fileDescription']]);
+				$photo_upload = $this->facebook->user_upload_request('uploads/uploaded_photos/' . $_POST['fileName'], ['message' => $_POST['fileDescription']]);
 
-				// unlink('tmp/uploaded_photos/' . $_POST['fileName']);
+				// unlink('uploads/uploaded_photos/' . $_POST['fileName']);
 
 				redirect('participate/index/' . $photo_upload['id']);
 			}
@@ -76,7 +80,7 @@ class Participate extends MY_Controller {
 			{
 				if(isset($_POST['addPhoto']) && $_POST['addPhoto'] == "Non")
 				{
-					// unlink('tmp/uploaded_photos/' . $_POST['fileName']);
+					// unlink('uploads/uploaded_photos/' . $_POST['fileName']);
 
 				}
 				echo '
@@ -90,7 +94,7 @@ class Participate extends MY_Controller {
 		}
 		else
 		{
-			$upload_config['upload_path'] = 'tmp/uploaded_photos/';
+			$upload_config['upload_path'] = 'uploads/uploaded_photos/';
 			$upload_config['file_name'] = md5(uniqid()) . $_FILES["photo_file"]["name"];
 			$upload_config['allowed_types'] = 'jpg|png';
 			$upload_config['max_size'] = 8000;
@@ -107,7 +111,7 @@ class Participate extends MY_Controller {
 				$uploaded_file_name = $this->upload->data('orig_name');
 				$uploaded_file_description = $_POST['photo_description'];
 
-				echo '<img src="/tmp/uploaded_photos/' . $uploaded_file_name . '" />';
+				echo '<img src="/uploads/uploaded_photos/' . $uploaded_file_name . '" />';
 				echo "<h1>Ajouté cette image ?</h1>";
 				echo '
 				<form action="" method="post">
