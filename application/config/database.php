@@ -94,9 +94,9 @@ $db['default'] = array(
 if(ENVIRONMENT == 'production')
 {
 	$db['default']['hostname'] = 'localhost';
-	$db['default']['username'] = 'xxxxxxxxx';
-	$db['default']['password'] = 'xxxxxxxxx';
-	$db['default']['database'] = 'xxxxxxxxx';
+	$db['default']['username'] = 'root';
+	$db['default']['password'] = 'secretsecret';
+	$db['default']['database'] = 'dingofbdev';
 }
 else
 {
