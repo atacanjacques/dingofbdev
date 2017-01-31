@@ -35,7 +35,7 @@
                     <a href="<?php echo site_url('Admin/Style/') ?>">Styles</a>
                 </li>
                 <li>
-                    <a href="<?php echo site_url('Admin/moderation/') ?>">Modération</a>
+                    <a href="<?php echo site_url('Admin/listUsers/') ?>">Modération</a>
                 </li>
             </ul>
         </div>

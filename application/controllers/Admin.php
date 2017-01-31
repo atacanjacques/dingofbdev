@@ -8,7 +8,7 @@ class Admin extends CI_Controller {
     {
         parent::__construct();
         $this->load->helper('form');
-        
+
         if(ENVIRONMENT !== 'production')
         {
             $this->output->enable_profiler(TRUE);
@@ -130,7 +130,15 @@ class Admin extends CI_Controller {
         $this->load->view('Admin/menuAdmin');
         $this->load->model('Concours_model');
         $liste = $this->Concours_model->list_concours();
-        $this->load->view('Admin/historiqueConcours', array('liste' => $liste));
+
+        //On vérfie qu'il y a bien des concours dans la BDD
+        if (!empty($liste)) {
+            $this->load->view('Admin/historiqueConcours', array('liste' => $liste)); 
+        }
+        else{
+            echo "Il n'y a aucun concours dans votre historique";
+        }
+        
         $this->load->view('Admin/footerAdmin');
 
 
@@ -184,14 +192,40 @@ class Admin extends CI_Controller {
     }
 
 
-    // public function moderation()
-    // {
-    //     $this->load->view('Admin/headerAdmin');
-    //     $this->load->view('Admin/menuAdmin');
-    //     $this->load->view('Admin/moderation');
-    //     $this->load->view('Admin/footerAdmin');
-    //     $this->load->helper('url');
-    // }
+    // Affiche la liste des utlisateurs de l'application
+    public function listUsers()
+    {
+        $this->load->view('Admin/headerAdmin');
+        $this->load->view('Admin/menuAdmin');
+
+        $this->load->model('Moderation_model');
+        $liste = $this->Moderation_model->affichage_users();
+        $this->load->view('Admin/listUsers', array('liste' => $liste)); 
+
+        $this->load->view('Admin/footerAdmin');
+        $this->load->helper('url');
+    }
+
+    // Banni ou réintègre un membre
+    public function bannirUser(){
+
+        //banni un membre
+        if($this->input->post('id_user_ban'))
+        {
+            $this->load->model('Moderation_model');
+            $this->Moderation_model->bannir();
+            $this->load->view('Admin/formsuccess');
+        }
+
+        // réintègre un membre
+        else
+        {
+            $this->load->model('Moderation_model');
+            $this->Moderation_model->reintegrer();
+            $this->load->view('Admin/formsuccess');
+        }
+    }
+    
 
     // public function Style()
     // {
