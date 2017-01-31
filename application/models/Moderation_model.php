@@ -11,7 +11,7 @@ class Moderation_model extends CI_Model
 	}	
 
 
-	// Banni un user
+	// Banni un user => 'banni' = 1
 	public function bannir()
 	{
 
@@ -23,7 +23,7 @@ class Moderation_model extends CI_Model
 		$this->db->update('users', $data);
 	}	
 
-	// Reintegre un user
+	// Reintegre un user => 'banni' = 0
 	public function reintegrer()
 	{
 
@@ -34,6 +34,22 @@ class Moderation_model extends CI_Model
 		$this->db->where('id_fb', $this->input->post('id_user_reint'));
 		$this->db->update('users', $data);
 	}	
+
+
+	public function filtreUser()
+	{
+			
+		$this->db->select('*')
+				 ->from('users')
+				 ->like('id_fb', $this->input->post('filter_id'))
+				 ->like('prenom', $this->input->post('filter_name'))
+				 ->like('nom', $this->input->post('filter_surname'))
+				 ->order_by('prenom', 'ASC');
+
+
+		$query = $this->db->get();
+		return $query->result();
+	}
 
 
 

@@ -9,6 +9,9 @@ class Admin extends CI_Controller {
         parent::__construct();
         $this->load->helper('form');
 
+        $this->load->view('Admin/headerAdmin');
+        $this->load->view('Admin/menuAdmin');
+
         if(ENVIRONMENT !== 'production')
         {
             $this->output->enable_profiler(TRUE);
@@ -18,8 +21,6 @@ class Admin extends CI_Controller {
 
     public function index()
     {
-        $this->load->view('Admin/headerAdmin');
-        $this->load->view('Admin/menuAdmin');
         $this->load->view('Admin/indexAdmin');
         $this->load->view('Admin/footerAdmin');
     }
@@ -64,8 +65,6 @@ class Admin extends CI_Controller {
             // Si le formulaire n'est pas valide on le ré-affiche 
             if ($this->form_validation->run() == FALSE)
             {
-                    $this->load->view('Admin/headerAdmin');
-                    $this->load->view('Admin/menuAdmin');
                     $this->load->view('Admin/CreerConcours', array('error' => ' ' ));
                     $this->load->view('Admin/footerAdmin');
             }
@@ -75,8 +74,6 @@ class Admin extends CI_Controller {
             elseif (! $this->upload->do_upload('img_lot'))
             {
                     $error = array('error' => $this->upload->display_errors());
-                    $this->load->view('Admin/headerAdmin');
-                    $this->load->view('Admin/menuAdmin');
                     $this->load->view('Admin/CreerConcours', $error);
                     $this->load->view('Admin/footerAdmin');
             }
@@ -126,8 +123,6 @@ class Admin extends CI_Controller {
     // Affiche la liste des concours en cours
     public function listConcours()
     {
-        $this->load->view('Admin/headerAdmin');
-        $this->load->view('Admin/menuAdmin');
         $this->load->model('Concours_model');
         $liste = $this->Concours_model->list_concours();
 
@@ -154,8 +149,6 @@ class Admin extends CI_Controller {
         if($this->input->post('modifConcours')) 
         {     
 
-            $this->load->view('Admin/headerAdmin');
-            $this->load->view('Admin/menuAdmin');
             $this->load->model('Concours_model');
             $liste = $this->Concours_model->affichage_concours();
 
@@ -195,42 +188,49 @@ class Admin extends CI_Controller {
     // Affiche la liste des utlisateurs de l'application
     public function listUsers()
     {
-        $this->load->view('Admin/headerAdmin');
-        $this->load->view('Admin/menuAdmin');
 
         $this->load->model('Moderation_model');
         $liste = $this->Moderation_model->affichage_users();
         $this->load->view('Admin/listUsers', array('liste' => $liste)); 
 
         $this->load->view('Admin/footerAdmin');
-        $this->load->helper('url');
     }
 
     // Banni ou réintègre un membre
     public function bannirUser(){
 
-        //banni un membre
+        // Banni un membre
         if($this->input->post('id_user_ban'))
         {
             $this->load->model('Moderation_model');
             $this->Moderation_model->bannir();
-            $this->load->view('Admin/formsuccess');
+            redirect('Admin/listUsers');
         }
 
-        // réintègre un membre
+        // Réintègre un membre
         else
         {
             $this->load->model('Moderation_model');
             $this->Moderation_model->reintegrer();
-            $this->load->view('Admin/formsuccess');
+            redirect('Admin/listUsers');
         }
+    }
+
+    // Permet de filter les utilisateurs (dans onglet modération du menu)
+    public function rechercheUser()
+    {
+
+        $this->load->model('Moderation_model');
+        $liste = $this->Moderation_model->filtreUser();
+        $this->load->view('Admin/listUsers', array('liste' => $liste)); 
+
+        $this->load->view('Admin/footerAdmin');        
+
     }
     
 
     // public function Style()
     // {
-    //     $this->load->view('Admin/headerAdmin');
-    //     $this->load->view('Admin/menuAdmin');
     //     $this->load->view('Admin/EditTemplate');
     //     $this->load->view('Admin/footerAdmin');
     //     $this->load->helper('url');
