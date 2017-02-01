@@ -36,6 +36,10 @@
                             <p class="title-photo">Bidule</p>
                         </li>
 
+                        <li class="col-sm-4 col-xs-6">
+                            <a class="thumbnail slide" id="carousel-selector-3"><img width="430" height="385" src="<?php echo base_url('assets/img/Tattoo.png'); ?>"></a>
+                            <p class="title-photo">Bidule</p>
+                        </li>
 
 
                         </li>

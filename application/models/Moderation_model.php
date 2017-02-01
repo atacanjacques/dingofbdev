@@ -11,6 +11,15 @@ class Moderation_model extends CI_Model
 	}	
 
 
+	// Exporte la liste des users
+	public function export_users()
+	{
+		
+   		$this->db->select('id_fb, nom, prenom, mail');
+   		return $query = $this->db->get('users');
+	}	
+
+
 	// Banni un user => 'banni' = 1
 	public function bannir()
 	{
@@ -36,15 +45,17 @@ class Moderation_model extends CI_Model
 	}	
 
 
+	// Permet de filtrer les utilisateurs
 	public function filtreUser()
 	{
 			
 		$this->db->select('*')
 				 ->from('users')
-				 ->like('id_fb', $this->input->post('filter_id'))
-				 ->like('prenom', $this->input->post('filter_name'))
-				 ->like('nom', $this->input->post('filter_surname'))
-				 ->order_by('prenom', 'ASC');
+				 ->like('id_fb', $this->input->post('filter_id'), 'after')
+				 ->like('prenom', $this->input->post('filter_name'), 'after')
+				 ->like('nom', $this->input->post('filter_surname'), 'after')
+				 ->like('mail', $this->input->post('filter_email'), 'after')
+				 ->order_by('id_fb', 'ASC');
 
 
 		$query = $this->db->get();

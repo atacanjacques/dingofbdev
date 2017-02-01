@@ -98,7 +98,7 @@ class Admin extends CI_Controller {
 
         // Si il y a deja un concours en cours on affiche une erreur
         else{
-            echo "Il y a déjà un concours en cours !";
+            echo "Vous ne pouvez pas créer de concours car il y en a déjà un en cours !";
         }
 
     }
@@ -138,6 +138,42 @@ class Admin extends CI_Controller {
 
 
     } 
+
+
+    //Permet de télécharger le tableau en CSV
+    public function export_concours_CSV()
+    {
+        $this->load->dbutil();
+        $this->load->helper('file');
+
+        $this->load->model('Concours_model');
+        $result = $this->Concours_model->export_concours();
+
+        $delimiter = ";";
+        $newline = "\r\n";
+        $csv = $this->dbutil->csv_from_result($result, $delimiter, $newline);
+        if (!write_file('./uploads/export_concours/liste_concours_'.date("Y-m-d_H-i-s").'.csv', $csv))
+        {
+        echo 'Un problème est survenu lors de la génération du fichier CSV';
+        }
+        else
+        {
+        echo 'La liste des concours a bien été exportée';
+        }
+    }
+
+
+    // Permet de filter les concours (dans onglet historique du menu)
+    public function rechercheConcours()
+    {
+
+        $this->load->model('Concours_model');
+        $liste = $this->Concours_model->filtre_concours();
+        $this->load->view('Admin/historiqueConcours', array('liste' => $liste)); 
+
+        $this->load->view('Admin/footerAdmin');        
+
+    }
 
 
     // Fonction pour modifier un concours
@@ -227,20 +263,29 @@ class Admin extends CI_Controller {
         $this->load->view('Admin/footerAdmin');        
 
     }
-    
 
-    // public function Style()
-    // {
-    //     $this->load->view('Admin/EditTemplate');
-    //     $this->load->view('Admin/footerAdmin');
-    //     $this->load->helper('url');
-    // }
 
-    // public function logout()
-    // {
-    //     $this->facebook->destroy_session();
+    //Permet d'exporter la liste des utilisateurs en CSV
+    public function export_users_CSV()
+    {
+        $this->load->dbutil();
+        $this->load->helper('file');
 
-    //     redirect('/');
-    // }
+        $this->load->model('Moderation_model');
+        $result = $this->Moderation_model->export_users();
+
+        $delimiter = ";";
+        $newline = "\r\n";
+        $csv = $this->dbutil->csv_from_result($result, $delimiter, $newline);
+        if (!write_file('./uploads/export_users/liste_users_'.date("Y-m-d_H-i-s").'.csv', $csv))
+        {
+        echo 'Un problème est survenu lors de la génération du fichier CSV';
+        }
+        else
+        {
+        echo 'La liste des utilisateurs a bien été exportée';
+        }
+    }
+
 
 }
