@@ -21,7 +21,12 @@ class Admin extends CI_Controller {
 
     public function index()
     {
-        $this->load->view('Admin/indexAdmin');
+
+        $this->load->model('Resultats_model');
+        $liste = $this->Resultats_model->affiche_gagnant();
+        $this->load->view('Admin/indexAdmin', array('liste' => $liste)); 
+
+
         $this->load->view('Admin/footerAdmin');
     }
 
@@ -286,6 +291,5 @@ class Admin extends CI_Controller {
         echo 'La liste des utilisateurs a bien été exportée';
         }
     }
-
 
 }
