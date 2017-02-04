@@ -1,4 +1,4 @@
-<?php echo form_open('admin/export_concours_CSV'); ?> 
+<?php echo form_open('Admin/export_concours_CSV'); ?> 
 
 
 <input type="submit" value="exporter" name="export" />
