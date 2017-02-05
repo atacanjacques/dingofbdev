@@ -18,6 +18,11 @@
                 <li>
                     <a href="./Partager.php">Partager</a>
                 </li>
+                <?php if($_SESSION['isAdmin']){ ?>
+                <li>
+                    <a href="/admin">Admin</a>
+                </li>
+                <?php } ?>
             </ul>
         </div>
         <!-- /.navbar-collapse -->

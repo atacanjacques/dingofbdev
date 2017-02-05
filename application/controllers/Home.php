@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Home extends CI_Controller
+class Home extends MY_Controller
 {
 	function __construct()
 	{
@@ -17,7 +17,15 @@ class Home extends CI_Controller
 	{
 		$this->load->view('header');
 		$this->load->view('menu');
-		$this->load->view('index');
+		if(isset($this->permissionsMissing))
+		{
+			$data ['permissionsMissing'] = $this->permissionsMissing;
+			$this->load->view('index', $data);
+		}
+		else
+		{
+			$this->load->view('index');
+		}
 		$this->load->view('footer');
 	}
 

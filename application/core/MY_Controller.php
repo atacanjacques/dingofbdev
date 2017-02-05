@@ -8,90 +8,186 @@ class MY_Controller extends CI_Controller
 	{
 		parent::__construct();
 
-		// Status :
-		// Not authenticated = 0
-		// Authenticated = 1
-		// Missing permissions = 2
+		if(isset($_SESSION['refusedPage']))
+		{
+			$refusedPage = $_SESSION['refusedPage'];
+			unset($_SESSION['refusedPage']);
 
-		switch ($this->_check_status()) {
+			$this->permissionsMissing = $this->_permissionsMissing($refusedPage);
+			if(!isset($this->permissionsMissing))
+			{
+				if($refusedPage == "vote")
+				{
+					redirect('/vote');
+				}
+				elseif($refusedPage == "participate")
+				{
+					redirect('/participate');
+				}
+			}
+		}
+
+		$_SESSION['isAdmin'] = 0;
+
+		switch ($this->_check_status()){
+			// Not authenticated ||  Missing permissions
 			case 0:
-			if($this->router->fetch_class() != "login"){
+			if($this->router->fetch_class() != "home"
+				&& $this->router->fetch_class() != "login")
+			{
 				redirect('/');
 			}
 			break;
 
+			// Authenticated
 			case 1:
-				// Logged in
+			$_SESSION['isAdmin'] = $this->_isAdmin();
 			break;
 
+			// Deleted App
 			case 2:
-			redirect($this->_getReRequestUrl());
+			$this->facebook->destroy_session();
 			break;
 		}
 	}
 
 	public function _check_status()
 	{
-		if($this->facebook->is_authenticated()){
-			$response = $this->facebook->request('get', '/me/permissions');
-			if(!isset($response['error'])){
-				if($this->router->class == "participate")
+		if(!$this->facebook->is_authenticated()){ return 0; }
+
+		if($this->router->class == "participate")
+		{
+			$permissions = array('email', 'user_photos', 'publish_actions');
+		}
+		else{
+			$permissions = $this->config->item('facebook_permissions');
+		}
+
+		if($this->facebook->is_authenticated())
+		{
+			$reqFb = $this->facebook->request('get', '/me/permissions');
+
+			if(isset($reqFb['error'])){ return 2; }
+
+			foreach ($reqFb['data'] as $permission) {
+				if($permission['status'] == 'granted')
 				{
-					$permissions = array('user_photos', 'publish_actions');
+					$permissionsGranted[] = $permission['permission'];
 				}
-				else{
-					$permissions = $this->config->item('facebook_permissions');
-				}
-				$user_permissions = [];
-				foreach ($response['data'] as $key => $item) {
-					if(in_array($item['permission'], $permissions) && $item['status'] == 'granted')
-						array_push($user_permissions, $item['permission']);
-				}
+			}
 
-				$missing_permissions = array_diff($permissions, $user_permissions);
+			$permissionsMissing = array_diff($permissions, $permissionsGranted);
 
-				if(!empty($missing_permissions)){
-					$helper =  $this->facebook->object()->getRedirectLoginHelper();
-					$re_login_url = $helper->getReRequestUrl('http://dingo.fbdev.fr', $missing_permissions);
-					return 2;
-				}
-				else{
-					return 1;
-				}
+			if(sizeof($permissionsMissing) == 0)
+			{
+				return 1;
 			}
 			else{
 				return 0;
 			}
 		}
-		else{
+	}
+
+	public function _getReRequestUrl($page)
+	{
+		if($page == "participate")
+		{
+			$permissions = array('email', 'user_photos', 'publish_actions');
+		}
+		elseif($page == "vote")
+		{
+			$permissions = $this->config->item('facebook_permissions');
+		}
+
+		$reqFb = $this->facebook->request('get', '/me/permissions');
+
+		foreach ($reqFb['data'] as $permission) {
+			if($permission['status'] == 'granted')
+			{
+				$permissionsGranted[] = $permission['permission'];
+			}
+		}
+
+		$permissionsMissing = array_diff($permissions, $permissionsGranted);
+
+		if(sizeof($permissionsMissing) > 0)
+		{
+			$helper =  $this->facebook->object()->getRedirectLoginHelper();
+			$reLoginUrl = $helper->getReRequestUrl(base_url(), $permissionsMissing);
+
+			return $reLoginUrl;
+		}
+		else
+		{
+			return FALSE;
+		}
+
+	}
+
+	public function _isAdmin()
+	{
+		$appId = $this->config->item('facebook_app_id');
+		$appSecret = $this->config->item('facebook_app_secret');
+
+		$appToken = $this->facebook->request('get', '/oauth/access_token?client_id='.$appId.'&client_secret='.$appSecret.'&grant_type=client_credentials');
+
+		$appAdmin = $this->facebook->request('get', $appId . '/roles', $appToken['access_token']);
+		$userId = $this->facebook->request('get', '/me');
+
+		foreach ($appAdmin['data'] as $admin) {
+			$adminId[] = $admin['user'];
+		}
+
+		if(in_array($userId['id'], $adminId))
+		{
+			return 1;
+		}
+		else
+		{
 			return 0;
 		}
 	}
 
-	public function _getReRequestUrl()
+	public function _permissionsMissing($refusedPage)
 	{
-		if($this->facebook->is_authenticated()){
-			$response = $this->facebook->request('get', '/me/permissions');
-			if($this->router->class == "participate")
+		if($this->facebook->is_authenticated())
+		{
+			$permissionsInfo = array(
+				'email' => 'Vous contacter',
+				'user_photos' => 'Voir vos photos',
+				'publish_actions' => 'Publie sur votre mur'
+				);
+
+			if($refusedPage == "participate")
 			{
-				$permissions = array('user_photos', 'publish_actions');
+				$permissions = array('email', 'user_photos', 'publish_actions');
+				$redirectUrl = base_url() . '/participate';
 			}
-			else{
+			elseif($refusedPage == "vote")
+			{
 				$permissions = $this->config->item('facebook_permissions');
-			}
-			$user_permissions = [];
-			foreach ($response['data'] as $key => $item) {
-				if(in_array($item['permission'], $permissions) && $item['status'] == 'granted')
-					array_push($user_permissions, $item['permission']);
+				$redirectUrl = base_url();
 			}
 
-			$missing_permissions = array_diff($permissions, $user_permissions);
+			$reqFb = $this->facebook->request('get', '/me/permissions');
 
-			if(!empty($missing_permissions)){
-				$helper =  $this->facebook->object()->getRedirectLoginHelper();
-				$re_login_url = $helper->getReRequestUrl('http://dingo.fbdev.fr', $missing_permissions);
+			if(!isset($reqFb['error'])){ 
+				foreach ($reqFb['data'] as $permission) {
+					if($permission['status'] == 'granted')
+					{
+						$permissionsGranted[] = $permission['permission'];
+					}
+				}
 
-				return $re_login_url;
+				$permissionsMissing = array_diff($permissions, $permissionsGranted);
+
+				if(sizeof($permissionsMissing) > 0)
+				{
+					$permissionsMissingInfo['refusedPage'] = $refusedPage;
+					$permissionsMissingInfo['permissions'] = $permissionsMissing;
+					$permissionsMissingInfo['info'] = $permissionsInfo;
+					return $permissionsMissingInfo;
+				}
 			}
 		}
 	}

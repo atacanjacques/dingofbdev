@@ -19,7 +19,7 @@ class Participate extends MY_Controller
 		$this->load->model('Participation_Model');
 
 		$user = $this->facebook->request('get', '/me?fields=id,last_name,first_name,email');
-
+var_dump($user);
 		$toto = $this->Users_Model->read_users($user);
 		if($toto->row()){
 			echo "Vous avez deja participer !";
