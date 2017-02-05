@@ -10,7 +10,7 @@
                     <a href="<?php echo site_url('home/index') ?>">Accueil</a>
                 </li>
                 <li>
-                    <a href="<?php echo site_url('home/gallery') ?>">Galerie</a>
+                    <a href="<?php echo site_url('/vote') ?>">Galerie</a>
                 </li>
                 <li>
                     <a href="<?php echo site_url('home/price') ?>">Prix</a>

@@ -33,7 +33,7 @@ class Concours_model extends CI_Model
 			'accueil' => $this->input->post('create_accueil'),
 			'reglement' => $this->input->post('create_rules')
 			
-		);
+			);
 
 		$this->db->insert($this->table_concours, $data);
 
@@ -54,7 +54,7 @@ class Concours_model extends CI_Model
 			'url' => $url_img,
 			'description' => $this->input->post('create_lot'),
 			'concours_id' => $id_concours
-		);
+			);
 
 		$this->db->insert("lots", $data);
 
@@ -65,7 +65,7 @@ class Concours_model extends CI_Model
 	public function list_concours()
 	{
 		$query = $this->db->get($this->table_concours);
-        return $query->result();
+		return $query->result();
 	}	
 
 
@@ -75,9 +75,9 @@ class Concours_model extends CI_Model
 
 		$this->db->select('concours.id AS id_concours, concours.nom AS nom_concours, date_debut, heure_debut, date_fin, 
 			heure_fin, accueil, reglement, lots.nom AS nom_lot, lots.url, lots.description')
-				->from('concours')
-				->join('lots', 'lots.concours_id = concours.id')
-				->where('concours.id', $this->input->post('modifConcours'));
+		->from('concours')
+		->join('lots', 'lots.concours_id = concours.id')
+		->where('concours.id', $this->input->post('modifConcours'));
 
 		$query = $this->db->get();
 		return $query->result();
@@ -89,7 +89,7 @@ class Concours_model extends CI_Model
 	public function edit_concours()
 	{
 
-	 	$data = array(
+		$data = array(
 			'nom' => $this->input->post('name_competition'),
 			'date_debut' => $this->input->post('date_START'),
 			'heure_debut' => $this->input->post('heure_START'),
@@ -97,9 +97,9 @@ class Concours_model extends CI_Model
 			'heure_fin' => $this->input->post('heure_END'),
 			'accueil' => $this->input->post('create_accueil'),
 			'reglement' => $this->input->post('create_rules')
-		);
+			);
 
-	 	$this->db->where('id', $this->input->post('id_concours'));
+		$this->db->where('id', $this->input->post('id_concours'));
 		$this->db->update($this->table_concours, $data);
 		
 	}
@@ -114,7 +114,7 @@ class Concours_model extends CI_Model
 			'nom' => $this->input->post('name_lot'),
 			'url' => $url_img,
 			'description' => $this->input->post('create_lot')
-		);
+			);
 
 		$this->db->where('concours_id', $this->input->post('id_concours'));
 		$this->db->update("lots", $data);
@@ -126,8 +126,8 @@ class Concours_model extends CI_Model
 	{
 
 		$this->db->select('url')
-				 ->from('lots')
-				 ->where('concours_id', $this->input->post('supprConcours'));
+		->from('lots')
+		->where('concours_id', $this->input->post('supprConcours'));
 
 		$query = $this->db->get();
 		return $query->result();
@@ -155,11 +155,15 @@ class Concours_model extends CI_Model
 
 		$this->db->where($data)
 		->delete($this->table_concours);
-
-
-		
 	}
 	
+	public function last_concours()
+	{
+		$this->db->select('*');
+		$this->db->limit(1);
+		$this->db->order_by('id', 'DESC');
+		return $this->db->get('concours')->row();
+	}
 
 }
 

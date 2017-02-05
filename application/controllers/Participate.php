@@ -18,21 +18,53 @@ class Participate extends MY_Controller
 		$this->load->model('Users_Model');
 		$this->load->model('Participation_Model');
 
-		$user = $this->facebook->request('get', '/me?fields=id,last_name,first_name,email');
-var_dump($user);
-		$toto = $this->Users_Model->read_users($user);
-		if($toto->row()){
-			echo "Vous avez deja participer !";
+		$fb_user = $this->facebook->request('get', '/me?fields=id,last_name,first_name,email');
+		$bd_user = $this->Users_Model->read_users($fb_user);
+		$bd_participation = $this->Participation_Model->read_participation($fb_user);
+
+		if(isset($bd_user) && $bd_user->banni == "1")
+		{
+			echo "Vous etes banni !";
 		}
-		elseif($photo_id != NULL){
+		elseif($bd_participation)
+		{
+			echo "Vous avez deja participer !";
+			echo '<br><a href="/participate/delete">Supprimer ma participation</a>';
+		}
+		elseif($photo_id != NULL)
+		{
+			if(isset($_POST['addPhoto']) && $_POST['addPhoto'] == "Oui")
+			{
+				if(is_null($bd_user))
+				{
+					$this->Users_Model->create_users($fb_user, $this->facebook->is_authenticated());
+				}
+				else
+				{
+					$this->Users_Model->update_users($fb_user, $this->facebook->is_authenticated());
+				}
+				$participation = $this->facebook->request('get', $photo_id . '?fields=images');
+				$this->Participation_Model->create_participation($participation, $fb_user);
 
-			$this->Users_Model->create_users($user, 'token');
+				echo '<h1>IMAGE AJOUTE</h1>';
+				echo '<p>Partager votre participation : </p>';
+				echo '<img src="' . $participation['images']['0']['source'] . '"/>';
+			}
+			elseif(isset($_POST['addPhoto']) && $_POST['addPhoto'] == "Non")
+			{
+				redirect('/participate');
+			}
+			else
+			{
+				echo '
+				Participer avec cette photo ?<br>
+				<form action="" method="post">
+					<input type="submit" value="Oui" name="addPhoto">
+					<input type="submit" value="Non" name="addPhoto">
+				</form>
+				';
 
-			$participation = $this->facebook->request('get', $photo_id . '?fields=images');
-			$this->Participation_Model->create_participation($participation, $user);
-
-			echo '<h1>IMAGE AJOUTE</h1>';
-			echo '<img src="' . $participation['images']['0']['source'] . '"/>';
+			}
 		}
 		else{
 			echo '<a href="/participate/album">mes albums</a>';
@@ -112,7 +144,7 @@ var_dump($user);
 				$uploaded_file_description = $_POST['photo_description'];
 
 				echo '<img src="/uploads/uploaded_photos/' . $uploaded_file_name . '" />';
-				echo "<h1>Ajouté cette image ?</h1>";
+				echo "<h1>Ajouté cette image sur votre compte ?</h1>";
 				echo '
 				<form action="" method="post">
 					<input type="hidden" value="' . $uploaded_file_name . '" name="fileName">		
@@ -124,6 +156,38 @@ var_dump($user);
 				</form>
 				';
 			}
+		}
+	}
+
+
+	public function delete()
+	{
+		$this->load->model('Participation_Model');
+
+		$fb_user = $this->facebook->request('get', '/me?fields=id,last_name,first_name,email');
+		$bd_participation = $this->Participation_Model->read_participation($fb_user);
+
+		if(is_null($bd_participation)){ redirect('/'); }
+
+		if(isset($_POST['deletePhoto']) && $_POST['deletePhoto'] == "Oui")
+		{
+			$bd_user = $this->Participation_Model->delete_participation($fb_user);
+			echo "participation supprimer";
+
+		}
+		elseif(isset($_POST['deletePhoto']) && $_POST['deletePhoto'] == "Non")
+		{
+			redirect('/');
+		}
+		else
+		{
+			echo '
+			Supprimer la participation ?
+			<form action="" method="post">
+				<input type="submit" value="Oui" name="deletePhoto">
+				<input type="submit" value="Non" name="deletePhoto">
+			</form>
+			';
 		}
 	}
 }
