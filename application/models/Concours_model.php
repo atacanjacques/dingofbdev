@@ -168,14 +168,6 @@ class Concours_model extends CI_Model
 		// on supprime l'image du lot sur le serveur
 		unlink ($url_lot); 
 
-
-		// on supprime le lot du concours
-		$data = array('concours_id' => $this->input->post('supprConcours'));
-
-		$this->db->where($data)
-		->delete("lots");
-
-
 		// on supprime le concours 
 		$data = array('id' => $this->input->post('supprConcours'));
 

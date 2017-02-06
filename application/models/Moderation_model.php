@@ -63,5 +63,30 @@ class Moderation_model extends CI_Model
 	}
 
 
+	// On affiche les images signalés
+	public function img_signale()
+	{
+		$this->db->select('*')
+				 ->from('participation')
+				 ->join('users', 'participation.users_id_fb = users.id_fb', 'inner')
+				 ->where('participation.signalement', '1');
+
+
+		$query = $this->db->get();
+		return $query->result();
+
+	}
+
+
+	// On supprime la participation du l'utilisateur banni
+	public function delete_participation(){
+	
+	$data = array('users_id_fb' => $this->input->post('id_user_ban'));
+
+	$this->db->where($data)
+			 ->delete('participation');
+
+	}
+
 
 }

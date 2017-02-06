@@ -15,32 +15,37 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 
-<!-- Navigation -->
-<nav class="navbar  navbar-fixed-top" role="navigation">
-    <div class="container">
+<body>
 
-        <!-- Collect the nav links, forms, and other content for toggling -->
-        <div class="collapse navbar-collapse header" id="bs-example-navbar-collapse-1">
-            <ul class="nav navbar-nav">
-                <li>
-                    <?php echo anchor('/admin/index', 'Accueil', 'title="Accueil"'); ?>
-                </li>
-                <li>
-                    <?php echo anchor('admin/createConcours', 'Créer un concours', 'title="Créer un concours"'); ?>
-                </li>
-                <li>
-                    <?php echo anchor('admin/listConcours', 'Historique', 'title="Historique des concours"'); ?>
-                </li>
-                <li>
-                    <a href="<?php echo site_url('Admin/Style/') ?>">Styles</a>
-                </li>
-                <li>
-                    <a href="<?php echo site_url('Admin/listUsers/') ?>">Modération</a>
-                </li>
-            </ul>
-        </div>
-        <!-- /.navbar-collapse -->
-    </div>
-    <!-- /.container -->
-</nav>
-    </header>
+<header>
+
+    <!-- Navigation -->
+    <nav class="navbar  navbar-fixed-top" role="navigation">
+
+            <!-- Collect the nav links, forms, and other content for toggling -->
+                <ul class="nav navbar-nav">
+                    <li>
+                        <?php echo anchor('/admin/index', 'Accueil', 'title="Accueil"'); ?>
+                    </li>
+                    <li>
+                        <?php echo anchor('admin/createConcours', 'Créer un concours', 'title="Créer un concours"'); ?>
+                    </li>
+
+                    <li>
+                        <?php echo anchor('admin/listConcours', 'Historique des concours', 'title="Historique des concours"'); ?>
+                    </li>
+                    <li>
+                        <?php echo anchor('admin/imgReport', 'Modération des photos', 'title="Modération des images"'); ?>
+                    </li>
+
+                    <li>
+                        <?php echo anchor('admin/listUsers', 'Modération des utilisateurs', 'title="Modération des utilisateurs"'); ?>
+                    </li>
+                    <li>
+                        <?php echo anchor('admin/#', 'Styles', 'title="style des concours"'); ?>
+                    </li>
+
+                </ul>
+
+    </nav>
+</header>

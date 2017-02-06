@@ -1,9 +1,9 @@
 <?php echo form_open('admin/export_users_CSV'); ?>
 
 
-<input type="submit" value="exporter" name="export" />
+    <input type="submit" value="exporter" name="export" />
 
-    </form>
+</form>
 
 
 <table>

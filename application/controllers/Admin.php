@@ -198,7 +198,7 @@ class Admin extends CI_Controller {
 
         }
 
-        // Si je clique sur supprimer, ca supprime le concours
+        // Si je clique sur supprimer, ca supprime le concours ainsi que son lot associé
         else {
 
             $this->load->model('Concours_model');
@@ -207,7 +207,6 @@ class Admin extends CI_Controller {
             {
                 $row->url;
             }
-
 
             $this->Concours_model->delete_concours($row->url);
             $this->load->view('Admin/formsuccess');
@@ -290,6 +289,33 @@ class Admin extends CI_Controller {
         {
         echo 'La liste des utilisateurs a bien été exportée';
         }
+    }
+
+
+
+    public function imgReport()
+    {
+
+        $this->load->model('Moderation_model');
+        $liste = $this->Moderation_model->img_signale();
+        $this->load->view('Admin/imgReport', array('liste' => $liste)); 
+
+
+        $this->load->view('Admin/footerAdmin');
+
+    }
+
+    public function signalBan()
+    {
+
+        $this->load->model('Moderation_model');
+        $this->Moderation_model->bannir();
+        $this->Moderation_model->delete_participation();
+        redirect('Admin/imgReport');
+        
+
+
+
     }
 
 }

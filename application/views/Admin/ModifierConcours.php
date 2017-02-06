@@ -73,7 +73,7 @@
 
                     <label for="img_lot">Image du lot : </label><br />
 
-                    <img src="http://dingo.fbdev.fr/uploads/img_concours_.png" alt="<?php echo $row->nom_lot; ?>"  width="50" height="40" />
+                    <img src="<?php echo $row->url; ?>" alt="<?php echo $row->nom_lot; ?>"  width="150" height="150" />
 
                     <input type="file" name="img_lot" 
                     value="<?php echo $row->url; ?>" /><br />
