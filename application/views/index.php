@@ -24,8 +24,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                     echo '<a href="/logout" class="button">Logout</a>';
                 }
                 ?>
-                <!--<a href="<?php /*echo $login_url; */?>" class="button">VOTER</a>
-				<a href="<?php /*echo $login_url; */?>" class="button">PARTICIPER</a>-->
             </div>
         </div>
     </div>

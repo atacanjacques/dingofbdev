@@ -4,9 +4,9 @@
 
             <nav>
                 <div id="contener_type">
-                    <a class="button_type" href="<?php echo site_url('front/index') ?>">Accueil</a>
-                    <a class="button_type" href="<?php echo site_url('front/gallery') ?>">Galerie</a>
-                    <a class="button_type" href="<?php echo site_url('front/price') ?>">Prix</a>
+                    <a class="button_type" href="<?php echo site_url('home/index') ?>">Accueil</a>
+                    <a class="button_type" href="<?php echo site_url('home/gallery') ?>">Galerie</a>
+                    <a class="button_type" href="<?php echo site_url('home/price') ?>">Prix</a>
                     <a class="button_type" href="">Participer</a>
 
             </nav>

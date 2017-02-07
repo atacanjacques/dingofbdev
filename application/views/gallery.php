@@ -9,59 +9,60 @@
                 <div class="col-sm-12" id="slider-thumbs">
                     <!-- Bottom switcher of slider -->
                     <ul class="hide-bullets">
-                        <li class="col-sm-4 col-xs-6">
-                            <a class="thumbnail" id="carousel-selector-0">
-                                <img src="http://placehold.it/150x150&text=zero">
-                            </a>
-                            <p class="title-photo">Machin</p>
-                        </li>
-
-                        <li class="col-sm-4 col-xs-6">
-                            <a class="thumbnail" id="carousel-selector-1"><img src="http://placehold.it/150x150&text=1"></a>
-                            <p class="title-photo">Truc</p>
-                        </li>
-
-
-                        <li class="col-sm-4 col-xs-6">
-                            <a class="thumbnail slide fancybox" rel="group" href="<?php echo
-                            base_url(); ?>/img/polaroid.png" id="carousel-selector-3"><img src="<?php echo base_url();
-                                ?>/img/Tattoo.png"></a>
+                        <li class="col-sm-4 col-xs-12">
+                            <a title="YOLO" class="thumbnail slide fancybox" data-caption="caption 1" rel="group" href="<?php echo base_url(); ?>/img/image1.jpg" id="carousel-selector-3">
+                                <img src="<?php echo base_url(); ?>/img/image1.jpg" class="photo_gallery"></a>
                             <p class="title-photo">Bidule</p>
                         </li>
 
-                        <li class="col-sm-4 col-xs-6">
-                            <a class="thumbnail" id="carousel-selector-0">
-                                <img src="http://placehold.it/150x150&text=zero">
-                            </a>
-                            <p class="title-photo">Machin</p>
-                        </li>
-
-                        <li class="col-sm-4 col-xs-6">
-                            <a class="thumbnail" id="carousel-selector-1"><img src="http://placehold.it/150x150&text=1"></a>
-                            <p class="title-photo">Truc</p>
-                        </li>
-
-
-                        <li class="col-sm-4 col-xs-6">
-                            <a class="thumbnail slide" id="carousel-selector-3"><img width="430" height="385" src="<?php echo base_url(); ?>/img/Tattoo.png"></a>
+                        <li class="col-sm-4 col-xs-12 ">
+                            <a title="ONCHE ONCHE" class="thumbnail slide fancybox" data-caption="caption here" rel="group" href="<?php echo base_url(); ?>/img/image2.jpg" id="carousel-selector-3">
+                                <img src="<?php echo base_url(); ?>/img/image2.jpg" class="photo_gallery"></a>
                             <p class="title-photo">Bidule</p>
                         </li>
 
-                        <li class="col-sm-4 col-xs-6">
-                            <a class="thumbnail" id="carousel-selector-0">
-                                <img src="http://placehold.it/150x150&text=zero">
-                            </a>
-                            <p class="title-photo">Machin</p>
+
+                        <li class="col-sm-4 col-xs-12">
+                            <a title="ONCHE ONCHE" class="thumbnail slide fancybox" data-caption="caption here" rel="group" href="<?php echo base_url(); ?>/img/image3.jpg" id="carousel-selector-3">
+                                <img src="<?php echo base_url(); ?>/img/image3.jpg" class="photo_gallery"></a>
+                            <p class="title-photo">Bidule</p>
                         </li>
 
-                        <li class="col-sm-4 col-xs-6">
-                            <a class="thumbnail" id="carousel-selector-1"><img src="http://placehold.it/150x150&text=1"></a>
-                            <p class="title-photo">Truc</p>
+                        <li class="col-sm-4 col-xs-12">
+                            <a title="YOLO" class="thumbnail slide fancybox" data-caption="caption 1" rel="group" href="<?php echo base_url(); ?>/img/image1.jpg" id="carousel-selector-3">
+                                <img src="<?php echo base_url(); ?>/img/image1.jpg" class="photo_gallery"></a>
+                            <p class="title-photo">Bidule</p>
+                        </li>
+
+                        <li class="col-sm-4 col-xs-12">
+                            <a title="ONCHE ONCHE" class="thumbnail slide fancybox" data-caption="caption here" rel="group" href="<?php echo base_url(); ?>/img/image2.jpg" id="carousel-selector-3">
+                                <img src="<?php echo base_url(); ?>/img/image2.jpg" class="photo_gallery"></a>
+                            <p class="title-photo">Bidule</p>
                         </li>
 
 
-                        <li class="col-sm-4 col-xs-6">
-                            <a class="thumbnail slide" id="carousel-selector-3"><img width="430" height="385" src="<?php echo base_url(); ?>/img/Tattoo.png"></a>
+                        <li class="col-sm-4 col-xs-12">
+                            <a title="ONCHE ONCHE" class="thumbnail slide fancybox" data-caption="caption here" rel="group" href="<?php echo base_url(); ?>/img/image3.jpg" id="carousel-selector-3">
+                                <img src="<?php echo base_url(); ?>/img/image3.jpg" class="photo_gallery"></a>
+                            <p class="title-photo">Bidule</p>
+                        </li>
+
+                        <li class="col-sm-4 col-xs-12">
+                            <a title="YOLO" class="thumbnail slide fancybox" data-caption="caption 1" rel="group" href="<?php echo base_url(); ?>/img/image1.jpg" id="carousel-selector-3">
+                                <img src="<?php echo base_url(); ?>/img/image1.jpg" class="photo_gallery"></a>
+                            <p class="title-photo">Bidule</p>
+                        </li>
+
+                        <li class="col-sm-4 col-xs-12">
+                            <a title="ONCHE ONCHE" class="thumbnail slide fancybox" data-caption="caption here" rel="group" href="<?php echo base_url(); ?>/img/image2.jpg" id="carousel-selector-3">
+                                <img src="<?php echo base_url(); ?>/img/image2.jpg" class="photo_gallery"></a>
+                            <p class="title-photo">Bidule</p>
+                        </li>
+
+
+                        <li class="col-sm-4 col-xs-12 ">
+                            <a title="ONCHE ONCHE" class="thumbnail slide fancybox" data-caption="caption here" rel="group" href="<?php echo base_url(); ?>/img/image3.jpg" id="carousel-selector-3">
+                                <img src="<?php echo base_url(); ?>/img/image3.jpg" class="photo_gallery"></a>
                             <p class="title-photo">Bidule</p>
                         </li>
 

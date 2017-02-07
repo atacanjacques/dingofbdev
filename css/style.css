@@ -32,7 +32,7 @@ header{
 }
 
 .structure{
-    background-color: #252222;
+   /* background-color: #252222; */
     height: auto;
     margin: 0 auto;
     padding: 0px 15px;
@@ -90,10 +90,17 @@ header{
     text-decoration: none;
 }
 
+.button_type{
+    background-color: #252222;
+}
+
 .button_type:hover{
     background-color: #af3b3c;
 }
 
+ul{
+    list-style-type: none;
+}
 
 /*.header > ul  {*/
     /*font-size: 30px;*/
@@ -112,9 +119,13 @@ header{
     font-size: 25px;
     margin: 4px 2px;
     cursor: pointer;
+    color: white;
     text-decoration: none !important;
 }
 
+select{
+    color: black;
+}
 
 /* INDEX */
 /*#section-accueil .container, #section-galerie .container, #section-tatouages .container {
@@ -123,6 +134,13 @@ header{
     margin-bottom: 25px;
 }*/
 
+
+.deja_participe{
+    text-align: center;
+    font-size: 20px;
+    font-weight: 700;
+}
+
 #gift{
     width: 500px;
 }
@@ -130,7 +148,7 @@ header{
     width: 500px;
 }
 #description{
-    font-size: 2em;
+    font-size: 1.7em;
     font-weight: 700;
 }
 
@@ -183,6 +201,13 @@ header{
     -webkit-transform: scale(1.05);
     -moz-transform: scale(1.05);
     -o-transform: scale(1.05);
+}
+
+/* PARTICIPATE */
+
+.participate{
+    text-align: center;
+    font-size: 35px;
 }
 
 /* GALLERIE CSS */
@@ -255,6 +280,19 @@ span.navbar-brand {
 
 /* FOOTER CSS */
 
+.buttonCGU{
+    background-color: #252222;
+    border: 1.2px solid #fff;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 25px;
+    margin: 4px 2px;
+    cursor: pointer;
+    text-decoration: none !important;
+}
+
 .mentionsLink:hover{
     color: #af3b3c;
 }
@@ -279,7 +317,7 @@ span.navbar-brand {
 }
 
 .footer{
-    margin-top: 25px;
+    margin-top: 55px;
 }
 
 #social-fb:hover {
@@ -294,11 +332,14 @@ span.navbar-brand {
 #social-em:hover {
     color: #f39c12;
 }
+
+.cgu{
+    font-size: 1.6em;
+}
+
 .cgu a{
     color:white;
     text-decoration: none;
-    font-size: 27px;
-
 }
 
 .copyright{
@@ -309,6 +350,15 @@ span.navbar-brand {
 
 
 /* ADMIN CSS */
+
+.top_user{
+    margin: 0 auto;
+}
+
+.thumbnail{
+    background-color: inherit;
+    border: inherit;
+}
 
 .creation-concours {
     margin-left: 30px;
@@ -327,7 +377,50 @@ span.navbar-brand {
     background: rgba(73, 72, 115, 0.93);
 }
 
+/* STYLES MODIF */
+
+.jscolor{
+    margin-left: 160px;
+    text-align: center;
+}
+
+/* FIN STYLE MODIF
+
 /*#section-galerie {*/
     /*padding-top: 70px;*/
 /*}*/
 /* END ADMIN CSS */
+
+.fancybox-title iframe {
+    min-height: 30px;
+    vertical-align: middle;
+}
+
+.already_concours{
+    margin: 0 auto;
+    font-weight: 700;
+    font-size: 50px;
+    text-align: center;
+}
+
+.form_success > h3{
+    margin: 0 auto;
+    font-weight: 700;
+    font-size: 50px;
+    text-align: center;
+}
+
+.no_concours {
+    margin: 0 auto;
+    font-weight: 700;
+    font-size: 50px;
+    text-align: center;
+}
+
+.photo_gallery{
+    width: 350px;
+    height: 350px !important;
+    background-position: 50% 50%;
+    background-repeat: no-repeat;
+    background-size: cover;
+}

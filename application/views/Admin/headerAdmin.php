@@ -34,6 +34,10 @@
 <script type="text/javascript" src="<?php echo base_url(); ?>js/script.js"></script>
 
 
+<!-- JSCOLOR -->
+    <script type="text/javascript" src="<?php echo base_url(); ?>js/jscolor.js"></script>
+
+
 <!-- Timepicker -->
     <script src="//cdnjs.cloudflare.com/ajax/libs/timepicker/1.3.5/jquery.timepicker.min.js"></script>
     <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/timepicker/1.3.5/jquery.timepicker.min.css">
