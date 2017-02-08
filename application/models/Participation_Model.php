@@ -2,6 +2,8 @@
 
 class Participation_Model extends CI_Model
 {
+
+        // ajoute une participation a la bdd
         public function create_participation($participation, $user)
         {
                 $this->db->select('id');

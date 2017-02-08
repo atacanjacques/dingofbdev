@@ -3,6 +3,7 @@
 class Resultats_model extends CI_Model
 {
 
+	// retourne toutes les info du gagnant
 	public function affiche_gagnant(){
 
 		 $this->db->select('vote.participation_idparticipation, users.*, participation.source_photo')

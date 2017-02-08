@@ -42,6 +42,9 @@
                         <?php echo anchor('admin/listUsers', 'Modération des utilisateurs', 'title="Modération des utilisateurs"'); ?>
                     </li>
                     <li>
+                        <?php echo anchor('admin/administration', 'Administration', 'title="Administration"'); ?>
+                    </li>
+                    <li>
                         <?php echo anchor('admin/#', 'Styles', 'title="style des concours"'); ?>
                     </li>
 

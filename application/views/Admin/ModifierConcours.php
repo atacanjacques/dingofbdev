@@ -1,5 +1,6 @@
 <?php
-    foreach ($liste as $row){
+    foreach ($liste as $row)
+    {
 
     $row->id_concours;
     $row->nom_concours;

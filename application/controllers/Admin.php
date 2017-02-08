@@ -292,7 +292,7 @@ class Admin extends CI_Controller {
     }
 
 
-
+    // Affiche les images reportees
     public function imgReport()
     {
 
@@ -305,6 +305,8 @@ class Admin extends CI_Controller {
 
     }
 
+
+    // Permet de bannir les images signalees
     public function signalBan()
     {
 
@@ -313,8 +315,26 @@ class Admin extends CI_Controller {
         $this->Moderation_model->delete_participation();
         redirect('Admin/imgReport');
         
+    }
 
 
+    // Affiche les CGU et Mentions legales sur le BO
+    public function administration()
+    {
+
+        $this->load->model('Reglementation_model');
+        $liste = $this->Reglementation_model->administration_model();
+        $this->load->view('Admin/reglementation', array('liste' => $liste));
+    }
+
+
+    // Permet de modifier les CGU et Mentions legales
+    public function editAdministration()
+    {
+
+        $this->load->model('Reglementation_model');
+        $this->Reglementation_model->edit_administration();
+        $this->load->view('Admin/formsuccess');
 
     }
 
