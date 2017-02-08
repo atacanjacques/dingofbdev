@@ -29,20 +29,14 @@ class Home extends MY_Controller
 		$this->load->view('footer');
 	}
 
-	public function gallery()
-	{
-		$this->load->view('header');
-		$this->load->view('menu');
-		$this->load->view('gallery');
-		$this->load->view('footer');
-		$this->load->helper('url');
-	}
-
 	public function price()
 	{
+		$this->load->model('Lots_Model');
+		$data['lots'] = $this->Lots_Model->get_lots();
+
 		$this->load->view('header');
 		$this->load->view('menu');
-		$this->load->view('price');
+		$this->load->view('price', $data);
 		$this->load->view('footer');
 	}
 
@@ -54,8 +48,15 @@ class Home extends MY_Controller
 		$this->load->view('footer');
 	}
 
-	public function logout()
+	public function cgu()
 	{
-		redirect('/login/logout');
+		$this->load->model('Administration_Model');
+		$data['cgu'] = $this->Administration_Model->get_cgu();
+	}
+
+	public function mentions_legales()
+	{
+		$this->load->model('Administration_Model');
+		$data['mentions_legales'] = $this->Administration_Model->get_mentions_legales();
 	}
 }

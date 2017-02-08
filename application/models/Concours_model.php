@@ -15,7 +15,7 @@ class Concours_model extends CI_Model
 
 		$query = $this->db->get_where($this->table_concours, array('date_fin >' => $now));
 
-		return $query->result();		
+		return $query->row();		
 	}
 
 
@@ -156,14 +156,5 @@ class Concours_model extends CI_Model
 		$this->db->where($data)
 		->delete($this->table_concours);
 	}
-	
-	public function last_concours()
-	{
-		$this->db->select('*');
-		$this->db->limit(1);
-		$this->db->order_by('id', 'DESC');
-		return $this->db->get('concours')->row();
-	}
-
 }
 

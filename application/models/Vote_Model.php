@@ -1,18 +1,31 @@
-<?php
+<?php  if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
-class Vote_Model extends CI_Model
+class Vote_model extends CI_Model
 {
-        public function read_vote()
-        {
-                $this->load->model('Concours_Model');
-                $current_concours = $this->Concours_Model->last_concours();
+	public function get_vote($id_voteur)
+	{
+		$this->db->select('*');
+		$this->db->from('vote');
+		$this->db->where('id_voteur', $id_voteur);
 
-                $this->db->select('participation.*, users.prenom, COUNT(vote.id) AS votes');
-                $this->db->from('participation');
-                $this->db->join('users', 'users.id_fb = participation.users_id_fb', 'inner');
-                $this->db->join('vote', 'vote.participation_idparticipation = participation.id', 'left');
-                $this->db->where('participation.concours_id', $current_concours->id);
-                $this->db->group_by('participation.id');
-                return $this->db->get()->result();
-        }
+		return $this->db->get()->row();
+
+	}
+
+	public function add_vote($id_participation, $id_voteur)
+	{
+		$data = array(
+			'id_voteur' => $id_voteur,
+			'participation_idparticipation' => $id_participation
+			);
+
+		$this->db->insert('vote', $data);
+	}
+
+	public function delete_vote($id_voteur)
+	{
+		$this->db->where('id_voteur', $id_voteur);
+		$this->db->delete('vote');
+	}
 }
+

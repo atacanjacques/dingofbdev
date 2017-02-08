@@ -2,7 +2,7 @@
 
 class Users_Model extends CI_Model
 {
-        public function create_users($fb_user, $token)
+        public function add_users($fb_user, $token)
         {
                 $data = array(
                         'id_fb' => $fb_user['id'],
@@ -15,7 +15,7 @@ class Users_Model extends CI_Model
                 $this->db->insert('users', $data);
         }
 
-        public function read_users($fb_user)
+        public function get_users($fb_user)
         {
                 $this->db->select('*');
                 $this->db->where('id_fb', $fb_user['id']);
@@ -33,6 +33,6 @@ class Users_Model extends CI_Model
                         );
 
                 $this->db->where('id_fb', $fb_user['id']);
-                $this->db->replace('users', $data);
+                $this->db->update('users', $data);
         }
 }

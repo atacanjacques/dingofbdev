@@ -19,8 +19,8 @@ class Participate extends MY_Controller
 		$this->load->model('Participation_Model');
 
 		$fb_user = $this->facebook->request('get', '/me?fields=id,last_name,first_name,email');
-		$bd_user = $this->Users_Model->read_users($fb_user);
-		$bd_participation = $this->Participation_Model->read_participation($fb_user);
+		$bd_user = $this->Users_Model->get_users($fb_user);
+		$bd_participation = $this->Participation_Model->get_participation($fb_user);
 
 		if(isset($bd_user) && $bd_user->banni == "1")
 		{
@@ -37,14 +37,14 @@ class Participate extends MY_Controller
 			{
 				if(is_null($bd_user))
 				{
-					$this->Users_Model->create_users($fb_user, $this->facebook->is_authenticated());
+					$this->Users_Model->add_users($fb_user, $this->facebook->is_authenticated());
 				}
 				else
 				{
 					$this->Users_Model->update_users($fb_user, $this->facebook->is_authenticated());
 				}
 				$participation = $this->facebook->request('get', $photo_id . '?fields=images');
-				$this->Participation_Model->create_participation($participation, $fb_user);
+				$this->Participation_Model->add_participation($participation, $fb_user);
 
 				echo '<h1>IMAGE AJOUTE</h1>';
 				echo '<p>Partager votre participation : </p>';
@@ -165,7 +165,7 @@ class Participate extends MY_Controller
 		$this->load->model('Participation_Model');
 
 		$fb_user = $this->facebook->request('get', '/me?fields=id,last_name,first_name,email');
-		$bd_participation = $this->Participation_Model->read_participation($fb_user);
+		$bd_participation = $this->Participation_Model->get_participation($fb_user);
 
 		if(is_null($bd_participation)){ redirect('/'); }
 
