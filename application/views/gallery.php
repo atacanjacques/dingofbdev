@@ -34,6 +34,11 @@
                                 <button type="button" class="btn btn-primary btn-sm"><span class="glyphicon glyphicon glyphicon-share-alt" aria-hidden="true"></span> Partager</button>
                                 <button type="button" class="btn btn-danger btn-sm" onclick="location.href='/vote/add_signalement/<?php echo $participation->id; ?>'"><span class="glyphicon glyphicon-alert" aria-hidden="true"></span></button>
                                 </p>
+
+
+<div class="fb-share-button" data-href="https://developers.facebook.com/docs/plugins/" data-layout="button_count" data-size="small" data-mobile-iframe="true"><a class="fb-xfbml-parse-ignore" target="_blank" href="dddd">Partager</a></div>
+
+
                             </li>
                             <?php
                         }
