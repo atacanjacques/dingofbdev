@@ -212,9 +212,61 @@ select{
 
 /* GALLERIE CSS */
 
+.pagination>li>a, .pagination>li>span
+{
+    color: #fff;
+    background-color: #252222;
+}
+
+.pagination>.active>a, .pagination>.active>span, .pagination>.active>span:focus, .pagination>.active>span:hover
+{
+    background-color: #af3b3c;
+    border-color: #af3b3c;
+}
+
+.pagination>li>a:hover
+{
+    background-color: #af3b3c;
+    border-color: #af3b3c;
+    color: #FFFFFF;
+}
+
 .slide {
     width: 100%;
 
+}
+
+.fancybox-title-inside-wrap
+{
+    font-size: 20px !important;
+    font-weight: 700;
+}
+
+
+.partager
+{
+    padding-left: 45px;
+    left: 340px;
+    font-weight: 700;
+    font-size: 25px;
+    text-decoration: none !important;
+    position: absolute;
+}
+
+.glyphicon-share-alt:before {
+    content: "\e095";
+    right: 345px;
+    position: absolute;
+    bottom: -37px;
+}
+
+.signaler
+{
+    left: 740px;
+    font-weight: 700;
+    font-size: 25px;
+    text-decoration: none !important;
+    position: absolute;
 }
 
 .hide-bullets {

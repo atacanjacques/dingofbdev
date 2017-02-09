@@ -20,30 +20,58 @@ jQuery(document).ready(function($) {
         .attr('rel', 'gallery')
         .fancybox({
             beforeLoad: function () {
+
                 if (this.title) {
-                    console.log('Prout');
+                    $(".fancybox-image").css({
+                        "width": 800,
+                        "height": 600
+                    });
                     var caption = this.element.attr('data-caption');
-                    this.tpl.wrap = '<div class="fancybox-wrap" tabIndex="-1"><div class="fancybox-skin"><div class="fancybox-outer"><div class="fancybox-inner"></div><p>'+caption+'</p></div></div></div>'
+                    this.tpl.wrap = '<div class="fancybox-wrap" tabIndex="-1"><div class="fancybox-skin"><div class="fancybox-outer"><p class="caption">'+caption+'</p><div class="fancybox-inner"></div></div></div></div>'
                     // New line
                     this.title += '<br />';
 
-                    this.title += '<a href="">Signaler Photo</a>'
-
                     // Add FaceBook like button
-                    this.title += '<iframe src="//www.facebook.com/plugins/like.php?href=' + this.href + '&amp;layout=button_count&amp;show_faces=true&amp;width=500&amp;action=like&amp;font&amp;colorscheme=light&amp;height=23" scrolling="no" frameborder="0" style="border:none; overflow:hidden; width:110px; height:23px;" allowTransparency="true"></iframe>';
+                    this.title += '<button type="button" class="btn btn-success btn-sm" ><span class="glyphicon glyphicon-star" aria-hidden="true"></span> Voter</button>';
 
+                    this.title += '<button type="button" class="btn btn-primary btn-sm partager"><span class="glyphicon glyphicon glyphicon-share-alt partager" aria-hidden="true"></span> Partager</button>'
+
+                    this.title += '<button type="button" class="btn btn-danger btn-sm signaler" onclick=""><span class="glyphicon glyphicon-alert" aria-hidden="true"></span></button>'
+
+                    this.width = 800;
+                    this.height = 600;
 
                 }
             },
+
+            fitToView: false,
+            beforeShow: function () {
+                // apply new size to img
+                $(".fancybox-image").css({
+                    "width": 800,
+                    "height": 600
+                });
+                // set new values for parent container
+                this.width = 800;
+                this.height = 600;
+            },
+
             helpers: {
                 title: {
                     type: 'inside',
                     position: 'bottom'
-                }, //<-- add a comma to separate the following option
+                },
+
+                caption: {
+                    type:'inside',
+                    position: 'top'
+                },//<-- add a comma to separate the following option
                 buttons: {} //<-- add this for buttons
             },
-            closeBtn: false, // you will use the buttons now
-            arrows: false
+            autoSize : false,
+            closeBtn: true, // you will use the buttons now
+            arrows: false,
+
         });
 
         $(".various").fancybox({
@@ -58,3 +86,7 @@ jQuery(document).ready(function($) {
             closeEffect	: 'none'
         });
     });
+
+
+
+
