@@ -1,6 +1,6 @@
 <?php  if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
-class Lots_model extends CI_Model
+class Lots_Model extends CI_Model
 {
 	public function get_lots()
 	{

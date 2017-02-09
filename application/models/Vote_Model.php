@@ -1,6 +1,6 @@
 <?php  if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
-class Vote_model extends CI_Model
+class Vote_Model extends CI_Model
 {
 	public function get_vote($id_voteur)
 	{

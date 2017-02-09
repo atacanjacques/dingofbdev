@@ -1,6 +1,6 @@
 <?php   if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
-class Moderation_model extends CI_Model
+class Moderation_Model extends CI_Model
 {
 
 	// Affiche lea liste des users

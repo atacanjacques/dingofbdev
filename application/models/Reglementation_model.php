@@ -1,11 +1,11 @@
 <?php  if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
-class Reglementation_model extends CI_Model
+class Reglementation_Model extends CI_Model
 {
 
 
 	// Affiche les cgu et mentions legales
-	public function administration_model()
+	public function administration_Model()
 	{
 
 		$this->db->select('*')

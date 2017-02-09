@@ -25,8 +25,8 @@ class Admin extends MY_Controller {
     public function index()
     {
 
-        $this->load->model('Resultats_model');
-        $liste = $this->Resultats_model->affiche_gagnant();
+        $this->load->model('Resultats_Model');
+        $liste = $this->Resultats_Model->affiche_gagnant();
         $this->load->view('Admin/indexAdmin', array('liste' => $liste)); 
 
 
@@ -39,8 +39,8 @@ class Admin extends MY_Controller {
     {
 
         // On vérifie qu'il n'y a pas de concours encore en cours
-        $this->load->model('Concours_model');
-        $liste = $this->Concours_model->date_concours();
+        $this->load->model('Concours_Model');
+        $liste = $this->Concours_Model->date_concours();
 
 
         // Si il n'y a pas de concours en cours on peut en créer un 
@@ -97,9 +97,9 @@ class Admin extends MY_Controller {
                    $url_img = $data['upload_data']['full_path'];
 
                     //Transfering data to Model
-                    $this->load->model('Concours_model');
-                    $id_concours = $this->Concours_model->add_concours();
-                    $this->Concours_model->add_lot($url_img, $id_concours);
+                    $this->load->model('Concours_Model');
+                    $id_concours = $this->Concours_Model->add_concours();
+                    $this->Concours_Model->add_lot($url_img, $id_concours);
                     $this->load->view('Admin/formsuccess', $data);
             }
         }
@@ -131,8 +131,8 @@ class Admin extends MY_Controller {
     // Affiche la liste des concours en cours
     public function listConcours()
     {
-        $this->load->model('Concours_model');
-        $liste = $this->Concours_model->list_concours();
+        $this->load->model('Concours_Model');
+        $liste = $this->Concours_Model->list_concours();
 
         //On vérfie qu'il y a bien des concours dans la BDD
         if (!empty($liste)) {
@@ -154,8 +154,8 @@ class Admin extends MY_Controller {
         $this->load->dbutil();
         $this->load->helper('file');
 
-        $this->load->model('Concours_model');
-        $result = $this->Concours_model->export_concours();
+        $this->load->model('Concours_Model');
+        $result = $this->Concours_Model->export_concours();
 
         $delimiter = ";";
         $newline = "\r\n";
@@ -175,8 +175,8 @@ class Admin extends MY_Controller {
     public function rechercheConcours()
     {
 
-        $this->load->model('Concours_model');
-        $liste = $this->Concours_model->filtre_concours();
+        $this->load->model('Concours_Model');
+        $liste = $this->Concours_Model->filtre_concours();
         $this->load->view('Admin/historiqueConcours', array('liste' => $liste)); 
 
         $this->load->view('Admin/footerAdmin');        
@@ -193,8 +193,8 @@ class Admin extends MY_Controller {
         if($this->input->post('modifConcours')) 
         {     
 
-            $this->load->model('Concours_model');
-            $liste = $this->Concours_model->affichage_concours();
+            $this->load->model('Concours_Model');
+            $liste = $this->Concours_Model->affichage_concours();
 
             $this->load->view('Admin/ModifierConcours', array('liste' => $liste));
             $this->load->view('Admin/footerAdmin');
@@ -204,14 +204,14 @@ class Admin extends MY_Controller {
         // Si je clique sur supprimer, ca supprime le concours ainsi que son lot associé
         else {
 
-            $this->load->model('Concours_model');
-            $url_lot = $this->Concours_model->select_url_lot();
+            $this->load->model('Concours_Model');
+            $url_lot = $this->Concours_Model->select_url_lot();
             foreach ($url_lot as $row)
             {
                 $row->url;
             }
 
-            $this->Concours_model->delete_concours($row->url);
+            $this->Concours_Model->delete_concours($row->url);
             $this->load->view('Admin/formsuccess');
 
         }
@@ -221,8 +221,8 @@ class Admin extends MY_Controller {
     // Envoi en BDD le concours modifié
     public function editConcours(){
 
-            $this->load->model('Concours_model');
-            $this->Concours_model->edit_concours();
+            $this->load->model('Concours_Model');
+            $this->Concours_Model->edit_concours();
             $this->load->view('Admin/formsuccess');
 
     }
@@ -232,8 +232,8 @@ class Admin extends MY_Controller {
     public function listUsers()
     {
 
-        $this->load->model('Moderation_model');
-        $liste = $this->Moderation_model->affichage_users();
+        $this->load->model('Moderation_Model');
+        $liste = $this->Moderation_Model->affichage_users();
         $this->load->view('Admin/listUsers', array('liste' => $liste)); 
 
         $this->load->view('Admin/footerAdmin');
@@ -245,16 +245,16 @@ class Admin extends MY_Controller {
         // Banni un membre
         if($this->input->post('id_user_ban'))
         {
-            $this->load->model('Moderation_model');
-            $this->Moderation_model->bannir();
+            $this->load->model('Moderation_Model');
+            $this->Moderation_Model->bannir();
             redirect('Admin/listUsers');
         }
 
         // Réintègre un membre
         else
         {
-            $this->load->model('Moderation_model');
-            $this->Moderation_model->reintegrer();
+            $this->load->model('Moderation_Model');
+            $this->Moderation_Model->reintegrer();
             redirect('Admin/listUsers');
         }
     }
@@ -263,8 +263,8 @@ class Admin extends MY_Controller {
     public function rechercheUser()
     {
 
-        $this->load->model('Moderation_model');
-        $liste = $this->Moderation_model->filtreUser();
+        $this->load->model('Moderation_Model');
+        $liste = $this->Moderation_Model->filtreUser();
         $this->load->view('Admin/listUsers', array('liste' => $liste)); 
 
         $this->load->view('Admin/footerAdmin');        
@@ -278,8 +278,8 @@ class Admin extends MY_Controller {
         $this->load->dbutil();
         $this->load->helper('file');
 
-        $this->load->model('Moderation_model');
-        $result = $this->Moderation_model->export_users();
+        $this->load->model('Moderation_Model');
+        $result = $this->Moderation_Model->export_users();
 
         $delimiter = ";";
         $newline = "\r\n";
@@ -299,8 +299,8 @@ class Admin extends MY_Controller {
     public function imgReport()
     {
 
-        $this->load->model('Moderation_model');
-        $liste = $this->Moderation_model->img_signale();
+        $this->load->model('Moderation_Model');
+        $liste = $this->Moderation_Model->img_signale();
         $this->load->view('Admin/imgReport', array('liste' => $liste)); 
 
 
@@ -313,9 +313,9 @@ class Admin extends MY_Controller {
     public function signalBan()
     {
 
-        $this->load->model('Moderation_model');
-        $this->Moderation_model->bannir();
-        $this->Moderation_model->delete_participation();
+        $this->load->model('Moderation_Model');
+        $this->Moderation_Model->bannir();
+        $this->Moderation_Model->delete_participation();
         redirect('Admin/imgReport');
         
     }
@@ -325,8 +325,8 @@ class Admin extends MY_Controller {
     public function administration()
     {
 
-        $this->load->model('Reglementation_model');
-        $liste = $this->Reglementation_model->administration_model();
+        $this->load->model('Reglementation_Model');
+        $liste = $this->Reglementation_Model->administration_Model();
         $this->load->view('Admin/reglementation', array('liste' => $liste));
     }
 
@@ -335,8 +335,8 @@ class Admin extends MY_Controller {
     public function editAdministration()
     {
 
-        $this->load->model('Reglementation_model');
-        $this->Reglementation_model->edit_administration();
+        $this->load->model('Reglementation_Model');
+        $this->Reglementation_Model->edit_administration();
         $this->load->view('Admin/formsuccess');
 
     }

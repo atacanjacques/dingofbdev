@@ -1,6 +1,6 @@
 <?php  if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
-class Resultats_model extends CI_Model
+class Resultats_Model extends CI_Model
 {
 
 	// retourne toutes les info du gagnant
