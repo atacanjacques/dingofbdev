@@ -11,7 +11,10 @@ class Admin extends MY_Controller {
         if(!$_SESSION['isAdmin']){ redirect('/'); }
 
         $this->load->helper('form');
-        
+
+        $this->load->view('Admin/headerAdmin');
+        $this->load->view('Admin/menuAdmin');
+
         if(ENVIRONMENT !== 'production')
         {
             $this->output->enable_profiler(TRUE);
@@ -21,9 +24,12 @@ class Admin extends MY_Controller {
 
     public function index()
     {
-        $this->load->view('Admin/headerAdmin');
-        $this->load->view('Admin/menuAdmin');
-        $this->load->view('Admin/indexAdmin');
+
+        $this->load->model('Resultats_model');
+        $liste = $this->Resultats_model->affiche_gagnant();
+        $this->load->view('Admin/indexAdmin', array('liste' => $liste)); 
+
+
         $this->load->view('Admin/footerAdmin');
     }
 
@@ -67,8 +73,6 @@ class Admin extends MY_Controller {
             // Si le formulaire n'est pas valide on le ré-affiche 
             if ($this->form_validation->run() == FALSE)
             {
-                    $this->load->view('Admin/headerAdmin');
-                    $this->load->view('Admin/menuAdmin');
                     $this->load->view('Admin/CreerConcours', array('error' => ' ' ));
                     $this->load->view('Admin/footerAdmin');
             }
@@ -78,8 +82,6 @@ class Admin extends MY_Controller {
             elseif (! $this->upload->do_upload('img_lot'))
             {
                     $error = array('error' => $this->upload->display_errors());
-                    $this->load->view('Admin/headerAdmin');
-                    $this->load->view('Admin/menuAdmin');
                     $this->load->view('Admin/CreerConcours', $error);
                     $this->load->view('Admin/footerAdmin');
             }
@@ -104,7 +106,7 @@ class Admin extends MY_Controller {
 
         // Si il y a deja un concours en cours on affiche une erreur
         else{
-            echo "Il y a déjà un concours en cours !";
+            echo "Vous ne pouvez pas créer de concours car il y en a déjà un en cours !";
         }
 
     }
@@ -129,15 +131,57 @@ class Admin extends MY_Controller {
     // Affiche la liste des concours en cours
     public function listConcours()
     {
-        $this->load->view('Admin/headerAdmin');
-        $this->load->view('Admin/menuAdmin');
         $this->load->model('Concours_model');
         $liste = $this->Concours_model->list_concours();
-        $this->load->view('Admin/historiqueConcours', array('liste' => $liste));
+
+        //On vérfie qu'il y a bien des concours dans la BDD
+        if (!empty($liste)) {
+            $this->load->view('Admin/historiqueConcours', array('liste' => $liste)); 
+        }
+        else{
+            echo "Il n'y a aucun concours dans votre historique";
+        }
+        
         $this->load->view('Admin/footerAdmin');
 
 
     } 
+
+
+    //Permet de télécharger le tableau en CSV
+    public function export_concours_CSV()
+    {
+        $this->load->dbutil();
+        $this->load->helper('file');
+
+        $this->load->model('Concours_model');
+        $result = $this->Concours_model->export_concours();
+
+        $delimiter = ";";
+        $newline = "\r\n";
+        $csv = $this->dbutil->csv_from_result($result, $delimiter, $newline);
+        if (!write_file('./uploads/export_concours/liste_concours_'.date("Y-m-d_H-i-s").'.csv', $csv))
+        {
+        echo 'Un problème est survenu lors de la génération du fichier CSV';
+        }
+        else
+        {
+        echo 'La liste des concours a bien été exportée';
+        }
+    }
+
+
+    // Permet de filter les concours (dans onglet historique du menu)
+    public function rechercheConcours()
+    {
+
+        $this->load->model('Concours_model');
+        $liste = $this->Concours_model->filtre_concours();
+        $this->load->view('Admin/historiqueConcours', array('liste' => $liste)); 
+
+        $this->load->view('Admin/footerAdmin');        
+
+    }
 
 
     // Fonction pour modifier un concours
@@ -149,8 +193,6 @@ class Admin extends MY_Controller {
         if($this->input->post('modifConcours')) 
         {     
 
-            $this->load->view('Admin/headerAdmin');
-            $this->load->view('Admin/menuAdmin');
             $this->load->model('Concours_model');
             $liste = $this->Concours_model->affichage_concours();
 
@@ -159,7 +201,7 @@ class Admin extends MY_Controller {
 
         }
 
-        // Si je clique sur supprimer, ca supprime le concours
+        // Si je clique sur supprimer, ca supprime le concours ainsi que son lot associé
         else {
 
             $this->load->model('Concours_model');
@@ -168,7 +210,6 @@ class Admin extends MY_Controller {
             {
                 $row->url;
             }
-
 
             $this->Concours_model->delete_concours($row->url);
             $this->load->view('Admin/formsuccess');
@@ -187,29 +228,117 @@ class Admin extends MY_Controller {
     }
 
 
-    // public function moderation()
-    // {
-    //     $this->load->view('Admin/headerAdmin');
-    //     $this->load->view('Admin/menuAdmin');
-    //     $this->load->view('Admin/moderation');
-    //     $this->load->view('Admin/footerAdmin');
-    //     $this->load->helper('url');
-    // }
+    // Affiche la liste des utlisateurs de l'application
+    public function listUsers()
+    {
 
-    // public function Style()
-    // {
-    //     $this->load->view('Admin/headerAdmin');
-    //     $this->load->view('Admin/menuAdmin');
-    //     $this->load->view('Admin/EditTemplate');
-    //     $this->load->view('Admin/footerAdmin');
-    //     $this->load->helper('url');
-    // }
+        $this->load->model('Moderation_model');
+        $liste = $this->Moderation_model->affichage_users();
+        $this->load->view('Admin/listUsers', array('liste' => $liste)); 
 
-    // public function logout()
-    // {
-    //     $this->facebook->destroy_session();
+        $this->load->view('Admin/footerAdmin');
+    }
 
-    //     redirect('/');
-    // }
+    // Banni ou réintègre un membre
+    public function bannirUser(){
+
+        // Banni un membre
+        if($this->input->post('id_user_ban'))
+        {
+            $this->load->model('Moderation_model');
+            $this->Moderation_model->bannir();
+            redirect('Admin/listUsers');
+        }
+
+        // Réintègre un membre
+        else
+        {
+            $this->load->model('Moderation_model');
+            $this->Moderation_model->reintegrer();
+            redirect('Admin/listUsers');
+        }
+    }
+
+    // Permet de filter les utilisateurs (dans onglet modération du menu)
+    public function rechercheUser()
+    {
+
+        $this->load->model('Moderation_model');
+        $liste = $this->Moderation_model->filtreUser();
+        $this->load->view('Admin/listUsers', array('liste' => $liste)); 
+
+        $this->load->view('Admin/footerAdmin');        
+
+    }
+
+
+    //Permet d'exporter la liste des utilisateurs en CSV
+    public function export_users_CSV()
+    {
+        $this->load->dbutil();
+        $this->load->helper('file');
+
+        $this->load->model('Moderation_model');
+        $result = $this->Moderation_model->export_users();
+
+        $delimiter = ";";
+        $newline = "\r\n";
+        $csv = $this->dbutil->csv_from_result($result, $delimiter, $newline);
+        if (!write_file('./uploads/export_users/liste_users_'.date("Y-m-d_H-i-s").'.csv', $csv))
+        {
+        echo 'Un problème est survenu lors de la génération du fichier CSV';
+        }
+        else
+        {
+        echo 'La liste des utilisateurs a bien été exportée';
+        }
+    }
+
+
+    // Affiche les images reportees
+    public function imgReport()
+    {
+
+        $this->load->model('Moderation_model');
+        $liste = $this->Moderation_model->img_signale();
+        $this->load->view('Admin/imgReport', array('liste' => $liste)); 
+
+
+        $this->load->view('Admin/footerAdmin');
+
+    }
+
+
+    // Permet de bannir les images signalees
+    public function signalBan()
+    {
+
+        $this->load->model('Moderation_model');
+        $this->Moderation_model->bannir();
+        $this->Moderation_model->delete_participation();
+        redirect('Admin/imgReport');
+        
+    }
+
+
+    // Affiche les CGU et Mentions legales sur le BO
+    public function administration()
+    {
+
+        $this->load->model('Reglementation_model');
+        $liste = $this->Reglementation_model->administration_model();
+        $this->load->view('Admin/reglementation', array('liste' => $liste));
+    }
+
+
+    // Permet de modifier les CGU et Mentions legales
+    public function editAdministration()
+    {
+
+        $this->load->model('Reglementation_model');
+        $this->Reglementation_model->edit_administration();
+        $this->load->view('Admin/formsuccess');
+
+    }
 
 }

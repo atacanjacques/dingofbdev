@@ -68,6 +68,14 @@ class Concours_model extends CI_Model
 		return $query->result();
 	}	
 
+	// Export la liste des concours
+	public function export_concours()
+	{
+		
+   		$this->db->select('id, nom, date_debut, heure_debut, date_fin, heure_fin');
+   		return $query = $this->db->get('concours');
+	}
+
 
 	// Affiche le concours afin de le modifier
 	public function affichage_concours()
@@ -82,6 +90,24 @@ class Concours_model extends CI_Model
 		$query = $this->db->get();
 		return $query->result();
 	}	
+
+
+	// Permet de filtrer les concours
+	public function filtre_concours()
+	{
+			
+		$this->db->select('*')
+				 ->from('concours')
+				 ->like('id', $this->input->post('filter_id'))
+				 ->like('nom', $this->input->post('filter_name'))
+				 ->like('date_debut', $this->input->post('filter_date_deb'))
+				 ->like('date_debut', $this->input->post('filter_date_fin'))
+				 ->order_by('id', 'ASC');
+
+
+		$query = $this->db->get();
+		return $query->result();
+	}
 
 
 
@@ -141,14 +167,6 @@ class Concours_model extends CI_Model
 
 		// on supprime l'image du lot sur le serveur
 		unlink ($url_lot); 
-
-
-		// on supprime le lot du concours
-		$data = array('concours_id' => $this->input->post('supprConcours'));
-
-		$this->db->where($data)
-		->delete("lots");
-
 
 		// on supprime le concours 
 		$data = array('id' => $this->input->post('supprConcours'));
