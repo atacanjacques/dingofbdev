@@ -67,23 +67,74 @@ header{
     height: auto;
     margin: 0 auto;
     padding: 0px 15px;
-    overflow: hidden;
     width: 1170px;
 }
 
 #contener_type_Admin {
-    /* padding: 10px 0 10px 0; */
+    padding: 10px 0 10px 0;
+    width: 1100px;
     float: left;
     font-weight: bold;
     font-size: 30px;
     margin: 0;
     float: left;
+    list-style: none;
+    text-align: center;
     color: #fdfffb;
-    overflow: hidden;
-    margin: 0;
+    padding: 0;
 }
 
-#contener_type_Admin > a {
+.nav_admin a
+{
+    display: block;
+    padding: 0 14px;
+    border: 1px solid white;
+    font-weight: bold;
+    font-size: 30px;
+    margin: 0;
+    float: left;
+    list-style: none;
+    text-align: center;
+    color: #fdfffb;
+    text-decoration: none;
+}
+
+.nav_admin > li, .nav_admin > li li
+{
+    position: relative;
+    display:inline-block;
+}
+
+.subnav:first-child
+{
+    width: 370px;
+}
+
+.nav_admin ul
+{
+    position: absolute;
+    top: 55px;
+    left: -40px;
+    max-height:0em;
+    margin: 0;
+    overflow: hidden;
+    transition: 0.6s max-height 0.3s;
+    border-radius: 0 0 8px 8px;
+}
+
+ul.subnav1 {
+    width: 400px;
+    left: -120px;
+}
+
+/* ici on change la valeur de max-height au :hover */
+.nav_admin > li:hover ul {
+    /* à adapter, le minimum est le meilleur mais voyez large 😉 */
+    max-height: 13em;
+}
+
+
+#contener_type_Admin > ul > li > a {
     padding: 0 14px;
     border: 1px solid white;
     color: #fdfffb;
@@ -262,11 +313,19 @@ select{
 
 .signaler
 {
-    left: 740px;
+    left: 650px;
     font-weight: 700;
     font-size: 25px;
     text-decoration: none !important;
     position: absolute;
+    padding-left: 45px;
+}
+
+.glyphicon-alert:before
+{
+    left: -35px;
+    position: absolute;
+    top: -20px;
 }
 
 .hide-bullets {

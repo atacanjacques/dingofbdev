@@ -36,7 +36,7 @@ jQuery(document).ready(function($) {
 
                     this.title += '<button type="button" class="btn btn-primary btn-sm partager"><span class="glyphicon glyphicon glyphicon-share-alt partager" aria-hidden="true"></span> Partager</button>'
 
-                    this.title += '<button type="button" class="btn btn-danger btn-sm signaler" onclick=""><span class="glyphicon glyphicon-alert" aria-hidden="true"></span></button>'
+                    this.title += '<button type="button" class="btn btn-danger btn-sm signaler" onclick=""><span class="glyphicon glyphicon-alert" aria-hidden="true"></span>Signaler</button>'
 
                     this.width = 800;
                     this.height = 600;
