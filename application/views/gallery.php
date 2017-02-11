@@ -18,58 +18,58 @@
                     <!-- Bottom switcher of slider -->
                     <ul class="hide-bullets">
                         <li class="col-sm-4 col-xs-12">
-                            <a title="YOLO" class="thumbnail slide fancybox {width:500,height:200}" data-caption="caption 1" rel="group"  href="<?php echo base_url(); ?>/img/image1.jpg" id="carousel-selector-3">
+                            <a title=" " class="thumbnail slide fancybox {width:500,height:200}" data-caption="caption 1" rel="group"  href="<?php echo base_url(); ?>/img/image1.jpg" id="carousel-selector-3">
                                 <img src="<?php echo base_url(); ?>/img/image1.jpg" class="photo_gallery"></a>
                             <p class="title-photo">Bidule</p>
                         </li>
 
                         <li class="col-sm-4 col-xs-12 ">
-                            <a title="ONCHE ONCHE" class="thumbnail slide fancybox" data-caption="caption here" rel="group" href="<?php echo base_url(); ?>/img/image2.jpg" id="carousel-selector-3">
+                            <a title=" " class="thumbnail slide fancybox" data-caption="caption here" rel="group" href="<?php echo base_url(); ?>/img/image2.jpg" id="carousel-selector-3">
                                 <img src="<?php echo base_url(); ?>/img/image2.jpg" class="photo_gallery"></a>
                             <p class="title-photo">Bidule</p>
                         </li>
 
 
                         <li class="col-sm-4 col-xs-12">
-                            <a title="ONCHE ONCHE" class="thumbnail slide fancybox" data-caption="caption here" rel="group" href="<?php echo base_url(); ?>/img/image3.jpg" id="carousel-selector-3">
+                            <a title=" " class="thumbnail slide fancybox" data-caption="caption here" rel="group" href="<?php echo base_url(); ?>/img/image3.jpg" id="carousel-selector-3">
                                 <img src="<?php echo base_url(); ?>/img/image3.jpg" class="photo_gallery"></a>
                             <p class="title-photo">Bidule</p>
                         </li>
 
                         <li class="col-sm-4 col-xs-12">
-                            <a title="YOLO" class="thumbnail slide fancybox" data-caption="caption 1" rel="group" href="<?php echo base_url(); ?>/img/image1.jpg" id="carousel-selector-3">
+                            <a title=" " class="thumbnail slide fancybox" data-caption="caption 1" rel="group" href="<?php echo base_url(); ?>/img/image1.jpg" id="carousel-selector-3">
                                 <img src="<?php echo base_url(); ?>/img/image1.jpg" class="photo_gallery"></a>
                             <p class="title-photo">Bidule</p>
                         </li>
 
                         <li class="col-sm-4 col-xs-12">
-                            <a title="ONCHE ONCHE" class="thumbnail slide fancybox" data-caption="caption here" rel="group" href="<?php echo base_url(); ?>/img/image2.jpg" id="carousel-selector-3">
+                            <a title=" " class="thumbnail slide fancybox" data-caption="caption here" rel="group" href="<?php echo base_url(); ?>/img/image2.jpg" id="carousel-selector-3">
                                 <img src="<?php echo base_url(); ?>/img/image2.jpg" class="photo_gallery"></a>
                             <p class="title-photo">Bidule</p>
                         </li>
 
 
                         <li class="col-sm-4 col-xs-12">
-                            <a title="ONCHE ONCHE" class="thumbnail slide fancybox" data-caption="caption here" rel="group" href="<?php echo base_url(); ?>/img/image3.jpg" id="carousel-selector-3">
+                            <a title=" " class="thumbnail slide fancybox" data-caption="caption here" rel="group" href="<?php echo base_url(); ?>/img/image3.jpg" id="carousel-selector-3">
                                 <img src="<?php echo base_url(); ?>/img/image3.jpg" class="photo_gallery"></a>
                             <p class="title-photo">Bidule</p>
                         </li>
 
                         <li class="col-sm-4 col-xs-12">
-                            <a title="YOLO" class="thumbnail slide fancybox" data-caption="caption 1" rel="group" href="<?php echo base_url(); ?>/img/image1.jpg" id="carousel-selector-3">
+                            <a title=" " class="thumbnail slide fancybox" data-caption="caption 1" rel="group" href="<?php echo base_url(); ?>/img/image1.jpg" id="carousel-selector-3">
                                 <img src="<?php echo base_url(); ?>/img/image1.jpg" class="photo_gallery"></a>
                             <p class="title-photo">Bidule</p>
                         </li>
 
                         <li class="col-sm-4 col-xs-12">
-                            <a title="ONCHE ONCHE" class="thumbnail slide fancybox" data-caption="caption here" rel="group" href="<?php echo base_url(); ?>/img/image2.jpg" id="carousel-selector-3">
+                            <a title=" " class="thumbnail slide fancybox" data-caption="caption here" rel="group" href="<?php echo base_url(); ?>/img/image2.jpg" id="carousel-selector-3">
                                 <img src="<?php echo base_url(); ?>/img/image2.jpg" class="photo_gallery"></a>
                             <p class="title-photo">Bidule</p>
                         </li>
 
 
                         <li class="col-sm-4 col-xs-12 ">
-                            <a title="ONCHE ONCHE" class="thumbnail slide fancybox" data-caption="caption here" rel="group" href="<?php echo base_url(); ?>/img/image3.jpg" id="carousel-selector-3">
+                            <a title=" " class="thumbnail slide fancybox" data-caption="caption here" rel="group" href="<?php echo base_url(); ?>/img/image3.jpg" id="carousel-selector-3">
                                 <img src="<?php echo base_url(); ?>/img/image3.jpg" class="photo_gallery"></a>
                             <p class="title-photo">Bidule</p>
                         </li>

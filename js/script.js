@@ -29,10 +29,10 @@ jQuery(document).ready(function($) {
                     var caption = this.element.attr('data-caption');
                     this.tpl.wrap = '<div class="fancybox-wrap" tabIndex="-1"><div class="fancybox-skin"><div class="fancybox-outer"><p class="caption">'+caption+'</p><div class="fancybox-inner"></div></div></div></div>'
                     // New line
-                    this.title += '<br />';
+                  //  this.title += '<br />';
 
                     // Add FaceBook like button
-                    this.title += '<button type="button" class="btn btn-success btn-sm" ><span class="glyphicon glyphicon-star" aria-hidden="true"></span> Voter</button>';
+                    this.title += '<button type="button" class="btn btn-success btn-sm voter" ><span class="glyphicon glyphicon-star voter" aria-hidden="true"></span> Voter</button><p class="text_Voter">: 100</p>';
 
                     this.title += '<button type="button" class="btn btn-primary btn-sm partager"><span class="glyphicon glyphicon glyphicon-share-alt partager" aria-hidden="true"></span> Partager</button>'
 
