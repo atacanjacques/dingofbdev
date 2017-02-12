@@ -2,7 +2,7 @@
 defined('BASEPATH') OR exit('No direct script access allowed');
 ?>
 <section id="section-albums">
-    <div class="container">
+    <div class="container text-center">
         <h1 style="font-size: 31px; font-weight: 700;">Vos Albums</h1>
         <div class="row">
 

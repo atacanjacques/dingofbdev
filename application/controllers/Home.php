@@ -46,6 +46,14 @@ class Home extends CI_Controller
         $this->load->view('footer');
     }
 
+    public function share()
+    {
+        $this->load->view('header');
+        $this->load->view('menu');
+        $this->load->view('share');
+        $this->load->view('footer');
+    }
+
     public function logout()
     {
         redirect('/login/logout');

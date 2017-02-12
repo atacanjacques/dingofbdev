@@ -15,8 +15,15 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                 <p>Montre ton plus tatouage en photo</p>
                 <p>Pour tenter de gagner</p>
                 <p>Un tatouage et des pass gratuits pour le Mondial du tatouage</p>
-                <a href="" class="button">VOTER</a>
-                <a href="" class="button">PARTICIPER</a>
+                <?php
+                if(!$this->facebook->is_authenticated()){
+                    echo '<a href="/login" class="button">Login</a>';
+                }
+                else{
+                    echo '<a href="/participate" class="button">Participer</a>';
+                    echo '<a href="/logout" class="button">Logout</a>';
+                }
+                ?>
             </div>
         </div>
     </div>

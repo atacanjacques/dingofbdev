@@ -21,8 +21,13 @@ class Participate extends MY_Controller
         $user = $this->facebook->request('get', '/me?fields=id,last_name,first_name,email');
 
         $toto = $this->Users_Model->read_users($user);
+        $this->load->view('header');
+        $this->load->view('menu');
         if($toto->row()){
-            echo "Vous avez deja participer !";
+            echo "<div class='container'>
+                  <p style='font-weight: 700; font-size: 25px; text-align: center;'>Vous avez deja participer !</p>
+                  </div>
+                  ";
         }
         elseif($photo_id != NULL){
 
@@ -30,19 +35,29 @@ class Participate extends MY_Controller
 
             $participation = $this->facebook->request('get', $photo_id . '?fields=images');
             $this->Participation_Model->create_participation($participation, $user);
-
-            echo '<h1>IMAGE AJOUTE</h1>';
+            echo '<div class="container text-center">';
+            echo '<div class="row">';
+            echo '<h1 style="font-weight: 700; font-size: 30px;">IMAGE AJOUTE</h1>';
             echo '<img src="' . $participation['images']['0']['source'] . '"/>';
+            echo '</div>';
+            echo '</div>';
         }
         else{
-            echo '<a href="/participate/album">mes albums</a>';
-            echo '<br><a href="/participate/add_photos">ajouter image fb</a>';
+            echo '<div class="container text-center">';
+            echo '<div class="col-sm-12">';
+            echo '<a href="/participate/album" class="button">mes albums</a>';
+            echo '<a href="/participate/add_photos" class="button">ajouter image fb</a>';
+            echo '</div>';
+            echo '</div>';
+            $this->load->view('footer');
         }
     }
 
 
     public function album($album_id = NULL)
     {
+        $this->load->view('header');
+        $this->load->view('menu');
         if($album_id == NULL)
         {
             $data['albums'] = $this->facebook->request('get', '/me/albums')['data'];
@@ -61,10 +76,13 @@ class Participate extends MY_Controller
             $this->load->view('photos', $data);
 
         }
+        $this->load->view('footer');
     }
 
     public function add_photos()
     {
+        $this->load->view('header');
+        $this->load->view('menu');
         if(!isset($_FILES['photo_file']   ))
         {
             if(isset($_POST['addPhoto']) && $_POST['addPhoto'] == "Oui")
@@ -84,11 +102,13 @@ class Participate extends MY_Controller
 
                 }
                 echo '
+                <div class="container">
 				<form action="" method="post" enctype="multipart/form-data">
-					<input type="file" name="photo_file"><br>
+					<input type="file" name="photo_file" class="button"><br>
 					<textarea name="photo_description">' . 'Ma participation au concours ' . date('d-m-Y H:i:s') . '</textarea>
-					<input type="submit" value="Ajouter à mes photos" name="submit">
+					<input type="submit" value="Ajouter à mes photos" name="submit" class="button">
 				</form>
+				</div>
 				';
             }
         }
@@ -111,6 +131,8 @@ class Participate extends MY_Controller
                 $uploaded_file_name = $this->upload->data('orig_name');
                 $uploaded_file_description = $_POST['photo_description'];
 
+                echo '<div class="container text-center">';
+                echo '<div class="row">';
                 echo '<img src="/uploads/uploaded_photos/' . $uploaded_file_name . '" />';
                 echo "<h1>Ajouté cette image ?</h1>";
                 echo '
@@ -119,10 +141,12 @@ class Participate extends MY_Controller
 
 					<input type="hidden" value="' . $uploaded_file_description . '" name="fileDescription">
 
-					<input type="submit" value="Oui" name="addPhoto">
-					<input type="submit" value="Non" name="addPhoto">
+					<input type="submit" value="Oui" class="button" name="addPhoto">
+					<input type="submit" value="Non" class="button" name="addPhoto">
 				</form>
 				';
+                echo '</div>';
+                echo '</div>';
             }
         }
     }

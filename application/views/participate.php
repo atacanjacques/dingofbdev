@@ -2,10 +2,9 @@
 defined('BASEPATH') OR exit('No direct script access allowed');
 ?>
 
-    <body>
-    <div class="col-sm-12">
+    <div class="container text-center">
+    <div class="row">
     <h1>Vos Albums</h1>
-    <br>
 
 <?php
 foreach ($albums as $album) {
@@ -15,3 +14,4 @@ foreach ($albums as $album) {
 }
 ?>
 </div>
+    </div>
