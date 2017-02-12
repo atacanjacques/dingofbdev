@@ -42,6 +42,7 @@ class Vote extends MY_Controller
 			$this->Vote_Model->delete_vote($id_voteur);
 		}
 		$this->Vote_Model->add_vote($id_participation,  $id_voteur);
+		redirect('/vote');
 	}
 
 	public function delete_vote()
@@ -56,11 +57,13 @@ class Vote extends MY_Controller
 		{
 			$this->Vote_Model->delete_vote($id_voteur);
 		}
+		redirect('/vote');
 	}
 
 	public function add_signalement($id_participation)
 	{
 		$this->load->model('Participation_Model');
 		$this->Participation_Model->add_signalement($id_participation);
+		redirect('/vote');
 	}
 }

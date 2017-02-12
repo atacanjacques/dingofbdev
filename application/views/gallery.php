@@ -17,65 +17,22 @@
                     </div>
                     <!-- Bottom switcher of slider -->
                     <ul class="hide-bullets">
+   <?php
+                           foreach($liste_participation as $participation)
+                        {
+                            ?>
                         <li class="col-sm-4 col-xs-12">
-                            <a title=" " class="thumbnail slide fancybox {width:500,height:200}" data-caption="caption 1" rel="group"  href="<?php echo base_url(); ?>/img/image1.jpg" id="carousel-selector-3">
-                                <img src="<?php echo base_url(); ?>/img/image1.jpg" class="photo_gallery"></a>
-                            <p class="title-photo">Bidule</p>
-                        </li>
-
-                        <li class="col-sm-4 col-xs-12 ">
-                            <a title=" " class="thumbnail slide fancybox" data-caption="caption here" rel="group" href="<?php echo base_url(); ?>/img/image2.jpg" id="carousel-selector-3">
-                                <img src="<?php echo base_url(); ?>/img/image2.jpg" class="photo_gallery"></a>
-                            <p class="title-photo">Bidule</p>
+                            <a title=" " class="thumbnail slide fancybox" data-nbvote="<?php echo $participation->votes; ?>" data-vote="/vote/add_vote/<?php echo $participation->id; ?>" data-signalement="/vote/add_signalement/<?php echo $participation->id; ?>" rel="group" href="<?php echo $participation->source_photo; ?>" id="carousel-selector-3">
+                                <img src="<?php echo $participation->source_photo; ?>" class="photo_gallery"></a>
+                            <p class="title-photo"><?php echo $participation->prenom; ?></p>
                         </li>
 
 
-                        <li class="col-sm-4 col-xs-12">
-                            <a title=" " class="thumbnail slide fancybox" data-caption="caption here" rel="group" href="<?php echo base_url(); ?>/img/image3.jpg" id="carousel-selector-3">
-                                <img src="<?php echo base_url(); ?>/img/image3.jpg" class="photo_gallery"></a>
-                            <p class="title-photo">Bidule</p>
-                        </li>
 
-                        <li class="col-sm-4 col-xs-12">
-                            <a title=" " class="thumbnail slide fancybox" data-caption="caption 1" rel="group" href="<?php echo base_url(); ?>/img/image1.jpg" id="carousel-selector-3">
-                                <img src="<?php echo base_url(); ?>/img/image1.jpg" class="photo_gallery"></a>
-                            <p class="title-photo">Bidule</p>
-                        </li>
+                            <?php
+                        }
+                        ?>
 
-                        <li class="col-sm-4 col-xs-12">
-                            <a title=" " class="thumbnail slide fancybox" data-caption="caption here" rel="group" href="<?php echo base_url(); ?>/img/image2.jpg" id="carousel-selector-3">
-                                <img src="<?php echo base_url(); ?>/img/image2.jpg" class="photo_gallery"></a>
-                            <p class="title-photo">Bidule</p>
-                        </li>
-
-
-                        <li class="col-sm-4 col-xs-12">
-                            <a title=" " class="thumbnail slide fancybox" data-caption="caption here" rel="group" href="<?php echo base_url(); ?>/img/image3.jpg" id="carousel-selector-3">
-                                <img src="<?php echo base_url(); ?>/img/image3.jpg" class="photo_gallery"></a>
-                            <p class="title-photo">Bidule</p>
-                        </li>
-
-                        <li class="col-sm-4 col-xs-12">
-                            <a title=" " class="thumbnail slide fancybox" data-caption="caption 1" rel="group" href="<?php echo base_url(); ?>/img/image1.jpg" id="carousel-selector-3">
-                                <img src="<?php echo base_url(); ?>/img/image1.jpg" class="photo_gallery"></a>
-                            <p class="title-photo">Bidule</p>
-                        </li>
-
-                        <li class="col-sm-4 col-xs-12">
-                            <a title=" " class="thumbnail slide fancybox" data-caption="caption here" rel="group" href="<?php echo base_url(); ?>/img/image2.jpg" id="carousel-selector-3">
-                                <img src="<?php echo base_url(); ?>/img/image2.jpg" class="photo_gallery"></a>
-                            <p class="title-photo">Bidule</p>
-                        </li>
-
-
-                        <li class="col-sm-4 col-xs-12 ">
-                            <a title=" " class="thumbnail slide fancybox" data-caption="caption here" rel="group" href="<?php echo base_url(); ?>/img/image3.jpg" id="carousel-selector-3">
-                                <img src="<?php echo base_url(); ?>/img/image3.jpg" class="photo_gallery"></a>
-                            <p class="title-photo">Bidule</p>
-                        </li>
-
-
-                        </li>
                     </ul>
 
                     <div class="text-center col-sm-12">

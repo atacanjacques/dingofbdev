@@ -15,17 +15,17 @@ class Home extends MY_Controller
 	
 	public function index()
 	{
-		$this->load->view('header');
-		$this->load->view('menu');
+		$this->load->model('Concours_Model');
+		$data['concours'] = $this->Concours_Model->date_concours();
+
 		if(isset($this->permissionsMissing))
 		{
 			$data ['permissionsMissing'] = $this->permissionsMissing;
-			$this->load->view('index', $data);
 		}
-		else
-		{
-			$this->load->view('index');
-		}
+
+		$this->load->view('header');
+		$this->load->view('menu');
+		$this->load->view('index', $data);
 		$this->load->view('footer');
 	}
 
@@ -52,11 +52,14 @@ class Home extends MY_Controller
 	{
 		$this->load->model('Administration_Model');
 		$data['cgu'] = $this->Administration_Model->get_cgu();
+		$this->load->view('cgu', $data);
 	}
 
 	public function mentions_legales()
 	{
 		$this->load->model('Administration_Model');
 		$data['mentions_legales'] = $this->Administration_Model->get_mentions_legales();
+		$this->load->view('Mentions', $data);
+
 	}
 }

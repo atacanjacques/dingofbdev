@@ -33,11 +33,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
         <div class="row">
 
             <div class="col-sm-12 col-xs-12 text-center" id="description" >
-                <p>Du 1er au 15 janvier</p>
-                <p>A l'occassion du Mondial du Tatouage</p>
-                <p>Montre ton plus tatouage en photo</p>
-                <p>Pour tenter de gagner</p>
-                <p>Un tatouage et des pass gratuits pour le Mondial du tatouage</p>
+                <?php echo $concours->accueil; ?>
                 <a href="/login/loginVote" class="button">VOTER</a>
                 <a href="/login/loginParticipate" class="button">PARTICIPER</a>
             </div>
