@@ -341,4 +341,13 @@ class Admin extends MY_Controller {
 
     }
 
+
+    public function style(){
+        $this->load->view('Admin/headerAdmin');
+        $this->load->view('Admin/menuAdmin');
+        $this->load->view('Admin/Style');
+        $this->load->view('Admin/footerAdmin');
+    }
+
 }
+

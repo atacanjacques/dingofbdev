@@ -3,8 +3,6 @@
     <div class="creation_concours container">
         <h1 style="font-size: 31px; font-weight: 700;">Créez un concours</h1>
 
-        <!-- <form method="post" action="" enctype="multipart/form-data"> -->
-
         <?php 
             echo $error;
             echo form_open_multipart('Admin/createConcours'); 
@@ -24,29 +22,29 @@
                 </div>
 
 
-                <div class="form-group">
+                <div class="form-group col-sm-6">
                     <label for="date_START">Date de début : </label>
-                    <input type="text" class="form-control" id="date_START"
+                    <input type="text" class="form-control datepicker" id="date_START"
                            placeholder="YYYY-MM-DD" name="date_START" 
                            value="<?php echo set_value('date_START', $this->session->userdata('current_client')); ?>"/>
                 </div>
 
-                <div class="form-group">
+                <div class="form-group col-sm-6">
                     <label for="heure_START">Heure de début : </label>
-                    <input type="text" name="heure_START" id="heure_START" class="form-control" 
+                    <input type="text" name="heure_START" id="heure_START" class="form-control timepicker" 
                     value="<?php echo set_value('heure_START', $this->session->userdata('current_client')); ?>"/>
                 </div>
 
-                <div class="form-group">
+                <div class="form-group col-sm-6">
                     <label for="date_END">Date de fin : </label>
-                    <input type="text" class="form-control" id="date_END"
+                    <input type="text" class="form-control datepicker" id="date_END"
                            placeholder="YYYY-MM-DD" name="date_END" 
                            value="<?php echo set_value('date_END', $this->session->userdata('current_client')); ?>"/>
                 </div>
 
-                <div class="form-group">
+                <div class="form-group col-sm-6">
                     <label for="heure_END">Heure de fin : </label>
-                    <input type="text" class="form-control" id="heure_END" name="heure_END" 
+                    <input type="text" class="form-control timepicker" id="heure_END" name="heure_END" 
                     value="<?php echo set_value('heure_END', $this->session->userdata('current_client')); ?>"/>
                 </div>
 
