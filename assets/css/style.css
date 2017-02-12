@@ -3,15 +3,161 @@ body{
     font-size:2.8em;
     background-image:url("../img/background.jpg");
     color: white;
-    padding-top: 70px;
 }
 
+.logo{
+    margin: 1px;
+}
 
-.header > ul  {
-    font-size: 30px;
+#texte-logo {
     position: absolute;
-    background-color: #2b2b2b;
+    top: 72px;
+    left: 101px;
+    color: white;
+    -ms-transform: rotate(-18deg); /* IE 9 */
+    -webkit-transform: rotate(-18deg); /* Chrome, Safari, Opera */
+    transform: rotate(-18deg);
+    font-size: 36px;
+    text-align: center;
 }
+
+/* HEADER */
+
+header{
+    width: 100%;
+    float: left;
+    height: auto;
+    position: absolute;
+    top: 0;
+}
+
+.structure{
+   /* background-color: #252222; */
+    height: auto;
+    margin: 0 auto;
+    padding: 0px 15px;
+    overflow: hidden;
+    width: 1170px;
+}
+
+#contener_type {
+   /* padding: 10px 0 10px 0; */
+    float: left;
+    font-weight: bold;
+    font-size: 40px;
+    margin: 0;
+    float: left;
+    color: #fdfffb;
+    overflow: hidden;
+    margin: 0;
+}
+
+#contener_type > a {
+    padding: 0 68px;
+    border: 1px solid white;
+    color: #fdfffb;
+    text-decoration: none;
+}
+
+
+/* Header Admin */
+
+.structure_Admin{
+    background-color: #252222;
+    height: auto;
+    margin: 0 auto;
+    padding: 0px 15px;
+    width: 1170px;
+}
+
+#contener_type_Admin {
+    padding: 10px 0 10px 0;
+    width: 1100px;
+    float: left;
+    font-weight: bold;
+    font-size: 30px;
+    margin: 0;
+    float: left;
+    list-style: none;
+    text-align: center;
+    color: #fdfffb;
+    padding: 0;
+}
+
+.nav_admin a
+{
+    display: block;
+    padding: 0 14px;
+    border: 1px solid white;
+    font-weight: bold;
+    font-size: 30px;
+    margin: 0;
+    float: left;
+    list-style: none;
+    text-align: center;
+    color: #fdfffb;
+    text-decoration: none;
+}
+
+.nav_admin > li, .nav_admin > li li
+{
+    position: relative;
+    display:inline-block;
+}
+
+.subnav:first-child
+{
+    width: 370px;
+}
+
+.nav_admin ul
+{
+    position: absolute;
+    top: 55px;
+    left: -40px;
+    max-height:0em;
+    margin: 0;
+    overflow: hidden;
+    transition: 0.6s max-height 0.3s;
+    border-radius: 0 0 8px 8px;
+}
+
+ul.subnav1 {
+    width: 400px;
+    left: -120px;
+}
+
+/* ici on change la valeur de max-height au :hover */
+.nav_admin > li:hover ul {
+    /* à adapter, le minimum est le meilleur mais voyez large 😉 */
+    max-height: 13em;
+}
+
+
+#contener_type_Admin > ul > li > a {
+    padding: 0 14px;
+    border: 1px solid white;
+    color: #fdfffb;
+    text-decoration: none;
+}
+
+.button_type{
+    background-color: #252222;
+}
+
+.button_type:hover{
+    background-color: #af3b3c;
+}
+
+ul{
+    list-style-type: none;
+}
+
+/*.header > ul  {*/
+    /*font-size: 30px;*/
+    /*position: absolute;*/
+    /*background-color: #2b2b2b;*/
+/*}*/
 
 .button {
     background-color: #af3b3c;
@@ -21,39 +167,400 @@ body{
     text-align: center;
     text-decoration: none;
     display: inline-block;
-    font-size: 16px;
+    font-size: 25px;
     margin: 4px 2px;
     cursor: pointer;
+    color: white;
+    text-decoration: none !important;
+}
+
+select{
+    color: black;
+}
+
+/* INDEX */
+/*#section-accueil .container, #section-galerie .container, #section-tatouages .container {
+    background-color: rgba(181, 39, 185, 0.5);
+    margin-top: 25px;
+    margin-bottom: 25px;
+}*/
+
+
+.deja_participe{
+    text-align: center;
+    font-size: 20px;
+    font-weight: 700;
+}
+
+#gift{
+    width: 500px;
+}
+.gift{
+    width: 500px;
+}
+#description{
+    font-size: 1.7em;
+    font-weight: 700;
+}
+
+.send_button{
+    margin-bottom:30px;
+    margin-top:20px;
+    opacity: 0.8;
+}
+
+#send_button{
+    margin-bottom:30px;
+    margin-top:30px;
+    opacity: 0.8;
+    -webkit-transform: scale(1);
++    -&z-transform: scale(1);
+    -o-transform: scale(1);
+    -webkit-transition-duration: 0.2s;
+    -moz-transition-duration: 0.2s;
+    -o-transition-duration: 0.2s;
+}
+#send_button:hover{
+    margin-bottom:30px;
+    margin-top:30px;
+    opacity: 1;
+    -webkit-transform: scale(1.05);
+    -moz-transform: scale(1.05);
+    -o-transform: scale(1.05);
 }
 
 
-#gagnant{
-    position: relative;
-    min-height: 130%;
+#image_list{
+    display: inline-flex;
+    list-style-type: none;
+}
+.popular {
+    height: 150px;
+    width: 100%;
+    border: 7px solid #fff;
+    -webkit-transform: scale(1);
+    /* Browser Variations: */
+    -moz-transform: scale(1);
+    -o-transform: scale(1);
+    -webkit-transition-duration: 0.5s;
+    -moz-transition-duration: 0.5s;
+    -o-transition-duration: 0.5s;
+    margin-bottom: 10px;
+    margin-top: 10px;
+}
+.popular:hover {
+    -webkit-transform: scale(1.05);
+    -moz-transform: scale(1.05);
+    -o-transform: scale(1.05);
 }
 
-#gagnant img{
+/* PARTICIPATE */
+
+.participate{
+    text-align: center;
+    font-size: 35px;
+}
+
+/* GALLERIE CSS */
+
+.pagination>li>a, .pagination>li>span
+{
+    color: #fff;
+    background-color: #252222;
+}
+
+.pagination>.active>a, .pagination>.active>span, .pagination>.active>span:focus, .pagination>.active>span:hover
+{
+    background-color: #af3b3c;
+    border-color: #af3b3c;
+}
+
+.pagination>li>a:hover
+{
+    background-color: #af3b3c;
+    border-color: #af3b3c;
+    color: #FFFFFF;
+}
+
+.slide {
+    width: 100%;
+
+}
+
+.fancybox-title-inside-wrap
+{
+    font-size: 20px !important;
+    font-weight: 700;
+}
+
+
+.partager
+{
+    padding-left: 45px;
+    left: 340px;
+    font-weight: 700;
+    font-size: 25px;
+    text-decoration: none !important;
     position: absolute;
 }
 
-
-#podium{
-    display: block;
-    margin-left: 28%;
-    z-index: :1;
+.glyphicon-share-alt:before {
+    content: "\e095";
+    right: 345px;
+    position: absolute;
+    bottom: -37px;
 }
 
-#img_gagnant{
-    z-index: :2;
-    display: block;
-    margin-top: 4%;
-    margin-left: 39%;  
-    overflow:hidden;
-    -webkit-border-radius:50%;
-    -moz-border-radius:50%;
-    border-radius:50%; 
-    -moz-box-shadow: 0px 0px 10px #735f5f;
-    -webkit-box-shadow: 0px 0px 10px #735f5f;
-    -o-box-shadow: 0px 0px 10px #735f5f;
-    box-shadow: 0px 0px 10px #735f5f;
+.signaler
+{
+    left: 650px;
+    font-weight: 700;
+    font-size: 25px;
+    text-decoration: none !important;
+    position: absolute;
+    padding-left: 45px;
+}
+
+.glyphicon-alert:before
+{
+    left: -35px;
+    position: absolute;
+    top: -20px;
+}
+
+.voter
+{
+    padding-left: 45px;
+    font-weight: 700;
+    font-size: 25px;
+    text-decoration: none !important;
+    position: absolute;
+    padding-right: 80px;
+}
+
+.text_Voter
+{
+    font-weight: 700;
+    position: absolute;
+    left: 130px;
+    bottom: -45px;
+    color: #fff;
+}
+
+.glyphicon-star:before
+{
+    left: -30px;
+    position: absolute;
+    bottom: -35px;
+}
+
+.hide-bullets {
+    list-style:none;
+    margin-left: -40px;
+    margin-top:20px;
+}
+
+.thumbnail {
+    padding: 0;
+    margin-bottom:10px;
+}
+
+.title-photo{
+    font-size: 16px;
+    text-align: center;
+    color:white;
+}
+
+body {
+    padding-top: 70px; /* Required padding for .navbar-fixed-top. Change if height of navigation changes. */
+}
+
+.navbar-fixed-top .nav {
+    padding: 15px 0;
+}
+
+.navbar-fixed-top .navbar-brand {
+    padding: 0 15px;
+}
+
+@media(min-width:768px) {
+    body {
+        padding-top: 100px; /* Required padding for .navbar-fixed-top. Change if height of navigation changes. */
+    }
+
+    .navbar-fixed-top .navbar-brand {
+        padding: 15px 0;
+    }
+}
+
+.carousel-inner>.item>img, .carousel-inner>.item>a>img {
+    width: 100%;
+}
+
+#fancybox-title-float-wrap {
+    display: none;
+}
+
+#title-brand{
+    position: absolute;
+    top: 45px;
+    text-align: center;
+    color: white;
+    font-size: 32px;
+    transform: rotate(-8deg);
+    line-height: 30px;
+}
+
+span.navbar-brand {
+    margin-right: 70px;
+    position: relative;
+    bottom: 29px;
+}
+
+
+/* FOOTER CSS */
+
+.buttonCGU{
+    background-color: #252222;
+    border: 1.2px solid #fff;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 25px;
+    margin: 4px 2px;
+    cursor: pointer;
+    text-decoration: none !important;
+}
+
+.mentionsLink:hover{
+    color: #af3b3c;
+}
+
+.cguLink:hover{
+    color: #af3b3c;
+}
+
+.social:hover {
+    -webkit-transform: scale(0.6);
+    -moz-transform: scale(0.6);
+    -o-transform: scale(0.6);
+}
+.social {
+    -webkit-transform: scale(0.5);
+    /* Browser Variations: */
+    -moz-transform: scale(0.5);
+    -o-transform: scale(0.5);
+    -webkit-transition-duration: 0.5s;
+    -moz-transition-duration: 0.5s;
+    -o-transition-duration: 0.5s;
+}
+
+.footer{
+    margin-top: 55px;
+}
+
+#social-fb:hover {
+    color: #3B5998;
+}
+#social-tw:hover {
+    color: #4099FF;
+}
+#social-gp:hover {
+    color: #d34836;
+}
+#social-em:hover {
+    color: #f39c12;
+}
+
+.cgu{
+    font-size: 1.6em;
+}
+
+.cgu a{
+    color:white;
+    text-decoration: none;
+}
+
+.copyright{
+    font-size: 18px;
+}
+
+/* END FOOTER CSS */
+
+
+/* ADMIN CSS */
+
+.top_user{
+    margin: 0 auto;
+}
+
+.thumbnail{
+    background-color: inherit;
+    border: inherit;
+}
+
+.creation-concours {
+    margin-left: 30px;
+}
+
+.title-settings {
+    background: rgba(64, 53, 53, 0.66);
+    text-align: center;
+    padding-top: 6px;
+    padding-bottom: 5px;
+    margin-top: 0px;
+    margin-bottom: 30px;
+}
+
+.form-horizontal{
+    background: rgba(73, 72, 115, 0.93);
+}
+
+/* STYLES MODIF */
+
+.jscolor{
+    margin-left: 160px;
+    text-align: center;
+}
+
+/* FIN STYLE MODIF
+
+/*#section-galerie {*/
+    /*padding-top: 70px;*/
+/*}*/
+/* END ADMIN CSS */
+
+.fancybox-title iframe {
+    min-height: 30px;
+    vertical-align: middle;
+}
+
+.already_concours{
+    margin: 0 auto;
+    font-weight: 700;
+    font-size: 50px;
+    text-align: center;
+}
+
+.form_success > h3{
+    margin: 0 auto;
+    font-weight: 700;
+    font-size: 50px;
+    text-align: center;
+}
+
+.no_concours {
+    margin: 0 auto;
+    font-weight: 700;
+    font-size: 50px;
+    text-align: center;
+}
+
+.photo_gallery{
+    width: 350px;
+    height: 350px !important;
+    background-position: 50% 50%;
+    background-repeat: no-repeat;
+    background-size: cover;
 }

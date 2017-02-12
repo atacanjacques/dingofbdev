@@ -1,198 +1,92 @@
-// jQuery(function($) {
+jQuery(document).ready(function($) {
 
-//     $('#myCarousel').carousel({
-//         interval: 5000
-//     });
+     $('.datepicker').datepicker({
+         dateFormat: 'yy-mm-dd'
+     });
 
-//     $('#cp2').colorpicker();
+    $('.timepicker').timepicker({
+        timeFormat: 'h:mm p',
+        interval: 60,
+        minTime: '10',
+        maxTime: '6:00pm',
+        defaultTime: '11',
+        startTime: '10:00',
+        dynamic: false,
+        dropdown: true,
+        scrollbar: true
+    });
 
-//     //Handles the carousel thumbnails
-//     $('[id^=carousel-selector-]').click(function () {
-//         var id_selector = $(this).attr("id");
-//         try {
-//             var id = /-(\d+)$/.exec(id_selector)[1];
-//             console.log(id_selector, id);
-//             jQuery('#myCarousel').carousel(parseInt(id));
-//         } catch (e) {
-//             console.log('zRegex failed!', e);
-//         }
-//     });
-//     // When the carousel slides, auto update the text
-//     $('#myCarousel').on('slid.bs.carousel', function (e) {
-//         var id = $('.item.active').data('slide-number');
-//         $('#carousel-text').html($('#slide-content-'+id).html());
-//     });
+    $(".fancybox")
+        .attr('rel', 'gallery')
+        .fancybox({
+            beforeLoad: function () {
 
-// });
+                if (this.title) {
+                    $(".fancybox-image").css({
+                        "width": 800,
+                        "height": 600
+                    });
+                    var caption = this.element.attr('data-caption');
+                    this.tpl.wrap = '<div class="fancybox-wrap" tabIndex="-1"><div class="fancybox-skin"><div class="fancybox-outer"><p class="caption">'+caption+'</p><div class="fancybox-inner"></div></div></div></div>'
+                    // New line
+                  //  this.title += '<br />';
 
-// /* Script FB */
+                    // Add FaceBook like button
+                    this.title += '<button type="button" class="btn btn-success btn-sm voter" ><span class="glyphicon glyphicon-star voter" aria-hidden="true"></span> Voter</button><p class="text_Voter">: 100</p>';
 
+                    this.title += '<button type="button" class="btn btn-primary btn-sm partager"><span class="glyphicon glyphicon glyphicon-share-alt partager" aria-hidden="true"></span> Partager</button>'
 
-// $(document).ready(function(){
+                    this.title += '<button type="button" class="btn btn-danger btn-sm signaler" onclick=""><span class="glyphicon glyphicon-alert" aria-hidden="true"></span>Signaler</button>'
 
-//     var listOfScope = ['public_profile','email'];
-//     var maxRerequestScope = 1;
-//     var numberRerequestScope = 0;
+                    this.width = 800;
+                    this.height = 600;
 
+                }
+            },
 
+            fitToView: false,
+            beforeShow: function () {
+                // apply new size to img
+                $(".fancybox-image").css({
+                    "width": 800,
+                    "height": 600
+                });
+                // set new values for parent container
+                this.width = 800;
+                this.height = 600;
+            },
 
+            helpers: {
+                title: {
+                    type: 'inside',
+                    position: 'bottom'
+                },
 
-//     // Load the SDK asynchronously
-//     (function(d, s, id) {
-//         var js, fjs = d.getElementsByTagName(s)[0];
-//         if (d.getElementById(id)) return;
-//         js = d.createElement(s); js.id = id;
-//         js.src = "//connect.facebook.net/fr_FR/sdk.js";
-//         fjs.parentNode.insertBefore(js, fjs);
-//     }(document, 'script', 'facebook-jssdk'));
+                caption: {
+                    type:'inside',
+                    position: 'top'
+                },//<-- add a comma to separate the following option
+                buttons: {} //<-- add this for buttons
+            },
+            autoSize : false,
+            closeBtn: true, // you will use the buttons now
+            arrows: false,
 
+        });
 
-//     window.fbAsyncInit = function() {
-
-//         FB.init({
-//             appId      : '276539519413614',
-//             cookie     : true,  // enable cookies to allow the server to access
-//                                 // the session
-//             xfbml      : true,  // parse social plugins on this page
-//             version    : 'v2.5' // use graph api version 2.5
-//         });
-
-
-//         FB.getLoginStatus(function(response) {
-//             statusChangeCallback(response);
-//         });
-
-//     };
-
-
-
-//     function checkLoginState() {
-//         FB.getLoginStatus(function(response) {
-//             statusChangeCallback(response);
-//         });
-//     }
-
-//     function statusChangeCallback(response) {
-//         console.log('statusChangeCallback');
-//         console.log(response);
-//         // The response object is returned with a status field that lets the
-//         // app know the current login status of the person.
-//         // Full docs on the response object can be found in the documentation
-//         // for FB.getLoginStatus().
-//         if (response.status === 'connected') {
-//             // Logged into your app and Facebook.
-//             verifyScope(testAPI, response);
-
-//         } else if (response.status === 'not_authorized') {
-//             // The person is logged into Facebook, but not your app.
-//             document.getElementById('status').innerHTML = 'Please log ' +
-//                 'into this app.';
-//             $("#subscribe").show();
-//             $("#disconnect").hide();
-//         } else {
-//             // The person is not logged into Facebook, so we're not sure if
-//             // they are logged into this app or not.
-//             document.getElementById('status').innerHTML = 'Please log ' +
-//                 'into Facebook.';
-//             $("#subscribe").show();
-//             $("#disconnect").hide();
-//         }
-//     }
-
-
-//     function verifyScope(callback, values){
-
-//         var listOfScopeGrantedNow = [];
-//         var error = false;
-
-//         FB.api('/me/permissions', function(response) {
-
-//             response.data.forEach(function(permission){
-//                 if(permission.status == "granted"){
-//                     listOfScopeGrantedNow.push(permission.permission);
-//                 }
-//             });
-
-//             listOfScope.forEach(function(permissionAsking){
-//                 if( $.inArray(permissionAsking, listOfScopeGrantedNow) == -1 )
-//                 {
-//                     console.log("Il manque des permissions : "+permissionAsking);
-//                     error = true;
-//                 }
-//             })
-
-//             if(error){
-//                 $("#subscribe").show();
-//                 $("#disconnect").hide();
-//                 askScopeAgain();
-//             }else{
-//                 $("#subscribe").hide();
-//                 $("#disconnect").show();
-//                 console.log('Les arguments sont : ' +arguments);
-//                 callback(values);
-//             }
-
-//             return !error;
-//         });
-//     }
+        $(".various").fancybox({
+            maxWidth	: 800,
+            maxHeight	: 600,
+            fitToView	: false,
+            width		: '70%',
+            height		: '70%',
+            autoSize	: false,
+            closeClick	: false,
+            openEffect	: 'none',
+            closeEffect	: 'none'
+        });
+    });
 
 
 
 
-//     function askScopeAgain(){
-
-//         if(numberRerequestScope < maxRerequestScope){
-
-//             FB.login(function(response){
-//                 verifyScope(testAPI, response);
-//             }, {scope: listOfScope.join(), auth_type: 'rerequest'} );
-
-//             numberRerequestScope++;
-//         }
-
-//     };
-
-//     function testAPI(response) {
-//         console.log(response);
-//         console.log('Welcome!  Fetching your information.... ');
-//         console.log("Access token : "+response.authResponse.accessToken);
-//         console.log("User id : "+response.authResponse.userID);
-
-//         FB.api('/me', {fields: 'name, email'}, function(response) {
-//             console.log('Successful login for: ' + response.name);
-//             console.log('Successful login for: ' +response.email);
-//             document.getElementById('status').innerHTML =
-//                 'Thanks for logging in, ' + response.name +" "+ response.email + '!';
-//         });
-
-//     }
-
-//     $("#subscribe").click(function(){
-//         numberRerequestScope = 0;
-//         FB.login(function(response){
-//             statusChangeCallback(response);
-//         }, {scope: listOfScope.join()});
-
-//     });
-
-
-//     $("#disconnect").click(function(){
-//         FB.logout(function(response) {
-//             statusChangeCallback(response);
-//         });
-//     });
-
-// });
-
-$(document).ready(function(){
-
-   function deleteConfirm() {
-    var a = confirm("Etes-vous sur de vouloir supprimer cet article ?!");
-    if (a){
-        return true;
-    }
-    else{
-        return false;
-    }
-}
-})

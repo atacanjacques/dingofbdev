@@ -1,20 +1,17 @@
 <footer class="footer">
 
-	<div class="container">
+<div class="container">
 
-		<div class="row text-left">
-			<div class="col-sm-6 col-xs-12 cgu">
-				<a href="./cgu.php">Mentions légales / CGU</a>
-			</div>
+    <div class="row text-center">
+        <div class="col-sm-12 col-xs-12 text-center cgu">
+            <a class="various buttonCGU mentionsLink fancybox.ajax" data-fancybox-type="iframe" href="<?php echo site_url('home/mentions')?>">Mentions légales</a>
+            <a class="various buttonCGU cguLink fancybox.ajax" data-fancybox-type="iframe" href="<?php echo site_url('home/cgu')?>">CGU</a>
+        </div>
 
-			<div class="col-sm-6 col-xs-12 copyright">
-				<p><a href="admin.php">admin</a> © Copyright 2016. All Rights Reserved by <br><a target="_blank" href="https://pardon-maman.com"> Pardon-maman.com</a>.</p>
-			</div>
-		</div>
-	</div>
-</footer>
+    </div>
+</div>
+    </footer>
 
-<script src="assets/js/facebook-share.js"></script>
 
 </body>
 
