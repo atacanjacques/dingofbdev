@@ -1,8 +1,3 @@
-<?php
-defined('BASEPATH') OR exit('No direct script access allowed');
-?>
-
-
 <!-- UPLOAD SECTION -->
 <section id="section-upload">
     <div class="container">

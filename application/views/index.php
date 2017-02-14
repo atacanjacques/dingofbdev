@@ -1,7 +1,3 @@
-<?php
-defined('BASEPATH') OR exit('No direct script access allowed');
-?>
-
 <!-- BLOC 1 -->
 <section id="section-accueil">
     <div class="container">

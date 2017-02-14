@@ -1,6 +1,3 @@
-<?php
-defined('BASEPATH') OR exit('No direct script access allowed');
-?>
 <section id="section-photos">
     <div class="container">
         <h1 style="font-size: 31px; font-weight: 700;">Vos Photos</h1>
