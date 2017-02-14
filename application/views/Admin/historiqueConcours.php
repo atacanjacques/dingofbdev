@@ -1,28 +1,26 @@
 <?php echo form_open('Admin/export_concours_CSV'); ?> 
 
 
-<input type="submit" value="exporter" name="export" />
+<input type="submit" value="Exporter" name="export"  class='button' id="exportConcours"/>
 
 </form>
 
 
 
-<table>
-    
-        <h1>Filtrer les concours:</h1>
+<table class="listConcours container">
 
         <?php
         echo form_open('admin/rechercheConcours');
         ?>
-            <tr>
+            <tr class="ligneTableau ">
 
-                 <th><label for='filter_id'>ID</label></th>       
+                 <th><label for='filter_id'>Identifiants</label></th>       
 
-                 <th><label for='filter_name'>Nom</label></th>
+                 <th><label for='filter_name'>Noms</label></th>
 
-                 <th><label for='filter_date_deb'>Date de début</label></th>
+                 <th><label for='filter_date_deb'>Dates de début</label></th>
 
-                 <th><label for='filter_date_fin'>Date de fin</label></th>
+                 <th><label for='filter_date_fin'>Dates de fin</label></th>
             </tr>
 
             <tr>
@@ -39,14 +37,17 @@
                 <td><input type='text' name='filter_date_fin' class="form-control" 
                 value="<?php echo set_value('filter_date_fin', $this->session->userdata('current_client')); ?>" /></td>
 
-                <td><input type='submit' value="Filtrer" /></td>
+                <td><input type='submit' value="Filtrer"  class='button' /></td>
 
             </tr>
 
         </form>
 
+
+		<form method="POST" action="modifConcours">
+
+
 		<?php
-		echo form_open('admin/modifConcours'); 
 
 			foreach ($liste as $row){
 
@@ -60,7 +61,7 @@
 				// Si le concours est fini, on n'affiche pas le bouton modifier
 				if ($row->date_fin > date("Y-m-d"))
 				{
-				echo "<td><button type='submit' name='modifConcours' value=".$row->id.">Modifier</button></td>";
+				echo "<td><button type='submit' name='modifConcours' class='button' value=".$row->id.">Modifier</button></td>";
 
 				}
 
@@ -69,7 +70,7 @@
 				echo "<td></td>";
 				}
 
-				echo "<td><button type='submit' name='supprConcours' value=".$row->id.">Supprimer</button></td>";
+				echo "<td><button type='submit' name='supprConcours'  class='button' value=".$row->id." Onclick='return alertConfirm();'>Supprimer</button></td>";
 			echo "</tr>";
 
 		}?>

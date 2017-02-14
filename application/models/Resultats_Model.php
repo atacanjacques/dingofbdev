@@ -6,7 +6,7 @@ class Resultats_Model extends CI_Model
 	// retourne toutes les info du gagnant
 	public function affiche_gagnant(){
 
-		 $this->db->select('vote.participation_idparticipation, users.*, participation.source_photo, concours.*')
+		 $this->db->select('vote.participation_idparticipation, users.*, participation.source_photo, concours.date_fin')
 		 		  ->from('concours')
 		 		  ->join('participation', 'participation.concours_id = concours.id', 'inner')
 		 		  ->join('vote', 'vote.participation_idparticipation = participation.id', 'inner')

@@ -1,7 +1,7 @@
 <!-- CONTENT -->
 <!-- BLOC 1 -->
     <div class="creation_concours container">
-        <h1 style="font-size: 31px; font-weight: 700;">Créez un concours</h1>
+        <h1 class="h1Concours">Créez un concours</h1>
 
         <?php 
             echo $error;
@@ -31,7 +31,7 @@
 
                 <div class="form-group col-sm-6">
                     <label for="heure_START">Heure de début : </label>
-                    <input type="text" name="heure_START" id="heure_START" class="form-control timepicker" 
+                    <input type="text" name="heure_START" id="heure_START" placeholder="hh:mm" class="form-control timepicker" 
                     value="<?php echo set_value('heure_START', $this->session->userdata('current_client')); ?>"/>
                 </div>
 
@@ -44,7 +44,7 @@
 
                 <div class="form-group col-sm-6">
                     <label for="heure_END">Heure de fin : </label>
-                    <input type="text" class="form-control timepicker" id="heure_END" name="heure_END" 
+                    <input type="text" class="form-control timepicker" id="heure_END" placeholder="hh:mm" name="heure_END" 
                     value="<?php echo set_value('heure_END', $this->session->userdata('current_client')); ?>"/>
                 </div>
 
@@ -54,8 +54,7 @@
 
         <div class="row">
 
-            <h1 style="font-size: 31px; font-weight: 700; text-align: center">Création des
-                pages</h1>
+            <h1 class="h1Concours h1CreatPage">Création des pages</h1>
 
             <div class="col-xs-12 col-sm-12">
                 <div class="form-group">
@@ -76,7 +75,7 @@
                 </div>
                 <div class="form-group">
                     <label for="create_rules">Réglement : <br /></label>
-                    <textarea name="create_rules" id="create_rules" cols="30" rows="10">
+                    <textarea name="create_rules" cols="30" rows="10">
                     <?php echo set_value('create_rules', $this->session->userdata('current_client')); ?></textarea>
                 </div>
                 <div class="choix_template">

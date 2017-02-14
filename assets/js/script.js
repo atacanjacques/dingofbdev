@@ -5,12 +5,8 @@ jQuery(document).ready(function($) {
      });
 
     $('.timepicker').timepicker({
-        timeFormat: 'h:mm p',
-        interval: 60,
-        minTime: '10',
-        maxTime: '6:00pm',
-        defaultTime: '11',
-        startTime: '10:00',
+        timeFormat: 'HH:mm',
+        interval: 30,
         dynamic: false,
         dropdown: true,
         scrollbar: true
@@ -85,8 +81,21 @@ jQuery(document).ready(function($) {
             openEffect  : 'none',
             closeEffect : 'none'
         });
+
     });
 
 
+
+    function alertConfirm()
+    {
+        resultat=window.confirm('Êtes vous sur de vouloir effectuer cette action ?');
+        if (resultat==1)
+        {
+        }
+        else
+        {
+            return false;
+        }
+    } 
 
 

@@ -17,7 +17,7 @@ class Admin extends MY_Controller {
 
         if(ENVIRONMENT !== 'production')
         {
-            $this->output->enable_profiler(TRUE);
+            //$this->output->enable_profiler(TRUE);
         }
     }
 
@@ -28,9 +28,6 @@ class Admin extends MY_Controller {
         $this->load->model('Resultats_Model');
         $liste = $this->Resultats_Model->affiche_gagnant();
         $this->load->view('Admin/indexAdmin', array('liste' => $liste)); 
-
-
-        $this->load->view('Admin/footerAdmin');
     }
 
 
@@ -63,7 +60,7 @@ class Admin extends MY_Controller {
             $config['file_name']     = 'img_concours_';
             $config['upload_path']   = './uploads/img_concours';
             $config['allowed_types'] = 'gif|jpg|png';
-            $config['max_size']      = 8000;
+            $config['max_size']      = 999;
             $config['max_width']     = 1024;
             $config['max_height']    = 2048;
 
@@ -74,7 +71,6 @@ class Admin extends MY_Controller {
             if ($this->form_validation->run() == FALSE)
             {
                     $this->load->view('Admin/CreerConcours', array('error' => ' ' ));
-                    $this->load->view('Admin/footerAdmin');
             }
 
 
@@ -83,7 +79,6 @@ class Admin extends MY_Controller {
             {
                     $error = array('error' => $this->upload->display_errors());
                     $this->load->view('Admin/CreerConcours', $error);
-                    $this->load->view('Admin/footerAdmin');
             }
 
 
@@ -106,7 +101,7 @@ class Admin extends MY_Controller {
 
         // Si il y a deja un concours en cours on affiche une erreur
         else{
-            echo "Vous ne pouvez pas créer de concours car il y en a déjà un en cours !";
+            echo "<p class='container already_concours'>Vous ne pouvez pas créer de concours car il y en a déjà un en cours !</p>";
         }
 
     }
@@ -142,7 +137,6 @@ class Admin extends MY_Controller {
             echo "Il n'y a aucun concours dans votre historique";
         }
         
-        $this->load->view('Admin/footerAdmin');
 
 
     } 
@@ -177,9 +171,7 @@ class Admin extends MY_Controller {
 
         $this->load->model('Concours_Model');
         $liste = $this->Concours_Model->filtre_concours();
-        $this->load->view('Admin/historiqueConcours', array('liste' => $liste)); 
-
-        $this->load->view('Admin/footerAdmin');        
+        $this->load->view('Admin/historiqueConcours', array('liste' => $liste));      
 
     }
 
@@ -197,7 +189,6 @@ class Admin extends MY_Controller {
             $liste = $this->Concours_Model->affichage_concours();
 
             $this->load->view('Admin/ModifierConcours', array('liste' => $liste));
-            $this->load->view('Admin/footerAdmin');
 
         }
 
@@ -236,7 +227,6 @@ class Admin extends MY_Controller {
         $liste = $this->Moderation_Model->affichage_users();
         $this->load->view('Admin/listUsers', array('liste' => $liste)); 
 
-        $this->load->view('Admin/footerAdmin');
     }
 
     // Banni ou réintègre un membre
@@ -266,8 +256,6 @@ class Admin extends MY_Controller {
         $this->load->model('Moderation_Model');
         $liste = $this->Moderation_Model->filtreUser();
         $this->load->view('Admin/listUsers', array('liste' => $liste)); 
-
-        $this->load->view('Admin/footerAdmin');        
 
     }
 
@@ -302,9 +290,6 @@ class Admin extends MY_Controller {
         $this->load->model('Moderation_Model');
         $liste = $this->Moderation_Model->img_signale();
         $this->load->view('Admin/imgReport', array('liste' => $liste)); 
-
-
-        $this->load->view('Admin/footerAdmin');
 
     }
 
@@ -346,7 +331,6 @@ class Admin extends MY_Controller {
         $this->load->view('Admin/headerAdmin');
         $this->load->view('Admin/menuAdmin');
         $this->load->view('Admin/Style');
-        $this->load->view('Admin/footerAdmin');
     }
 
 }

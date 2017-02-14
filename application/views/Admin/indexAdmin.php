@@ -36,8 +36,8 @@ else{
         <div id="main_area">
             <!-- Slider -->
             <!-- <h1>Nombre de participants : </h1> -->
-            <h1><?php echo $nbJours; ?></h1>
-            <h1><?php echo $title_gagnant; ?></h1>
+            <p class="p_accueil"><?php echo $nbJours; ?></p>
+            <p class="p_accueil"><?php echo $title_gagnant; ?></p>
             <div class="row">
                 <div class="col-sm-12" id="slider-thumbs">
 
@@ -45,7 +45,7 @@ else{
 
                         <li class="top_user">
 
-							<a class="thumbnail slide" id="carousel-selector-3"><img src="<?php echo $row->source_photo; ?>" alt="photo du gagnant" id="img_gagnant" width="430" height="430" /></a>
+							<a class="thumbnail slide" id="carousel-selector-3"><img src="<?php echo $row->source_photo; ?>" alt="photo du gagnant" id="img_gagnant" width="800" height="800" /></a>
 
 							<p class="title-photo"><?php echo strtoupper($row->nom); echo" ".ucfirst($row->prenom);?></p>
 

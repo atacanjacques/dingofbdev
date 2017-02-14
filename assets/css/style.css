@@ -1,9 +1,20 @@
 body{
-    font-family:nickname, sans-serif;
+
+    font-family: 'Average', serif;
     font-size:2.8em;
-    background-image:url("../img/background.jpg");
-    color: white;
+    background-image:url("../img/accueil.png");
+    background-size: 100%;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    color: #480c0c;
 }
+
+h1{
+
+    font-weight: bold;
+}
+
+
 
 .logo{
     margin: 1px;
@@ -142,11 +153,11 @@ ul.subnav1 {
 }
 
 .button_type{
-    background-color: #252222;
+    background-color: #4a3a3a;
 }
 
 .button_type:hover{
-    background-color: #af3b3c;
+    background-color: #480c0c;
 }
 
 ul{
@@ -160,10 +171,9 @@ ul{
 /*}*/
 
 .button {
-    background-color: #af3b3c;
+    background-color: #480c0c;
     border: 3px solid #fff;
     color: white;
-    padding: 15px 32px;
     text-align: center;
     text-decoration: none;
     display: inline-block;
@@ -172,6 +182,11 @@ ul{
     cursor: pointer;
     color: white;
     text-decoration: none !important;
+}
+
+.button:hover{
+    background-color : #4a3a3a;
+    color : white;
 }
 
 select{
@@ -266,20 +281,20 @@ select{
 .pagination>li>a, .pagination>li>span
 {
     color: #fff;
-    background-color: #252222;
+    background-color: #480c0c;
 }
 
 .pagination>.active>a, .pagination>.active>span, .pagination>.active>span:focus, .pagination>.active>span:hover
 {
-    background-color: #af3b3c;
-    border-color: #af3b3c;
+    background-color: #4a3a3a;
+    border-color: #4a3a3a;
 }
 
 .pagination>li>a:hover
 {
-    background-color: #af3b3c;
-    border-color: #af3b3c;
-    color: #FFFFFF;
+    background-color: #4a3a3a;
+    border-color: #480c0c;
+    color: white;
 }
 
 .slide {
@@ -366,9 +381,10 @@ select{
 }
 
 .title-photo{
-    font-size: 16px;
+    font-size: 30px;
     text-align: center;
-    color:white;
+    color: #480c0c;
+    margin-bottom: 2%;
 }
 
 body {
@@ -421,7 +437,7 @@ span.navbar-brand {
 /* FOOTER CSS */
 
 .buttonCGU{
-    background-color: #252222;
+    background-color: #4a3a3a;
     border: 1.2px solid #fff;
     padding: 15px 32px;
     text-align: center;
@@ -433,12 +449,10 @@ span.navbar-brand {
     text-decoration: none !important;
 }
 
-.mentionsLink:hover{
-    color: #af3b3c;
-}
+.buttonCGU:hover{
 
-.cguLink:hover{
-    color: #af3b3c;
+    background-color: #480c0c;
+
 }
 
 .social:hover {
@@ -563,4 +577,66 @@ span.navbar-brand {
     background-position: 50% 50%;
     background-repeat: no-repeat;
     background-size: cover;
+}
+
+.p_accueil{
+
+    padding-left: 15%;
+}
+
+.h1_listUser{
+
+    margin-left: 11%;
+    margin-bottom: 3%;
+}
+
+#mceu_11{
+
+    margin-left: 3%;
+    margin-bottom: 3%;
+    border: 0;
+}
+
+
+#mceu_40{
+
+    margin-left: 3%;
+    margin-bottom: 3%;
+    border: 0;
+}
+
+
+.label_moder{
+
+    margin-left: 3%;
+
+}
+
+#exportConcours{
+
+    margin-left: 12%;
+    margin-bottom: 2%;
+}
+
+
+.h1Concours{
+
+    margin-bottom: 3%;
+}
+
+.h1CreatPage{
+
+    margin-top: 5%;
+}
+
+#formsuccess{
+
+    font-size: 35px;
+    font-weight: bold;
+    text-align: center;
+}
+
+#imgSign{
+
+    text-align: center;
 }

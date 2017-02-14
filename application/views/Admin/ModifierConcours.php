@@ -1,23 +1,12 @@
 <?php
     foreach ($liste as $row)
     {
-
-    $row->id_concours;
-    $row->nom_concours;
-    $row->date_debut;
-    $row->date_fin;
-    $row->accueil;
-    $row->reglement;
-    $row->nom_lot;
-    $row->url;
-    $row->description;
-
     }
 
 ?>
 
 <div class="creation_concours container">
-        <h1 style="font-size: 31px; font-weight: 700;">Créez un concours</h1>
+        <h1 class="h1Concours">Créez un concours</h1>
 
         <?php
             echo form_open('admin/editConcours'); 
@@ -31,26 +20,26 @@
                 </div>
 
 
-                <div class="form-group">
+                <div class="form-group col-sm-6">
                     <label for="date_START">Date de début : </label>
                     <input type="text" class="form-control" id="date_START"
                            placeholder="JJ/MM/YYYY hh:mm" name="date_START" 
                            value="<?php echo $row->date_debut; ?>" />
                 </div>
 
-                <div class="form-group">
+                <div class="form-group col-sm-6">
                     <label for="heure_START">Heure de début : </label>
                     <input type="text" name="heure_START" id="heure_START" class="form-control" value="<?php echo $row->heure_debut; ?>" />
                 </div>
 
-                <div class="form-group">
+                <div class="form-group col-sm-6">
                     <label for="date_END">Date de fin : </label>
                     <input type="text" class="form-control" id="date_END"
                            placeholder="JJ/MM/YYYY hh:mm" name="date_END" 
                            value="<?php echo $row->date_fin; ?>" />
                 </div>
 
-                <div class="form-group">
+                <div class="form-group col-sm-6">
                     <label for="heure_END">Heure de fin : </label>
                     <input type="text" class="form-control" id="heure_END" name="heure_END" 
                     value="<?php echo $row->heure_fin; ?>" />
@@ -58,8 +47,7 @@
 
             
 
-            <h1 style="font-size: 31px; font-weight: 700; text-align: center">Création des
-                pages</h1>
+            <h1 class="h1Concours h1CreatPage">Création des pages</h1>
 
 
                 <div class="form-group">
