@@ -14,15 +14,15 @@ $nbJours = $nbJoursTimestamp/86400;
 
 
 if ($nbJours < 0 ){
-	$nbJours = "Concours terminé";
-	$title_gagnant = "Gagnant :";
+    $nbJours = "Concours terminé";
+    $title_gagnant = "Gagnant :";
 
 }
 
 else{
 
-	$nbJours = "Temps restant : ".$nbJours." jours";
-	$title_gagnant = "Photo en tête du classement";
+    $nbJours = "Temps restant : ".$nbJours." jours";
+    $title_gagnant = "Photo en tête du classement";
 }
 
 
@@ -41,19 +41,19 @@ else{
             <div class="row">
                 <div class="col-sm-12" id="slider-thumbs">
 
- 					<ul class="hide-bullets">
+                    <ul class="hide-bullets">
 
                         <li class="top_user">
 
-							<a class="thumbnail slide" id="carousel-selector-3"><img src="<?php echo $row->source_photo; ?>" alt="photo du gagnant" id="img_gagnant" width="800" height="800" /></a>
+                            <a class="thumbnail slide" id="carousel-selector-3"><img src="<?php echo $row->source_photo; ?>" alt="photo du gagnant" id="img_gagnant" width="800" height="800" /></a>
 
-							<p class="title-photo"><?php echo strtoupper($row->nom); echo" ".ucfirst($row->prenom);?></p>
+                            <p class="title-photo"><?php echo strtoupper($row->nom); echo" ".ucfirst($row->prenom);?></p>
 
-						</li>
+                        </li>
 
-					</ul>
+                    </ul>
 
-				</div>
+                </div>
 
             </div>
 

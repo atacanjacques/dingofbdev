@@ -7,7 +7,7 @@ class Concours_Model extends CI_Model
 	protected $table_concours = "concours";
 
 
-	// On retourne les concours qui sont encore en cours
+	// On retourne le concours qui est en cours
 	public function date_concours()
 	{
 
@@ -17,6 +17,21 @@ class Concours_Model extends CI_Model
 
 		return $query->row();		
 	}
+
+
+	// On retourne le dernier concours
+	public function last_concours()
+	{
+
+		 $this->db->select('*')
+		 		  ->from('concours')
+		 		  ->order_by('date_fin', 'DESC')
+		 		  ->limit(1);
+		
+		$query = $this->db->get();
+		return $query->row();
+	}
+
 
 
 	// Ajouter un concours

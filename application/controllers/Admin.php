@@ -25,9 +25,31 @@ class Admin extends MY_Controller {
     public function index()
     {
 
-        $this->load->model('Resultats_Model');
-        $liste = $this->Resultats_Model->affiche_gagnant();
-        $this->load->view('Admin/indexAdmin', array('liste' => $liste)); 
+
+        $this->load->model('Concours_Model');
+        $last_concours = $this->Concours_Model->date_concours();   
+
+
+        //Affiche l'utilisateur qui est en tete du classement
+        if(!empty($last_concours)){
+
+            $this->load->model('Resultats_Model');
+            $liste = $this->Resultats_Model->affiche_gagnant($last_concours->id);
+
+            $this->load->view('Admin/indexAdmin', array('liste' => $liste)); 
+        }
+
+
+        // Affiche le gagnant
+        else{
+            $last_concours = $this->Concours_Model->last_concours();  
+            $this->load->model('Resultats_Model');
+            $liste = $this->Resultats_Model->affiche_gagnant($last_concours->id);
+            $this->load->view('Admin/indexAdmin', array('liste' => $liste)); 
+        }
+
+
+
     }
 
 
