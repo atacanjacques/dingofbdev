@@ -29,12 +29,14 @@ jQuery(document).ready(function($) {
                     var caption = this.element.attr('data-caption');
                     var nbvote = this.element.attr('data-nbvote');
                     var vote_url = this.element.attr('data-vote');
+                    var vote_action = this.element.attr('data-action') == 'add_vote' ? 'success' : 'warning';
+                    var vote_action_name = this.element.attr('data-action') == 'add_vote' ? 'Voter' : 'Enlever';
                     var share_url = this.element.attr('data-share');
                     var signalement_url = this.element.attr('data-signalement');
                     this.tpl.wrap = '<div class="fancybox-wrap" tabIndex="-1"><div class="fancybox-skin"><div class="fancybox-outer"><p class="caption">'+caption+'</p><div class="fancybox-inner"></div></div></div></div>'
 
                     // Add FaceBook like button
-                    this.title += '<button type="button" class="btn btn-success btn-sm voter" onclick="location.href=\'' + vote_url + '\'"><span class="glyphicon glyphicon-star voter" aria-hidden="true"></span> Voter</button><p class="text_Voter">: ' + nbvote + '</p>';
+                    this.title += '<button type="button" class="btn btn-' + vote_action + ' btn-sm voter" onclick="location.href=\'' + vote_url + '\'"><span class="glyphicon glyphicon-star voter" aria-hidden="true"></span>' + vote_action_name + '</button><p class="text_Voter"> : ' + nbvote + '</p>';
 
                     this.title += '<button type="button" class="btn btn-primary btn-sm partager"><span class="glyphicon glyphicon glyphicon-share-alt partager" aria-hidden="true"></span> Partager</button>'
 

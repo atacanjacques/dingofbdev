@@ -2,13 +2,13 @@
 
 class Vote_Model extends CI_Model
 {
-	public function get_vote($id_voteur)
+	public function get_votes($id_voteur)
 	{
 		$this->db->select('*');
 		$this->db->from('vote');
 		$this->db->where('id_voteur', $id_voteur);
 
-		return $this->db->get()->row();
+		return $this->db->get()->result();
 
 	}
 
@@ -22,8 +22,9 @@ class Vote_Model extends CI_Model
 		$this->db->insert('vote', $data);
 	}
 
-	public function delete_vote($id_voteur)
+	public function delete_vote($id_participation, $id_voteur)
 	{
+		$this->db->where('participation_idparticipation', $id_participation);
 		$this->db->where('id_voteur', $id_voteur);
 		$this->db->delete('vote');
 	}

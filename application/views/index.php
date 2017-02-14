@@ -1,4 +1,3 @@
-<!-- BLOC 1 -->
 <section id="section-accueil">
     <div class="container">
         <p>
@@ -12,14 +11,6 @@
                 {
                     echo $permission . ' : ' . $permissionsMissing['info'][$permission] . '<br>';
                 }
-                if($permissionsMissing['refusedPage'] == "vote")
-                {
-                    echo '<a href="/login/loginVote" class="button">REESSAYER</a>';
-                }
-                elseif($permissionsMissing['refusedPage'] == "participate")
-                {
-                    echo '<a href="/login/loginParticipate" class="button">REESSAYER</a>';
-                }
                 echo '</div>';
 
             }
@@ -28,11 +19,31 @@
         <h1 style="font-size: 31px; text-align: center; font-weight: 700">JEU CONCOURS !</h1>
         <div class="row">
 
-            <div class="col-sm-12 col-xs-12 text-center" id="description" >
-                <?php echo $concours->accueil; ?>
-                <a href="/login/loginVote" class="button">VOTER</a>
-                <a href="/login/loginParticipate" class="button">PARTICIPER</a>
-            </div>
-        </div>
+            <div class="col-sm-12 col-xs-12 text-center" id="description">
+                <?php
+
+                echo $concours->accueil;
+
+                if((isset($permissionsMissing) && $refusedPage == 'vote') || !$this->facebook->is_authenticated())
+                {
+                   echo '<button class="button buttonLogin">LOGIN</button>';
+               }
+               else
+               {
+                echo '<a href="/login/loginVote" class="button buttonVote">VOTER</a>';
+            }   
+
+            if((isset($permissionsMissing) && $refusedPage == 'participate') || !$this->facebook->is_authenticated())
+            {
+               echo '<button class="button buttonParticipate">PARTICIPER</button>';
+           }
+           else
+           {
+            echo '<a href="/login/loginParticipate" class="button buttonVote">PARTICIPER</a>';
+        }   
+
+        ?>
     </div>
+</div>
+</div>
 </section>

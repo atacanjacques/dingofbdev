@@ -70,6 +70,12 @@ class Participate extends MY_Controller
 			echo '<a href="/participate/album">mes albums</a>';
 			echo '<br><a href="/participate/add_photos">ajouter image fb</a>';
 		}
+
+		$this->load->view('header');
+		$this->load->view('menu');
+		$this->load->view('upload');
+		$this->load->view('footer');
+
 	}
 
 

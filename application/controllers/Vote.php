@@ -16,11 +16,21 @@ class Vote extends MY_Controller
 	public function index($orderby = "rand", $page = 1)
 	{
 		$this->load->model('Participation_Model');
+		$this->load->model('Vote_Model');
+
 		$data['nb_participation'] = $this->Participation_Model->nb_participation();
 		$data['page'] = $page;
 		$data['orderby'] = $orderby;
 		$data['liste_participation'] = $this->Participation_Model->liste_participation($orderby, $page);
-
+		
+		$voteur = $this->facebook->request('get', '/me');
+		$id_voteur = $voteur['id'];
+		$votes = $this->Vote_Model->get_votes($id_voteur);
+		$voted_participant = [];
+		foreach ($votes as $vote) {
+			$voted_participant[] = $vote->participation_idparticipation;
+		}
+		$data['voted_participant'] = $voted_participant;
 
 		$this->load->view('header');
 		$this->load->view('menu');
@@ -36,27 +46,39 @@ class Vote extends MY_Controller
 		$voteur = $this->facebook->request('get', '/me');
 		$id_voteur = $voteur['id'];
 
-		$vote = $this->Vote_Model->get_vote($id_voteur);
-		if(!is_null($vote))
-		{
-			$this->Vote_Model->delete_vote($id_voteur);
+		$votes = $this->Vote_Model->get_votes($id_voteur);
+		$voted_participant = [];
+		foreach ($votes as $vote) {
+			$voted_participant[] = $vote->participation_idparticipation;
 		}
-		$this->Vote_Model->add_vote($id_participation,  $id_voteur);
+
+		$in_array = in_array($id_participation, $voted_participant);
+		if(!$in_array)
+		{
+			$this->Vote_Model->add_vote($id_participation, $id_voteur);
+		}
 		redirect('/vote');
 	}
 
-	public function delete_vote()
+	public function delete_vote($id_participation)
 	{
 		$this->load->model('Vote_Model');
 
 		$voteur = $this->facebook->request('get', '/me');
 		$id_voteur = $voteur['id'];
 
-		$vote = $this->Vote_Model->get_vote($id_voteur);
-		if(!is_null($vote))
-		{
-			$this->Vote_Model->delete_vote($id_voteur);
+		$votes = $this->Vote_Model->get_votes($id_voteur);
+		$voted_participant = [];
+		foreach ($votes as $vote) {
+			$voted_participant[] = $vote->participation_idparticipation;
 		}
+
+		$in_array = in_array($id_participation, $voted_participant);
+		if($in_array)
+		{
+			$this->Vote_Model->delete_vote($id_participation, $id_voteur);
+		}
+
 		redirect('/vote');
 	}
 

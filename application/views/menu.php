@@ -5,7 +5,7 @@
             <nav>
                 <div id="contener_type">
                     <a class="button_type" href="<?php echo site_url('home/index') ?>">Accueil</a>
-                    <a class="button_type" href="<?php echo site_url('/vote') ?>">Galerie</a>
+                    <a class="button_type" href="<?php echo site_url('/login/loginVote') ?>">Galerie</a>
                     <a class="button_type" href="<?php echo site_url('home/price') ?>">Prix</a>
                     <a class="button_type" href="<?php echo site_url('home/share') ?>">Partager</a>
                 </nav>

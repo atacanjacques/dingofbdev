@@ -9,7 +9,9 @@
                 <form method="post" action="" enctype="multipart/form-data">
 
                     <label for="upload_photo">Sélectionner une photo facebook </label>
-                    <input type="file" class="button" />
+                    <div>
+                    <a href="/participate/album" class="button display-block">Choisir</a>
+                    </div>
 
                     <label for="import_fb">Importer une photo sur facebook </label>
                     <input type="file" class="button" />

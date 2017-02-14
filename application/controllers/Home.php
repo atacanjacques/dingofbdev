@@ -20,10 +20,12 @@ class Home extends MY_Controller
 
 		if(isset($this->permissionsMissing))
 		{
-			$data ['permissionsMissing'] = $this->permissionsMissing;
+			$data['permissionsMissing'] = $this->permissionsMissing;
+			$data['refusedPage'] = $this->refusedPage;
 		}
 
 		$this->load->view('header');
+		$this->load->view('facebooklogin', $data);
 		$this->load->view('menu');
 		$this->load->view('index', $data);
 		$this->load->view('footer');
@@ -40,14 +42,6 @@ class Home extends MY_Controller
 		$this->load->view('footer');
 	}
 
-	public function upload()
-	{
-		$this->load->view('header');
-		$this->load->view('menu');
-		$this->load->view('upload');
-		$this->load->view('footer');
-	}
-
 	public function cgu()
 	{
 		$this->load->model('Administration_Model');
@@ -59,7 +53,7 @@ class Home extends MY_Controller
 	{
 		$this->load->model('Administration_Model');
 		$data['mentions_legales'] = $this->Administration_Model->get_mentions_legales();
-		$this->load->view('Mentions', $data);
+		$this->load->view('mentions', $data);
 
 	}
 }
