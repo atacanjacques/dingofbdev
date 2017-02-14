@@ -6,7 +6,7 @@ body{
     background-size: 100%;
     background-repeat: no-repeat;
     background-attachment: fixed;
-    color: #480c0c;
+    color: #252222;
 }
 
 h1{
@@ -153,11 +153,11 @@ ul.subnav1 {
 }
 
 .button_type{
-    background-color: #4a3a3a;
+    background-color: #252222;
 }
 
 .button_type:hover{
-    background-color: #480c0c;
+    background-color: #af3b3c;
 }
 
 ul{
@@ -171,7 +171,7 @@ ul{
 /*}*/
 
 .button {
-    background-color: #480c0c;
+    background-color: #252222;
     border: 3px solid #fff;
     color: white;
     text-align: center;
@@ -185,7 +185,7 @@ ul{
 }
 
 .button:hover{
-    background-color : #4a3a3a;
+    background-color : #af3b3c;
     color : white;
 }
 
@@ -281,19 +281,19 @@ select{
 .pagination>li>a, .pagination>li>span
 {
     color: #fff;
-    background-color: #480c0c;
+    background-color: #252222;
 }
 
 .pagination>.active>a, .pagination>.active>span, .pagination>.active>span:focus, .pagination>.active>span:hover
 {
-    background-color: #4a3a3a;
-    border-color: #4a3a3a;
+    background-color: #af3b3c;
+    border-color: #af3b3c;
 }
 
 .pagination>li>a:hover
 {
-    background-color: #4a3a3a;
-    border-color: #480c0c;
+    background-color: #af3b3c;
+    border-color: #af3b3c;
     color: white;
 }
 
@@ -383,7 +383,6 @@ select{
 .title-photo{
     font-size: 30px;
     text-align: center;
-    color: #480c0c;
     margin-bottom: 2%;
 }
 
@@ -437,7 +436,7 @@ span.navbar-brand {
 /* FOOTER CSS */
 
 .buttonCGU{
-    background-color: #4a3a3a;
+    background-color: #252222;
     border: 1.2px solid #fff;
     padding: 15px 32px;
     text-align: center;
@@ -451,7 +450,7 @@ span.navbar-brand {
 
 .buttonCGU:hover{
 
-    background-color: #480c0c;
+    background-color: #af3b3c;
 
 }
 
