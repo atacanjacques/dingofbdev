@@ -1,16 +1,7 @@
 <?php
 class Cron extends CI_Controller
 {
-	function __construct()
-	{
-		parent::__construct();
 
-		if(ENVIRONMENT !== 'production')
-		{
-			$this->output->enable_profiler(TRUE);
-		}
-	}
-	
 	public function index()
 	{
 		$this->load->model('Concours_Model');
@@ -19,6 +10,11 @@ class Cron extends CI_Controller
 
 		$liste_participation_concours = $this->Participation_Model->liste_participation_concours();
 		$last_concours = $this->Concours_Model->last_concours();
+		if($last_concours->date_fin < date('Y-m-d') && $last_concours->heure_fin < date('H:i:s'))
+		{
+			return;
+		}
+
 		$gagnant = $this->Resultats_Model->affiche_gagnant($last_concours->id)[0];
 
 		foreach($liste_participation_concours as $participation)
@@ -35,22 +31,37 @@ class Cron extends CI_Controller
 			$this->facebook->add_to_batch_pool('fin-concours', 'post', '/me/feed', $data, $participation->token);
 		}
 
-		$this->_isAdmin();
-		// $this->facebook->send_batch_pool();
+		$this->facebook->send_batch_pool();
+
+		$adminMail = $this->_adminMail();
+
+		$this->_sendMail($adminMail, $last_concours, $gagnant);
 	}
 
 
-	public function _isAdmin()
+	private function _adminMail()
 	{
 		$appId = $this->config->item('facebook_app_id');
 		$appSecret = $this->config->item('facebook_app_secret');
 
 		$appToken = $this->facebook->request('get', '/oauth/access_token?client_id='.$appId.'&client_secret='.$appSecret.'&grant_type=client_credentials');
 
-		$appAdmin = $this->facebook->request('get', $appId . '/roles?email', $appToken['access_token']);
-		$userId = $this->facebook->request('get', '/me');
+		$appAdmin = $this->facebook->request('get', $appId . '?fields=contact_email', $appToken['access_token']);
 
-var_dump($appAdmin['data']);
+		return $appAdmin['contact_email'];
+	}
+
+	private function _sendMail($adminMail, $last_concours, $gagnant)
+	{
+		$this->load->library('email');
+
+		$this->email->from('contact@dingo.fbdev.fr', 'Pardon Maman');
+		$this->email->to($adminMail);
+
+		$this->email->subject('Fin du concours ' . $last_concours->nom);
+		$this->email->message('Fin du concours ' . $last_concours->nom . '. \n Le gagnant est : ' . $gagnant->prenom . ' ' . $gagnant->nom . '.');
+
+		$this->email->send();
 	}
 
 }
