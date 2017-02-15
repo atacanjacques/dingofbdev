@@ -34,7 +34,7 @@
                                   e.preventDefault;
                                   FB.ui({
                                     method: 'feed',
-                                    link: <?php echo base_url(); ?>,
+                                    link: '<?php echo base_url(); ?>',
                                     picture: '<?php echo $participation->source_photo; ?>',
                                     caption: 'Je vote pour <?php echo $participation->prenom; ?> !',
                                 }, function(response){});
