@@ -91,7 +91,7 @@ $db['default'] = array(
 	'save_queries' => TRUE
 	);
 
-if(ENVIRONMENT == 'production')
+if(ENVIRONMENT == 'production' || is_cli())
 {
 	$db['default']['hostname'] = 'localhost';
 	$db['default']['username'] = 'root';
