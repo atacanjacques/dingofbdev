@@ -1,41 +1,43 @@
 <?php
 class Cron extends CI_Controller
 {
-
 	public function index()
 	{
-		$this->load->model('Concours_Model');
-		$this->load->model('Participation_Model');
-		$this->load->model('Resultats_Model');
-
-		$liste_participation_concours = $this->Participation_Model->liste_participation_concours();
-		$last_concours = $this->Concours_Model->last_concours();
-		if($last_concours->date_fin < date('Y-m-d') && $last_concours->heure_fin < date('H:i:s'))
+		if(is_cli())
 		{
-			return;
+			$this->load->model('Concours_Model');
+			$this->load->model('Participation_Model');
+			$this->load->model('Resultats_Model');
+
+			$liste_participation_concours = $this->Participation_Model->liste_participation_concours();
+			$last_concours = $this->Concours_Model->last_concours();
+			if($last_concours->date_fin < date('Y-m-d') && $last_concours->heure_fin < date('H:i:s'))
+			{
+				return;
+			}
+
+			$gagnant = $this->Resultats_Model->affiche_gagnant($last_concours->id)[0];
+
+			foreach($liste_participation_concours as $participation)
+			{
+				$data = array(
+					'caption' => 'Fin du concours ' . $last_concours->nom,
+					'description' => 'Le gagnant du concours est ' . $gagnant->prenom . ' ' . $gagnant->nom,
+					'from' => array('id' => $participation->id_fb, 'name' => $participation->nom),
+					'link' => base_url(),
+					'name' => 'PARDON MAMAN',
+					'picture' => $gagnant->source_photo
+					);
+
+				$this->facebook->add_to_batch_pool('fin-concours', 'post', '/me/feed', $data, $participation->token);
+			}
+
+			$this->facebook->send_batch_pool();
+
+			$adminMail = $this->_adminMail();
+
+			$this->_sendMail($adminMail, $last_concours, $gagnant);
 		}
-
-		$gagnant = $this->Resultats_Model->affiche_gagnant($last_concours->id)[0];
-
-		foreach($liste_participation_concours as $participation)
-		{
-			$data = array(
-				'caption' => 'Fin du concours ' . $last_concours->nom,
-				'description' => 'Le gagnant du concours est ' . $gagnant->prenom . ' ' . $gagnant->nom,
-				'from' => array('id' => $participation->id_fb, 'name' => $participation->nom),
-				'link' => base_url(),
-				'name' => 'PARDON MAMAN',
-				'picture' => $gagnant->source_photo
-				);
-
-			$this->facebook->add_to_batch_pool('fin-concours', 'post', '/me/feed', $data, $participation->token);
-		}
-
-		$this->facebook->send_batch_pool();
-
-		$adminMail = $this->_adminMail();
-
-		$this->_sendMail($adminMail, $last_concours, $gagnant);
 	}
 
 
