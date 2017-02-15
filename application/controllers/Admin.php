@@ -182,7 +182,7 @@ public function export_concours_CSV()
     }
     else
     {
-        redirect(base_url()."/uploads/export_users/liste_concours_".date('Y-m-d_H-i-s').".csv");
+        redirect(base_url()."/uploads/export_concours/liste_concours_".date('Y-m-d_H-i-s').".csv");
     }
 }
 
