@@ -8,23 +8,16 @@ class MY_Controller extends CI_Controller
 	{
 		parent::__construct();
 
+		$this->load->model('Concours_Model');
+		$concours = $this->Concours_Model->date_concours();
+
 		if(isset($_SESSION['refusedPage']))
 		{
 			$refusedPage = $_SESSION['refusedPage'];
 			unset($_SESSION['refusedPage']);
 
+			$this->refusedPage = $refusedPage;
 			$this->permissionsMissing = $this->_permissionsMissing($refusedPage);
-			if(!isset($this->permissionsMissing))
-			{
-				if($refusedPage == "vote")
-				{
-					redirect('/vote');
-				}
-				elseif($refusedPage == "participate")
-				{
-					redirect('/participate');
-				}
-			}
 		}
 
 		$_SESSION['isAdmin'] = 0;
@@ -47,6 +40,13 @@ class MY_Controller extends CI_Controller
 			// Deleted App
 			case 2:
 			$this->facebook->destroy_session();
+			
+			if($this->router->fetch_class() != "home"
+				&& $this->router->fetch_class() != "login")
+			{
+				redirect('/');
+			}
+
 			break;
 		}
 	}

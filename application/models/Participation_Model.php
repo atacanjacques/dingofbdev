@@ -2,7 +2,7 @@
 
 class Participation_Model extends CI_Model
 {
-        protected $limit = 2;
+        protected $limit = 6;
 
         public function add_participation($participation, $user)
         {
