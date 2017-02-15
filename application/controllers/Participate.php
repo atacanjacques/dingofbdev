@@ -28,8 +28,11 @@ class Participate extends MY_Controller
 		}
 		elseif($bd_participation)
 		{
-			echo "Vous avez deja participer !";
-			echo '<br><a href="/participate/delete">Supprimer ma participation</a>';
+			$data['photo'] = $bd_participation->source_photo;
+			$this->load->view('header');
+			$this->load->view('menu');
+			$this->load->view('front_message/already_participated', $data);
+			$this->load->view('footer');
 		}
 		elseif($photo_id != NULL)
 		{
@@ -46,9 +49,11 @@ class Participate extends MY_Controller
 				$participation = $this->facebook->request('get', $photo_id . '?fields=images');
 				$this->Participation_Model->add_participation($participation, $fb_user);
 
-				echo '<h1>IMAGE AJOUTE</h1>';
-				echo '<p>Partager votre participation : </p>';
-				echo '<img src="' . $participation['images']['0']['source'] . '"/>';
+				$data['photo'] = $participation['images']['0']['source'];
+				$this->load->view('header');
+				$this->load->view('menu');
+				$this->load->view('front_message/photo_added', $data);
+				$this->load->view('footer');
 			}
 			elseif(isset($_POST['addPhoto']) && $_POST['addPhoto'] == "Non")
 			{
@@ -56,26 +61,27 @@ class Participate extends MY_Controller
 			}
 			else
 			{
-				echo '
-				Participer avec cette photo ?<br>
-				<form action="" method="post">
-					<input type="submit" value="Oui" name="addPhoto">
-					<input type="submit" value="Non" name="addPhoto">
-				</form>
-				';
+				$data['title'] = 'Participer avec cette photo ?';
+				$data['input_name'] = 'addPhoto';
+				$photo = $this->facebook->request('get', $photo_id . '?fields=images');
+				$data['photo'] = $photo['images']['0']['source'];
 
+				$this->load->view('header');
+				$this->load->view('menu');
+				$this->load->view('front_message/confirm', $data);
+				$this->load->view('footer');
 			}
 		}
 		else{
-			echo '<a href="/participate/album">mes albums</a>';
-			echo '<br><a href="/participate/add_photos">ajouter image fb</a>';
+
+				$data['errors'] = isset($_SESSION['errors']) ? $_SESSION['errors'] : '';
+				unset($_SESSION['errors']);
+
+			$this->load->view('header');
+			$this->load->view('menu');
+			$this->load->view('upload', $data);
+			$this->load->view('footer');
 		}
-
-		$this->load->view('header');
-		$this->load->view('menu');
-		$this->load->view('upload');
-		$this->load->view('footer');
-
 	}
 
 
@@ -84,19 +90,37 @@ class Participate extends MY_Controller
 		if($album_id == NULL)
 		{
 			$data['albums'] = $this->facebook->request('get', '/me/albums')['data'];
+
+			foreach($data['albums'] as $index => $album)
+			{
+			// $cover = $this->facebook->request('get', $album['id'] . '/picture');  // Ne fonctionne pas ?
+				$cover = $this->facebook->request('get', $album['id'] . '/photos');
+				$cover = $this->facebook->request('get', $cover['data'][0]['id'] . '?fields=images');
+				$cover = $cover['images'][0]['source'];
+
+				$data['albums'][$index]['cover'] = $cover;
+			}
+
+			$this->load->view('header');
+			$this->load->view('menu');
 			$this->load->view('albums', $data);
+			$this->load->view('footer');
+
 
 		}
 		else
 		{
-			$photos = $this->facebook->request('get', $album_id . '/photos')['data'];
+			$photos = $this->facebook->request('get', $album_id . '/photos?name')['data'];
 
 			$data['photos'] = array();
 			foreach ($photos as $photo) {
 				$pic = $this->facebook->request('get', $photo['id'] . '?fields=images');
 				array_push($data['photos'], $pic);
 			}
+			$this->load->view('header');
+			$this->load->view('menu');
 			$this->load->view('photos', $data);
+			$this->load->view('footer');
 
 		}
 	}
@@ -107,7 +131,6 @@ class Participate extends MY_Controller
 		{
 			if(isset($_POST['addPhoto']) && $_POST['addPhoto'] == "Oui")
 			{
-				echo "<h1>Photo ajouté !</h1>";
 				$photo_upload = $this->facebook->user_upload_request('./uploads/uploaded_photos/' . $_POST['fileName'], ['message' => $_POST['fileDescription']]);
 
 				unlink('./uploads/uploaded_photos/' . $_POST['fileName']);
@@ -119,15 +142,8 @@ class Participate extends MY_Controller
 				if(isset($_POST['addPhoto']) && $_POST['addPhoto'] == "Non")
 				{
 					unlink('./uploads/uploaded_photos/' . $_POST['fileName']);
-
+					redirect('/participate');
 				}
-				echo '
-				<form action="" method="post" enctype="multipart/form-data">
-					<input type="file" name="photo_file"><br>
-					<textarea name="photo_description">' . 'Ma participation au concours ' . date('d-m-Y H:i:s') . '</textarea>
-					<input type="submit" value="Ajouter à mes photos" name="submit">
-				</form>
-				';
 			}
 		}
 		else
@@ -142,25 +158,25 @@ class Participate extends MY_Controller
 			if (! $this->upload->do_upload('photo_file'))
 			{
 				$error = array('error' => $this->upload->display_errors());
-				var_dump($error);
+				$_SESSION['errors'] = $error;
+				redirect('/participate');
 			}
 			else
 			{
 				$uploaded_file_name = $this->upload->data('orig_name');
 				$uploaded_file_description = $_POST['photo_description'];
 
-				echo '<img src="/uploads/uploaded_photos/' . $uploaded_file_name . '" />';
-				echo "<h1>Ajouté cette image sur votre compte ?</h1>";
-				echo '
-				<form action="" method="post">
-					<input type="hidden" value="' . $uploaded_file_name . '" name="fileName">		
+				$data['photo'] = '/uploads/uploaded_photos/' . $uploaded_file_name;
+				$data['title'] = 'Ajouter cette image sur votre compte ?';
+				$data['input_name'] = 'addPhoto';
+				$data['uploaded_file_name'] = $uploaded_file_name;
+				$data['uploaded_file_description'] = $uploaded_file_description;
 
-					<input type="hidden" value="' . $uploaded_file_description . '" name="fileDescription">
+				$this->load->view('header');
+				$this->load->view('menu');
+				$this->load->view('front_message/confirm', $data);
+				$this->load->view('footer');
 
-					<input type="submit" value="Oui" name="addPhoto">
-					<input type="submit" value="Non" name="addPhoto">
-				</form>
-				';
 			}
 		}
 	}
@@ -178,7 +194,10 @@ class Participate extends MY_Controller
 		if(isset($_POST['deletePhoto']) && $_POST['deletePhoto'] == "Oui")
 		{
 			$bd_user = $this->Participation_Model->delete_participation($fb_user);
-			echo "participation supprimer";
+			$this->load->view('header');
+			$this->load->view('menu');
+			$this->load->view('front_message/deleted');
+			$this->load->view('footer');
 
 		}
 		elseif(isset($_POST['deletePhoto']) && $_POST['deletePhoto'] == "Non")
@@ -187,13 +206,16 @@ class Participate extends MY_Controller
 		}
 		else
 		{
-			echo '
-			Supprimer la participation ?
-			<form action="" method="post">
-				<input type="submit" value="Oui" name="deletePhoto">
-				<input type="submit" value="Non" name="deletePhoto">
-			</form>
-			';
+
+			$data['photo'] = $bd_participation->source_photo;
+
+			$data['title'] = 'Supprimer la participation ?';
+			$data['input_name'] = 'deletePhoto';
+
+			$this->load->view('header');
+			$this->load->view('menu');
+			$this->load->view('front_message/confirm', $data);
+			$this->load->view('footer');
 		}
 	}
 }

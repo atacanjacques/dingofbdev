@@ -1,16 +1,30 @@
-<section id="section-photos">
+</section>
+<section id="section-galerie">
     <div class="container">
-        <h1 style="font-size: 31px; font-weight: 700;">Vos Photos</h1>
-        <div class="row">
+        <div id="main_area">
+            <h1>Albums :  </h1>
+            <div class="row">
+                <div class="col-sm-12" id="slider-thumbs">
 
-            <?php
-            foreach ($photos as $photo) {
-                echo '<a href="/participate/index/' . $photo['id'] . '"><span style="width:100px;height:100px;display:inline-block;background-size:cover;background-image:url(' . $photo['images'][0]['source'] . ');"></span></a>';
-            }
-            ?>
+                    <ul class="hide-bullets">
+                       <?php
+                       foreach($photos as $photo)
+                       {
+                        ?>
+                        <li class="col-sm-4 col-xs-12">
+                            <a href="/participate/index/<?php echo $photo['id']; ?>">
+                            <img src="<?php echo $photo['images'][0]['source']; ?>" class="photo_gallery">
+                            </a>
+                                <p class="title-photo"></p>
+                            </li>
+                            <?php
+                        }
+                        ?>
 
+                    </ul>
 
+                </div>
+            </div>
         </div>
     </div>
-
 </section>
