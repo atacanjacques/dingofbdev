@@ -31,7 +31,7 @@
                   e.preventDefault;
                   FB.ui({
                     method: 'feed',
-                    link: top.location.href,
+                    link: <?php echo base_url(); ?>,
                     picture: '<?php echo $photo; ?>',
                     caption: 'Je participe au concours <?php echo $caption; ?> ! Vote pour moi !',
                   }, function(response){});

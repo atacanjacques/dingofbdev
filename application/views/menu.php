@@ -30,7 +30,7 @@
                 e.preventDefault;
                 FB.ui({
                   method: 'feed',
-                  link: top.location.href,
+                  link: <?php echo base_url(); ?>,
                   caption: '<?php echo $caption; ?>',
               }, function(response){});
             });
