@@ -31,6 +31,19 @@ class Participation_Model extends CI_Model
                 $this->db->delete('participation');
         }
 
+        public function liste_participation_concours()
+        {
+                $this->load->model('Concours_Model');
+                $last_concours = $this->Concours_Model->last_concours();
+
+                $this->db->select('users.*, participation.*');
+                $this->db->from('participation');
+                $this->db->join('users', 'users.id_fb = participation.users_id_fb', 'inner');
+                $this->db->where('participation.concours_id', $last_concours->id);
+                $this->db->group_by('participation.id');
+                return $this->db->get()->result();
+        }
+
         public function liste_participation($orderby, $page)
         {
                 $offset = $this->limit * ($page - 1);
